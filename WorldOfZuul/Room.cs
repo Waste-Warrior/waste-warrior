@@ -28,13 +28,14 @@
                 Exits[direction] = neighbor;
         }
         
-        //This method removes one element from the scatteredTrash array and returns it
-        public Trash? CollectTrash(int index = 0)
+        //This method removes one element from the scatteredTrash array and returns it. This will be unnecessary when this method is only called from it's string counterpart.
+        public Trash? RemoveTrash(int index = 0)
         {
+            //checking if there is trash in this room. 
             Trash? pickedTrash = null;
             if (ScatteredTrash is not { Length: > 0 })
             {
-                return pickedTrash;
+                return null;
             }
             
             Trash[] newTrashArray = new Trash[ScatteredTrash.Length - 1];
@@ -53,6 +54,39 @@
 
             ScatteredTrash = newTrashArray;
             return pickedTrash;
+        }
+
+        public Trash? RemoveTrash(string trashName = "")
+        {
+            if (ScatteredTrash is not { Length: > 0 })
+            {
+                return null;
+            }
+
+            for (int i = 0; i < ScatteredTrash.Length; i++)
+            {
+                if (ScatteredTrash[i].Name == trashName)
+                {
+                    return RemoveTrash(i);
+                }
+            }
+
+            return null;
+        }
+
+        public bool IsTrashInRoom(string? trashName = null)
+        {
+            if (ScatteredTrash != null && ScatteredTrash.Length >= 1 && trashName != null)
+            {
+                foreach (Trash trash in ScatteredTrash)
+                {
+                    if (trashName == trash.Name)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

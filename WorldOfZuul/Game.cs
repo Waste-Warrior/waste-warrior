@@ -12,7 +12,7 @@
 
         private void CreateRooms()
         {
-            Trash[] outsideTrash = {new Trash("empty beer can", Trash.TrashType.Metal)};
+            Trash[] outsideTrash = {new ("empty beer can", Trash.TrashType.Metal)};
             Room outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.", outsideTrash);
             Room theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
             Room pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
@@ -99,16 +99,26 @@
                     
                     //In the future this will allow you to collect trash for later disposal. Currently this removes Trash from a Room.
                     case "collect":
-                        Trash? collectedTrash = currentRoom?.CollectTrash();
-                        Console.WriteLine(collectedTrash == null
-                            ? "There is no Trash to collect here"
-                            : $"You collected {collectedTrash.Name}");
+                        if (currentRoom != null && command.RemainingInput != null && currentRoom.IsTrashInRoom(command.RemainingInput))
+                        {
+                            Trash? collectedTrash = currentRoom?.RemoveTrash(command.RemainingInput);
+
+                            if (collectedTrash != null)
+                            {
+                                Console.WriteLine($"You collected {collectedTrash.Name}");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("This object is not in the room");
+                        }
                         break;
 
                     default:
                         Console.WriteLine("I don't know that command.");
                         break;
                 }
+                Console.WriteLine(); //Adding an empty Line at the end of each action output
             }
 
             Console.WriteLine("Thank you for playing World of Zuul!");
