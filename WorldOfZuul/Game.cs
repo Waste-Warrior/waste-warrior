@@ -12,11 +12,12 @@
 
         private void CreateRooms()
         {
-            Room? outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.");
-            Room? theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
-            Room? pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
-            Room? lab = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
-            Room? office = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
+            Trash[] outsideTrash = {new Trash("empty beer can", Trash.TrashType.Metal)};
+            Room outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.", outsideTrash);
+            Room theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
+            Room pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
+            Room lab = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
+            Room office = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
 
             outside.SetExits(null, theatre, lab, pub); // North, East, South, West
 
@@ -63,6 +64,15 @@
                 {
                     case "look":
                         Console.WriteLine(currentRoom?.LongDescription);
+                        
+                        //This currently prints all Trash in the Room to the console.
+                        if (currentRoom?.ScatteredTrash != null)
+                        {
+                            foreach (Trash trash in currentRoom?.ScatteredTrash)
+                            {
+                                Console.WriteLine(trash.Name);
+                            }
+                        }
                         break;
 
                     case "back":
@@ -86,9 +96,17 @@
                     case "help":
                         PrintHelp();
                         break;
+                    
+                    //In the future this will allow you to collect trash for later disposal. Currently this removes Trash from a Room.
+                    case "collect":
+                        Trash? collectedTrash = currentRoom?.CollectTrash();
+                        Console.WriteLine(collectedTrash == null
+                            ? "There is no Trash to collect here"
+                            : $"You collected {collectedTrash.Name}");
+                        break;
 
                     default:
-                        Console.WriteLine("I don't know what command.");
+                        Console.WriteLine("I don't know that command.");
                         break;
                 }
             }
@@ -126,6 +144,7 @@
             Console.WriteLine("Navigate by typing 'north', 'south', 'east', or 'west'.");
             Console.WriteLine("Type 'look' for more details.");
             Console.WriteLine("Type 'back' to go to the previous room.");
+            Console.WriteLine("Type 'collect' to collect trash within the room");
             Console.WriteLine("Type 'help' to print this message again.");
             Console.WriteLine("Type 'quit' to exit the game.");
         }
