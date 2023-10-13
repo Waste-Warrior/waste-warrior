@@ -103,7 +103,7 @@
                     case "collect":
                         if (currentRoom != null && command.RemainingInput != null && currentRoom.IsTrashInRoom(command.RemainingInput))
                         {
-                            Trash? collectedTrash = currentRoom?.RemoveTrash(command.RemainingInput);
+                            Trash? collectedTrash = currentRoom?.RemoveTrash(command.RemainingInput); //This trash object can later be added to an inventory
 
                             if (collectedTrash != null) //This check may not be needed
                             {
