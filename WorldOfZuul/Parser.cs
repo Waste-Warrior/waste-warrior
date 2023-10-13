@@ -22,7 +22,8 @@ namespace WorldOfZuul
 
             if (words.Length > 1)
             {
-                string? remainingCommand = null; //Maybe the remaining words from the input should be collected in a separate array instead of a string, this could be useful if a command uses multiple arguments.
+                //Maybe the remaining words from the input should be collected in a separate array instead of a string, this could be useful if a command uses multiple arguments.
+                string? remainingCommand = null; 
                 for (int i = 1; i < words.Length; i++)
                 {
                     remainingCommand += words[i];

@@ -107,7 +107,8 @@
 
                             if (collectedTrash != null) //This check may not be needed
                             {
-                                Console.WriteLine($"You collected {collectedTrash.Name}");
+                                //The string uses an escape sequence to color the text, if we want to color code the text output we should probably create an easy to use system
+                                Console.WriteLine($"You collected \x1b[93m{collectedTrash.Name}\x1b[39m"); 
                             }
                         }
                         else
