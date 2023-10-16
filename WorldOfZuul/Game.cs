@@ -65,14 +65,18 @@
                 switch(command.Name)
                 {
                     case "look":
-                        Console.WriteLine(currentRoom?.LongDescription);
-                        
-                        //This currently prints all Trash in the Room to the console.
-                        if (currentRoom?.ScatteredTrash != null)
+                        // This solves the possibility of a null reference exception
+                        if (currentRoom != null)
                         {
-                            foreach (Trash trash in currentRoom?.ScatteredTrash)
+                            Console.WriteLine(currentRoom.LongDescription);
+
+                            //This currently prints all Trash in the Room to the console.
+                            if (currentRoom.ScatteredTrash != null)
                             {
-                                Console.WriteLine(trash.Name);
+                                foreach (Trash trash in currentRoom.ScatteredTrash)
+                                {
+                                    Console.WriteLine(trash.Name);
+                                }
                             }
                         }
                         break;
