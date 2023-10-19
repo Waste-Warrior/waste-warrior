@@ -13,7 +13,7 @@
         private void CreateRooms()
         {
             //The trash arrays have to be set outside of the room declaration
-            Trash[] outsideTrash = {new ("empty beer can", Trash.TrashType.Metal)};
+            Trash[] outsideTrash = {new ("an empty beer can", Trash.TrashType.Metal), new ("an empty Cola can", Trash.TrashType.Metal)};
             
             Room outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.", outsideTrash);
             Room theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
@@ -73,10 +73,18 @@
                             //This currently prints all Trash in the Room to the console.
                             if (currentRoom.ScatteredTrash != null)
                             {
+                                string allTrash = "";
                                 foreach (Trash trash in currentRoom.ScatteredTrash)
                                 {
-                                    Console.WriteLine(trash.Name);
+                                    allTrash += trash.Name + ", ";
+                                    //Console.WriteLine(trash.Name);
                                 }
+                                int lastCommaIndex = allTrash.LastIndexOf(", ");
+                                if (lastCommaIndex >= 0)
+                                {
+                                    allTrash = allTrash.Remove(lastCommaIndex, 2);
+                                }
+                                Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
                             }
                         }
                         break;
@@ -147,8 +155,8 @@
 
         private static void PrintWelcome()
         {
-            Console.WriteLine("Welcome to the World of Zuul!");
-            Console.WriteLine("World of Zuul is a new, incredibly boring adventure game.");
+            Console.WriteLine("Welcome to the World of Zuul: Waste Warriors!");
+            Console.WriteLine("World of Zuul: Waste Warriors is a new, incredibly trashy adventure game.");
             PrintHelp();
             Console.WriteLine();
         }
