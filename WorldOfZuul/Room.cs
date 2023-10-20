@@ -1,4 +1,6 @@
-﻿namespace WorldOfZuul
+﻿using System.Diagnostics;
+
+namespace WorldOfZuul
 {
     public class Room
     {
@@ -39,16 +41,18 @@
             }
             
             Trash[] newTrashArray = new Trash[ScatteredTrash.Length - 1];
+            int newArrayIndex = 0; //This is needed because an offset is created, when the item that to remove is found.
             
-            for (int i = 0; i < ScatteredTrash.Length; i++)
+            for (int oldArrayIndex = 0; oldArrayIndex < ScatteredTrash.Length; oldArrayIndex++)
             {
-                if (i != index)
+                if (oldArrayIndex != index)
                 {
-                    newTrashArray[i] = ScatteredTrash[i];
+                    newTrashArray[newArrayIndex] = ScatteredTrash[oldArrayIndex];
+                    newArrayIndex += 1;
                 }
                 else
                 {
-                    pickedTrash = ScatteredTrash[i];
+                    pickedTrash = ScatteredTrash[oldArrayIndex];
                 }
             }
 
@@ -68,6 +72,7 @@
             {
                 if (ScatteredTrash[i].Name == trashName)
                 {
+                    Debug.WriteLine(i);
                     return RemoveTrash(i);
                 }
             }

@@ -71,7 +71,7 @@
                             Console.WriteLine(currentRoom.LongDescription);
 
                             //This currently prints all Trash in the Room to the console.
-                            if (currentRoom.ScatteredTrash != null)
+                            if (currentRoom.ScatteredTrash != null && currentRoom.ScatteredTrash.Length != 0)
                             {
                                 string allTrash = "";
                                 foreach (Trash trash in currentRoom.ScatteredTrash)

@@ -13,7 +13,8 @@ namespace WorldOfZuul
 
         public Command? GetCommand(string inputLine)
         {
-            string[] words = inputLine.Split();
+            
+            string[] words = inputLine.ToLower().Split(); //The parser will convert every command to lowercase and put it into an array
 
             if (words.Length == 0 || !commandWords.IsValidCommand(words[0]))
             {
