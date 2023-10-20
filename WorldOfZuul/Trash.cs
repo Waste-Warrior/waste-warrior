@@ -13,7 +13,7 @@ public class Trash
 
     public Trash(string name = "", TrashType type = TrashType.Undefined)
     {
-        this.Name = name.ToLower();
+        this.Name = name;
         this.Type = type;
     }
 }
