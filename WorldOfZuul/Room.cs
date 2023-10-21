@@ -60,7 +60,7 @@ namespace WorldOfZuul
             return pickedTrash;
         }
 
-        public Trash? RemoveTrash(string trashName = "")
+        public Trash? RemoveTrash(string trashName = "", int? trashDay = 0)
         {
             if (ScatteredTrash is not { Length: > 0 })
             {
@@ -72,27 +72,51 @@ namespace WorldOfZuul
             {
                 if (ScatteredTrash[i].Name.ToLower() == trashName)
                 {
-                    Debug.WriteLine(i);
-                    return RemoveTrash(i);
+                    if (trashDay != null && ScatteredTrash[i].Day == (Trash.Days) trashDay)
+                    {
+                        Debug.WriteLine(i);
+                        return RemoveTrash(i);
+                    }
                 }
             }
 
             return null;
         }
 
-        public bool IsTrashInRoom(string? trashName = null)
+        public bool IsTrashInRoom(string? trashName = null, int? trashDay = 0)
         {
             if (ScatteredTrash != null && ScatteredTrash.Length >= 1 && trashName != null)
             {
                 foreach (Trash trash in ScatteredTrash)
                 {
-                    if (trashName == trash.Name)
+                    if (trashName.ToLower() == trash.Name.ToLower())
                     {
-                        return true;
+                        if (trashDay != null && trash.Day == (Trash.Days) trashDay)
+                        {
+                            return true;
+                        }
                     }
                 }
             }
             return false;
+        }
+        public bool allTrashCollected(int? day = null)
+        {
+            if (ScatteredTrash is not { Length: > 0 })
+            {
+                return true;
+            }
+            if (day != null)
+            {
+                foreach (Trash trash in ScatteredTrash)
+                {
+                    if (trash.Day == (Trash.Days) day)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

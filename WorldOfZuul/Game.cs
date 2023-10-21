@@ -13,10 +13,17 @@
         private void CreateRooms()
         {
             //The trash arrays have to be set outside of the room declaration
-            Trash[] outsideTrash = {new ("an empty beer can", Trash.TrashType.Metal), new ("an empty Cola can", Trash.TrashType.Metal)};
+            Trash[] outsideTrash = {
+                new ("an empty beer can", Trash.TrashType.Metal, Trash.Days.Monday),
+                new ("an empty Cola can", Trash.TrashType.Metal, Trash.Days.Monday)
+            };
+            Trash[] theatherTrash = {
+                new ("an empty beer can", Trash.TrashType.Metal, Trash.Days.Monday),
+                new ("an empty Cola can", Trash.TrashType.Metal, Trash.Days.Monday)
+            };
             
             Room outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.", outsideTrash);
-            Room theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
+            Room theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.", theatherTrash);
             Room pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
             Room lab = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
             Room office = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
@@ -39,6 +46,8 @@
             Parser parser = new();
 
             PrintWelcome();
+
+            int currentDay = 0;
 
             bool continuePlaying = true;
             while (continuePlaying)
@@ -113,14 +122,21 @@
                     
                     //In the future this will allow you to collect trash for later disposal. Currently this removes Trash from a Room.
                     case "collect":
-                        if (currentRoom != null && command.RemainingInput != null && currentRoom.IsTrashInRoom(command.RemainingInput))
+                        if (currentRoom != null && command.RemainingInput != null && currentRoom.IsTrashInRoom(command.RemainingInput, currentDay))
                         {
-                            Trash? collectedTrash = currentRoom?.RemoveTrash(command.RemainingInput); //This trash object can later be added to an inventory
+                            Trash? collectedTrash = currentRoom?.RemoveTrash(command.RemainingInput, currentDay); //This trash object can later be added to an inventory
 
                             if (collectedTrash != null) //This check may not be needed
                             {
                                 //The string uses an escape sequence to color the text, if we want to color code the text output we should probably create an easy to use system
-                                Console.WriteLine($"You collected \x1b[93m{collectedTrash.Name}\x1b[39m"); 
+                                Console.WriteLine($"You collected \x1b[93m{collectedTrash.Name}\x1b[39m");
+                                //outside, theatre, pub, lab office.
+                                //foreach in 
+                                if (currentRoom != null && currentRoom.allTrashCollected(currentDay))
+                                {
+                                    Console.WriteLine("Change current day");
+                                    currentDay += 1;
+                                }
                             }
                         }
                         else
@@ -136,7 +152,7 @@
                 Console.WriteLine(); //Adding an empty Line at the end of each action output
             }
 
-            Console.WriteLine("Thank you for playing World of Zuul!");
+            Console.WriteLine("Thank you for playing World of Zuul: Waste Warriors!");
         }
 
         private void Move(string direction)
