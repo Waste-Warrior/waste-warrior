@@ -1,10 +1,12 @@
-﻿namespace WorldOfZuul
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace WorldOfZuul
 {
     public class Game
     {
         private Room? currentRoom;
         private Room? previousRoom;
-        
+        private int dayScore = 0;
         public enum Days
         {
             Monday,
@@ -15,6 +17,17 @@
             Saturday,
             Sunday
         }
+
+        private Dictionary<Days, int> dayScores = new Dictionary<Days, int>()
+        {
+            { Days.Monday, 0 },
+            { Days.Tuesday, 0 },
+            { Days.Wednesday, 0 },
+            { Days.Thursday, 0 },
+            { Days.Friday, 0 },
+            { Days.Saturday, 0 },
+            { Days.Sunday, 0 }
+        };
 
         public readonly Days Day; // This will be used to determine when the trash can be picked up and shows up in the room
 
@@ -30,11 +43,15 @@
                 new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Monday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Monday),
                 new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Tuesday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Tuesday)
+                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Tuesday),
+                new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Wednesday),
+                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Wednesday)
             };
             Trash[] theatherTrash = {
                 new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Monday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Monday)
+                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Monday),
+                new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Tuesday),
+                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Tuesday),
             };
             
             Room outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.", outsideTrash);
@@ -54,8 +71,14 @@
             office.SetExit("west", lab);
 
             currentRoom = outside;
-        }
 
+            foreach (Trash item in outsideTrash.Concat(theatherTrash))
+            {
+                dayScores[item.Day] += 1;
+            }
+            //Now each day has a score of how many trash items are on the floor. Eg. dayScores[Days.Monday]
+
+        }
         public void Play()
         {
             Parser parser = new();
@@ -111,7 +134,10 @@
                                 {
                                     allTrash = allTrash.Remove(lastCommaIndex, 2);
                                 }
-                                Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
+                                if (allTrash.Length > 0)
+                                {
+                                    Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
+                                }
                             }
                         }
                         break;
@@ -148,12 +174,12 @@
                             {
                                 //The string uses an escape sequence to color the text, if we want to color code the text output we should probably create an easy to use system
                                 Console.WriteLine($"You collected \x1b[93m{collectedTrash.Name}\x1b[39m");
-                                //outside, theatre, pub, lab office.
-                                //foreach in 
-                                if (currentRoom != null && currentRoom.allTrashCollected(currentDay))
-                                {
-                                    Console.WriteLine("Change current day");
+                                dayScore += 1;
+                                if (dayCompleted(dayScores, currentDay, dayScore))
+                                {   
+                                    dayScore = 0;
                                     currentDay += 1;
+                                    Console.WriteLine("You have collected all the trash for today!");
                                 }
                             }
                         }
@@ -172,7 +198,14 @@
 
             Console.WriteLine("Thank you for playing World of Zuul: Waste Warriors!");
         }
-
+        private bool dayCompleted(Dictionary<Days, int> dayScores, int currentDay = 0, int dayScore = 0)
+        {
+            if (dayScores[(Days)currentDay] == dayScore)
+            {
+                return true;
+            }
+            return false;
+        }
         private void Move(string direction)
         {
             if (currentRoom?.Exits.ContainsKey(direction) == true)

@@ -100,23 +100,5 @@ namespace WorldOfZuul
             }
             return false;
         }
-        public bool allTrashCollected(int? day = null)
-        {
-            if (ScatteredTrash is not { Length: > 0 })
-            {
-                return true;
-            }
-            if (day != null)
-            {
-                foreach (Trash trash in ScatteredTrash)
-                {
-                    if (trash.Day == (Game.Days) day)
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
     }
 }
