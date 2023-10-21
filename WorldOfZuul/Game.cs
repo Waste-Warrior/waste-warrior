@@ -4,6 +4,19 @@
     {
         private Room? currentRoom;
         private Room? previousRoom;
+        
+        public enum Days
+        {
+            Monday,
+            Tuesday,
+            Wednesday,
+            Thursday,
+            Friday,
+            Saturday,
+            Sunday
+        }
+
+        public readonly Days Day; // This will be used to determine when the trash can be picked up and shows up in the room
 
         public Game()
         {
@@ -14,12 +27,14 @@
         {
             //The trash arrays have to be set outside of the room declaration
             Trash[] outsideTrash = {
-                new ("an empty beer can", Trash.TrashType.Metal, Trash.Days.Monday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Trash.Days.Monday)
+                new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Monday),
+                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Monday),
+                new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Tuesday),
+                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Tuesday)
             };
             Trash[] theatherTrash = {
-                new ("an empty beer can", Trash.TrashType.Metal, Trash.Days.Monday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Trash.Days.Monday)
+                new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Monday),
+                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Monday)
             };
             
             Room outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.", outsideTrash);
@@ -85,8 +100,11 @@
                                 string allTrash = "";
                                 foreach (Trash trash in currentRoom.ScatteredTrash)
                                 {
-                                    allTrash += trash.Name + ", ";
-                                    //Console.WriteLine(trash.Name);
+                                    if (trash.Day == (Game.Days)currentDay)
+                                    {
+                                        //Console.WriteLine(trash.Name);
+                                        allTrash += trash.Name + ", ";
+                                    }
                                 }
                                 int lastCommaIndex = allTrash.LastIndexOf(", ");
                                 if (lastCommaIndex >= 0)
