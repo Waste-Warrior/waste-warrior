@@ -5,6 +5,7 @@
         private Room? currentRoom;
         private Room? previousRoom;
         private int trashCollectedToday = 0;
+        private int currentDay = 0;
         public enum Days
         {
             Monday,
