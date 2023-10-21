@@ -70,7 +70,7 @@ namespace WorldOfZuul
             //This looks for the index of the trash within the ScatteredTrash array and then calls the RemoveTrash method that removes Trash by array Index
             for (int i = 0; i < ScatteredTrash.Length; i++)
             {
-                if (ScatteredTrash[i].Name.ToLower() == trashName)
+                if (ScatteredTrash[i].Name.ToLower() == trashName.ToLower())
                 {
                     Debug.WriteLine(i);
                     return RemoveTrash(i);
@@ -86,7 +86,7 @@ namespace WorldOfZuul
             {
                 foreach (Trash trash in ScatteredTrash)
                 {
-                    if (trashName == trash.Name)
+                    if (trashName.ToLower() == trash.Name.ToLower())
                     {
                         return true;
                     }
