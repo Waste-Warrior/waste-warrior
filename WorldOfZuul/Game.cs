@@ -6,6 +6,7 @@ namespace WorldOfZuul
     {
         private Room? currentRoom;
         private Room? previousRoom;
+        public int currentDay = 0;
         private int dayScore = 0;
         public enum Days
         {
@@ -85,8 +86,6 @@ namespace WorldOfZuul
 
             PrintWelcome();
 
-            int currentDay = 0;
-
             bool continuePlaying = true;
             while (continuePlaying)
             {
@@ -116,7 +115,7 @@ namespace WorldOfZuul
                         if (currentRoom != null)
                         {
                             Console.WriteLine(currentRoom.LongDescription);
-
+                            
                             //This currently prints all Trash in the Room to the console.
                             if (currentRoom.ScatteredTrash != null && currentRoom.ScatteredTrash.Length != 0)
                             {
