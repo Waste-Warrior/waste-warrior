@@ -1,13 +1,10 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace WorldOfZuul
+﻿namespace WorldOfZuul
 {
     public class Game
     {
         private Room? currentRoom;
         private Room? previousRoom;
-        public int currentDay = 0;
-        private int dayScore = 0;
+        private int trashCollectedToday = 0;
         public enum Days
         {
             Monday,
@@ -19,7 +16,7 @@ namespace WorldOfZuul
             Sunday
         }
 
-        private Dictionary<Days, int> dayScores = new Dictionary<Days, int>()
+        private Dictionary<Days, int> trashSpawnedOnDay = new Dictionary<Days, int>()
         {
             { Days.Monday, 0 },
             { Days.Tuesday, 0 },
@@ -48,7 +45,7 @@ namespace WorldOfZuul
                 new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Wednesday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Wednesday)
             };
-            Trash[] theatherTrash = {
+            Trash[] theatreTrash = {
                 new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Monday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Monday),
                 new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Tuesday),
@@ -56,7 +53,7 @@ namespace WorldOfZuul
             };
             
             Room outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.", outsideTrash);
-            Room theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.", theatherTrash);
+            Room theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.", theatreTrash);
             Room pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
             Room lab = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
             Room office = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
@@ -73,9 +70,9 @@ namespace WorldOfZuul
 
             currentRoom = outside;
 
-            foreach (Trash item in outsideTrash.Concat(theatherTrash))
+            foreach (Trash item in outsideTrash.Concat(theatreTrash))
             {
-                dayScores[item.Day] += 1;
+                trashSpawnedOnDay[item.Day] += 1;
             }
             //Now each day has a score of how many trash items are on the floor. Eg. dayScores[Days.Monday]
 
@@ -173,10 +170,10 @@ namespace WorldOfZuul
                             {
                                 //The string uses an escape sequence to color the text, if we want to color code the text output we should probably create an easy to use system
                                 Console.WriteLine($"You collected \x1b[93m{collectedTrash.Name}\x1b[39m");
-                                dayScore += 1;
-                                if (dayCompleted(dayScores, currentDay, dayScore))
+                                trashCollectedToday += 1;
+                                if (IsDayCompleted(trashSpawnedOnDay, currentDay, trashCollectedToday))
                                 {   
-                                    dayScore = 0;
+                                    trashCollectedToday = 0;
                                     currentDay += 1;
                                     Console.WriteLine("You have collected all the trash for today!");
                                 }
@@ -197,13 +194,9 @@ namespace WorldOfZuul
 
             Console.WriteLine("Thank you for playing World of Zuul: Waste Warriors!");
         }
-        private bool dayCompleted(Dictionary<Days, int> dayScores, int currentDay = 0, int dayScore = 0)
+        private bool IsDayCompleted(Dictionary<Days, int> trashSpawned, int currentDay = 0, int collectedTrashToday = 0)
         {
-            if (dayScores[(Days)currentDay] == dayScore)
-            {
-                return true;
-            }
-            return false;
+            return trashSpawned[(Days)currentDay] == collectedTrashToday;
         }
         private void Move(string direction)
         {
