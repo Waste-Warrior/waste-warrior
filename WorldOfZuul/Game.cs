@@ -1,9 +1,12 @@
-﻿namespace WorldOfZuul
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace WorldOfZuul
 {
     public class Game
     {
         private Room? currentRoom;
         private Room? previousRoom;
+        Inventory inventory = new Inventory(); // create an instance of the Inventory class
         private int trashCollectedToday = 0;
         private int currentDay = 0;
         public enum Days
@@ -171,10 +174,10 @@
                         if (currentRoom != null && command.RemainingInput != null && currentRoom.IsTrashInRoom(command.RemainingInput, currentDay))
                         {
                             Trash? collectedTrash = currentRoom?.RemoveTrash(command.RemainingInput, currentDay); //This trash object can later be added to an inventory
-
-                            if (collectedTrash != null) //This check may not be needed
+                            if (collectedTrash != null)
                             {
-                                //The string uses an escape sequence to color the text, if we want to color code the text output we should probably create an easy to use system
+                                inventory.AddItem(collectedTrash); // call the AddItem method of Inventory
+
                                 Console.WriteLine($"You collected \x1b[93m{collectedTrash.Name}\x1b[39m");
                                 trashCollectedToday += 1;
                                 if (IsDayCompleted(trashSpawnedOnDay, currentDay, trashCollectedToday))
@@ -190,6 +193,77 @@
                             Console.WriteLine("This object is not in the room");
                         }
                         break;
+                    
+                    case "inventory":
+                        Console.WriteLine("You have the following items in your inventory:");
+                        foreach (Trash item in inventory.items)
+                        {
+                            Console.WriteLine(item.Name);
+                        }
+                        break;
+
+                    case "sort":
+                    {
+                        if (currentRoom != null && command.RemainingInput != null)
+                        {
+                            bool legalCategory = true;
+                            string[] commandRemainder = command.RemainingInput.Split(" ");
+                            if (inventory.items.Count == 0)
+                            {
+                                Console.WriteLine("Your inventory is empty.");
+                            }
+                            else if (commandRemainder.Length < 2)
+                            {
+                               Console.WriteLine("Please enter the item name and sorting category.");
+                            }
+                            else
+                            {
+                                if (commandRemainder.Length < 2)
+                                {
+                                    Console.WriteLine("Please enter the item name and sorting category.");
+                                }
+                                else
+                                {
+                                    string itemName = string.Join(" ", commandRemainder.Take(commandRemainder.Length - 1)).ToLower();
+                                    string sortingCategory = commandRemainder.Last().ToLower();
+
+                                    char[] letters = sortingCategory.ToCharArray();
+                                    letters[0] = char.ToUpper(letters[0]);
+                                    sortingCategory = new string(letters);
+
+                                    foreach (Trash item in inventory.items)
+                                    {
+                                        if (itemName == item.Name.ToLower())
+                                        {
+                                            if (Enum.TryParse(sortingCategory, out Trash.TrashType trashType))
+                                            {
+                                                if (inventory.sortItem(item, trashType))
+                                                {
+                                                    Console.WriteLine($"Sorted {item.Name} as {trashType}");
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("Couldn't remove from inventory.");
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine($"Invalid sorting category: {sortingCategory}");
+                                                legalCategory = false;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (legalCategory == true)
+                            {
+                            Console.WriteLine("Item not found in inventory, try again. (Syntax: sort <item name> <sorting category>)");
+                            }
+                        }
+                        break;
+                    }
 
                     default:
                         Console.WriteLine("I don't know that command.");
