@@ -204,11 +204,12 @@
                     {
                         if (currentRoom != null && command.RemainingInput != null)
                         {
-                            bool legalCategory = true;
+                            bool skipLastMessage = false;
                             string[] commandRemainder = command.RemainingInput.Split(" ");
                             if (inventory.items.Count == 0)
                             {
                                 Console.WriteLine("Your inventory is empty.");
+                                skipLastMessage = true;
                             }
                             else if (commandRemainder.Length < 2)
                             {
@@ -238,6 +239,7 @@
                                                 if (inventory.sortItem(item, trashType))
                                                 {
                                                     Console.WriteLine($"Sorted {item.Name} as {trashType}");
+                                                    skipLastMessage = true;
                                                     break;
                                                 }
                                                 else
@@ -248,14 +250,14 @@
                                             else
                                             {
                                                 Console.WriteLine($"Invalid sorting category: {sortingCategory}");
-                                                legalCategory = false;
+                                                skipLastMessage = true;
                                                 break;
                                             }
                                         }
                                     }
                                 }
                             }
-                            if (legalCategory == true)
+                            if (skipLastMessage == false)
                             {
                             Console.WriteLine("Item not found in inventory, try again. (Syntax: sort <item name> <sorting category>)");
                             }
