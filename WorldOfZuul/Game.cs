@@ -58,6 +58,7 @@
             Room pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
             Room lab = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
             Room office = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
+            outside.setDayDescriptions("Hi, it is Monday!", "Hi, it is Tuesday!", "Hi, it is Wednesday!", "Hi, it is Thursday!", "Hi, it is Friday!", "Hi, it is Saturday!", "Hi, it is Sunday!");
 
             outside.SetExits(null, theatre, lab, pub); // North, East, South, West
 
@@ -113,6 +114,10 @@
                         if (currentRoom != null)
                         {
                             Console.WriteLine(currentRoom.LongDescription);
+                            if (currentRoom.dayDescription.ContainsKey((Game.Days)currentDay) == true)
+                            {
+                            Console.WriteLine(currentRoom.dayDescription[(Game.Days)currentDay]);
+                            }
                             
                             //This currently prints all Trash in the Room to the console.
                             if (currentRoom.ScatteredTrash != null && currentRoom.ScatteredTrash.Length != 0)
