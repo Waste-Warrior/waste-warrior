@@ -5,7 +5,7 @@
         private Room? currentRoom;
         private Room? previousRoom;
         Inventory inventory = new Inventory(); // create an instance of the Inventory class
-        private int trashCollectedToday = 0;
+        private int trashSortedToday = 0;
         private int currentDay = 0;
         public enum Days
         {
@@ -59,7 +59,9 @@
             Room pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
             Room lab = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
             Room office = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
-            outside.setDayDescriptions("Hi, it is Monday!", "Hi, it is Tuesday!", "Hi, it is Wednesday!", "Hi, it is Thursday!", "Hi, it is Friday!", "Hi, it is Saturday!", "Hi, it is Sunday!");
+            
+            outside.setDayDescriptions("Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first sorting categories of trash today. Head on to the theater (by typinng east) for the lecture!", "Hi, it is Tuesday!", "Hi, it is Wednesday!", "Hi, it is Thursday!", "Hi, it is Friday!", "Hi, it is Saturday!", "Hi, it is Sunday!");
+            theatre.setDayDescriptions("Welcome, student! The first type of ........... to be continued", "Hi, it is Theater Tuesday!", "Hi, it is Theater Wednesday!", "Hi, it is Theater Thursday!", "Hi, it is Friday!", "Hi, it is Saturday!", "Hi, it is Sunday!");
 
             outside.SetExits(null, theatre, lab, pub); // North, East, South, West
 
@@ -128,7 +130,7 @@
                                 {
                                     if (trash.Day == (Days)currentDay)
                                     {
-                                        allTrash += trash.Name + ", ";
+                                        allTrash += $"\x1b[93m{trash.Name}\x1b[39m" + ", ";
                                     }
                                 }
                                 int lastCommaIndex = allTrash.LastIndexOf(", ");
@@ -138,7 +140,7 @@
                                 }
                                 if (allTrash.Length > 0)
                                 {
-                                    Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
+                                    Console.WriteLine($"Laying on the floor you can clearly see {allTrash}. Collect them by typing 'collect <trash name>'");
                                 }
                             }
                         }
@@ -172,18 +174,11 @@
                         {
                             Trash? collectedTrash = currentRoom?.RemoveTrash(command.RemainingInput, currentDay); //This trash object can later be added to an inventory
 
-                            if (collectedTrash != null)
+                            if (collectedTrash != null) //This check may not be needed
                             {
                                 inventory.AddItem(collectedTrash); // call the AddItem method of Inventory
 
                                 Console.WriteLine($"You collected \x1b[93m{collectedTrash.Name}\x1b[39m");
-                                trashCollectedToday += 1;
-                                if (IsDayCompleted(trashSpawnedOnDay, currentDay, trashCollectedToday))
-                                {   
-                                    trashCollectedToday = 0;
-                                    currentDay += 1;
-                                    Console.WriteLine("You have collected all the trash for today!");
-                                }
                             }
                         }
                         else
@@ -194,76 +189,61 @@
                     
                     case "inventory":
                         Console.WriteLine("You have the following items in your inventory:");
-                        foreach (Trash item in inventory.items)
+                        foreach (Trash itemInventory in inventory.items)
                         {
-                            Console.WriteLine(item.Name);
+                            Console.WriteLine($"    * \x1b[93m{itemInventory.Name}\x1b[39m");
                         }
                         break;
 
                     case "sort":
-                    {
-                        if (currentRoom != null && command.RemainingInput != null)
+                        if (currentRoom == null || command.RemainingInput == null)
+                        {Console.WriteLine("\x1b[93mInvalid command usage.\x1b[39m (Syntax: sort <item name> <sorting category>)"); break;}
+
+                        string[] commandRemainder = command.RemainingInput.Split(" "); //Splitting the command input into an array of strings
+
+                        if (inventory.items.Count == 0)
+                        {Console.WriteLine("Your \x1b[93minventory is empty\x1b[39m. Please collect trash from the floors first.");break;}
+                        
+                        else if (commandRemainder.Length < 2) // checking if command has an input of at least 2 strings
                         {
-                            bool skipLastMessage = false;
-                            string[] commandRemainder = command.RemainingInput.Split(" ");
-                            if (inventory.items.Count == 0)
+                            Console.WriteLine("\x1b[93mPlease enter the item name and sorting category\x1b[39m. (Syntax: sort <item name> <sorting category>)");
+                            break;
+                        }
+
+                        string itemName = string.Join(" ", commandRemainder.Take(commandRemainder.Length - 1)).ToLower(); //takes everything except the last word to make the name of item
+                        string sortingCategory = char.ToUpper(commandRemainder.Last()[0]) + commandRemainder.Last().Substring(1).ToLower(); //takes last word to use as category
+
+                        if (Enum.TryParse(sortingCategory, out Trash.TrashType trashType)) //sees if cateogry exists
+                        {
+                             Trash? item = inventory.items.FirstOrDefault(i => i.Name.ToLower() == itemName); //finds item in inventory
+                            if (item == null)
                             {
-                                Console.WriteLine("Your inventory is empty.");
-                                skipLastMessage = true;
+                                Console.WriteLine("Item \x1b[93mnot found in inventory\x1b[39m, try again. (Syntax: sort <item name> <sorting category>)");
+                                break;
                             }
-                            else if (commandRemainder.Length < 2)
+                            if (inventory.sortItem(item, trashType))
                             {
-                               Console.WriteLine("Please enter the item name and sorting category.");
+                                Console.WriteLine($"Sorted \x1b[93m{item.Name}\x1b[39m as \x1b[93m{trashType}\x1b[39m");
+                                trashSortedToday += 1;
+                                if (trashSpawnedOnDay[(Days)currentDay] == trashSortedToday)
+                                {   
+                                    trashSortedToday = 0;
+                                    currentDay += 1;
+                                    Console.WriteLine("\x1b[93mYou have sorted all the trash for today!\x1b[39m You are now going home to return back tomorrow.");
+                                    Console.WriteLine("");
+                                    Console.WriteLine("You have returned to the university. \x1b[93mContinue on your quest to sort trash!\x1b[39m");
+                                }
                             }
                             else
                             {
-                                if (commandRemainder.Length < 2)
-                                {
-                                    Console.WriteLine("Please enter the item name and sorting category.");
-                                }
-                                else
-                                {
-                                    string itemName = string.Join(" ", commandRemainder.Take(commandRemainder.Length - 1)).ToLower();
-                                    string sortingCategory = commandRemainder.Last().ToLower();
-
-                                    char[] letters = sortingCategory.ToCharArray();
-                                    letters[0] = char.ToUpper(letters[0]);
-                                    sortingCategory = new string(letters);
-
-                                    foreach (Trash item in inventory.items)
-                                    {
-                                        if (itemName == item.Name.ToLower())
-                                        {
-                                            if (Enum.TryParse(sortingCategory, out Trash.TrashType trashType))
-                                            {
-                                                if (inventory.sortItem(item, trashType))
-                                                {
-                                                    Console.WriteLine($"Sorted {item.Name} as {trashType}");
-                                                    skipLastMessage = true;
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    Console.WriteLine("Couldn't remove from inventory.");
-                                                }
-                                            }
-                                            else
-                                            {
-                                                Console.WriteLine($"Invalid sorting category: {sortingCategory}");
-                                                skipLastMessage = true;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            if (skipLastMessage == false)
-                            {
-                            Console.WriteLine("Item not found in inventory, try again. (Syntax: sort <item name> <sorting category>)");
+                                Console.WriteLine("Couldn't remove from inventory.");
                             }
                         }
+                        else
+                        {
+                            Console.WriteLine($"Invalid sorting category: \x1b[93m{sortingCategory}\x1b[39m");
+                        }
                         break;
-                    }
 
                     default:
                         Console.WriteLine("I don't know that command.");
@@ -273,10 +253,6 @@
             }
 
             Console.WriteLine("Thank you for playing World of Zuul: Waste Warriors!");
-        }
-        private bool IsDayCompleted(Dictionary<Days, int> trashSpawned, int day = 0, int collectedTrashToday = 0)
-        {
-            return trashSpawned[(Days)day] == collectedTrashToday;
         }
         private void Move(string direction)
         {
@@ -290,8 +266,6 @@
                 Console.WriteLine($"You can't go {direction}!");
             }
         }
-
-
         private static void PrintWelcome()
         {
             Console.WriteLine("Welcome to the World of Zuul: Waste Warriors!");
@@ -299,7 +273,6 @@
             PrintHelp();
             Console.WriteLine();
         }
-
         private static void PrintHelp()
         {
             Console.WriteLine("You are lost. You are alone. You wander");
