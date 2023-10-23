@@ -40,18 +40,18 @@
         {
             //The trash arrays have to be set outside of the room declaration
             Trash[] outsideTrash = {
-                new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Monday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Monday),
-                new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Tuesday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Tuesday),
-                new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Wednesday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Wednesday)
+                new ("an empty beer can", Trash.TrashType.Metal, Days.Monday),
+                new ("an empty Cola can", Trash.TrashType.Metal, Days.Monday),
+                new ("an empty beer can", Trash.TrashType.Metal, Days.Tuesday),
+                new ("an empty Cola can", Trash.TrashType.Metal, Days.Tuesday),
+                new ("an empty beer can", Trash.TrashType.Metal, Days.Wednesday),
+                new ("an empty Cola can", Trash.TrashType.Metal, Days.Wednesday)
             };
             Trash[] theatreTrash = {
-                new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Monday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Monday),
-                new ("an empty beer can", Trash.TrashType.Metal, Game.Days.Tuesday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Game.Days.Tuesday),
+                new ("an empty beer can", Trash.TrashType.Metal, Days.Monday),
+                new ("an empty Cola can", Trash.TrashType.Metal, Days.Monday),
+                new ("an empty beer can", Trash.TrashType.Metal, Days.Tuesday),
+                new ("an empty Cola can", Trash.TrashType.Metal, Days.Tuesday),
             };
             
             Room outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.", outsideTrash);
@@ -115,9 +115,9 @@
                         if (currentRoom != null)
                         {
                             Console.WriteLine(currentRoom.LongDescription);
-                            if (currentRoom.dayDescription.ContainsKey((Game.Days)currentDay) == true)
+                            if (currentRoom.dayDescription.ContainsKey((Days)currentDay))
                             {
-                            Console.WriteLine(currentRoom.dayDescription[(Game.Days)currentDay]);
+                                Console.WriteLine(currentRoom.dayDescription[(Days)currentDay]);
                             }
                             
                             //This currently prints all Trash in the Room to the console.
@@ -126,9 +126,8 @@
                                 string allTrash = "";
                                 foreach (Trash trash in currentRoom.ScatteredTrash)
                                 {
-                                    if (trash.Day == (Game.Days)currentDay)
+                                    if (trash.Day == (Days)currentDay)
                                     {
-                                        //Console.WriteLine(trash.Name);
                                         allTrash += trash.Name + ", ";
                                     }
                                 }
@@ -172,6 +171,7 @@
                         if (currentRoom != null && command.RemainingInput != null && currentRoom.IsTrashInRoom(command.RemainingInput, currentDay))
                         {
                             Trash? collectedTrash = currentRoom?.RemoveTrash(command.RemainingInput, currentDay); //This trash object can later be added to an inventory
+
                             if (collectedTrash != null)
                             {
                                 inventory.AddItem(collectedTrash); // call the AddItem method of Inventory
@@ -274,9 +274,9 @@
 
             Console.WriteLine("Thank you for playing World of Zuul: Waste Warriors!");
         }
-        private bool IsDayCompleted(Dictionary<Days, int> trashSpawned, int currentDay = 0, int collectedTrashToday = 0)
+        private bool IsDayCompleted(Dictionary<Days, int> trashSpawned, int day = 0, int collectedTrashToday = 0)
         {
-            return trashSpawned[(Days)currentDay] == collectedTrashToday;
+            return trashSpawned[(Days)day] == collectedTrashToday;
         }
         private void Move(string direction)
         {
