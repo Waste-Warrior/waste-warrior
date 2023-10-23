@@ -7,6 +7,7 @@ namespace WorldOfZuul
         public string ShortDescription { get; private set; }
         public string LongDescription { get; private set;}
         public Dictionary<string, Room> Exits { get; private set; } = new();
+        public Dictionary<Game.Days, string> dayDescription { get; private set; } = new();
         public Trash[]? ScatteredTrash;
 
         public Room(string shortDesc, string longDesc, Trash[]? trash = null)
@@ -30,6 +31,29 @@ namespace WorldOfZuul
                 Exits[direction] = neighbor;
         }
         
+        public void setDayDescriptions(string LongDesc0, string LongDesc1, string LongDesc2, string LongDesc3, string LongDesc4, string LongDesc5, string LongDesc6)
+        {
+            setDayDescription(Game.Days.Monday, LongDesc0);
+            setDayDescription(Game.Days.Tuesday, LongDesc1);
+            setDayDescription(Game.Days.Wednesday, LongDesc2);
+            setDayDescription(Game.Days.Thursday, LongDesc3);
+            setDayDescription(Game.Days.Friday, LongDesc4);
+            setDayDescription(Game.Days.Saturday, LongDesc5);
+            setDayDescription(Game.Days.Sunday, LongDesc6);
+        }
+
+        public void setDayDescription(Game.Days day, string LongDesc)
+        {
+            if (LongDesc != null)
+            {
+                dayDescription[day] = LongDesc;
+            }
+            else
+            {
+                dayDescription[day] = LongDescription;
+            }
+        }
+
         //This method removes one element from the scatteredTrash array and returns it. This will be unnecessary when this method is only called from it's string counterpart.
         public Trash? RemoveTrash(int index = 0)
         {
@@ -60,7 +84,7 @@ namespace WorldOfZuul
             return pickedTrash;
         }
 
-        public Trash? RemoveTrash(string trashName = "")
+        public Trash? RemoveTrash(string trashName = "", int? trashDay = 0)
         {
             if (ScatteredTrash is not { Length: > 0 })
             {
@@ -72,15 +96,18 @@ namespace WorldOfZuul
             {
                 if (ScatteredTrash[i].Name.ToLower() == trashName.ToLower())
                 {
-                    Debug.WriteLine(i);
-                    return RemoveTrash(i);
+                    if (trashDay != null && ScatteredTrash[i].Day == (Game.Days) trashDay)
+                    {
+                        Debug.WriteLine(i);
+                        return RemoveTrash(i);
+                    }
                 }
             }
 
             return null;
         }
 
-        public bool IsTrashInRoom(string? trashName = null)
+        public bool IsTrashInRoom(string? trashName = null, int? trashDay = 0)
         {
             if (ScatteredTrash != null && ScatteredTrash.Length >= 1 && trashName != null)
             {
@@ -88,7 +115,10 @@ namespace WorldOfZuul
                 {
                     if (trashName.ToLower() == trash.Name.ToLower())
                     {
-                        return true;
+                        if (trashDay != null && trash.Day == (Game.Days) trashDay)
+                        {
+                            return true;
+                        }
                     }
                 }
             }
