@@ -60,8 +60,24 @@
             Room lab = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
             Room office = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
             
-            outside.setDayDescriptions("Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first sorting categories of trash today. Head on to the theater (by typinng east) for the lecture!", "Hi, it is Tuesday!", "Hi, it is Wednesday!", "Hi, it is Thursday!", "Hi, it is Friday!", "Hi, it is Saturday!", "Hi, it is Sunday!");
-            theatre.setDayDescriptions("Welcome, student! The first type of ........... to be continued", "Hi, it is Theater Tuesday!", "Hi, it is Theater Wednesday!", "Hi, it is Theater Thursday!", "Hi, it is Friday!", "Hi, it is Saturday!", "Hi, it is Sunday!");
+            outside.setDayDescriptions(
+                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today. Head on to the theater (by typinng 'east') for the lecture!",
+                "Hi, it is Tuesday!",
+                "Hi, it is Wednesday!",
+                "Hi, it is Thursday!",
+                "Hi, it is Friday!",
+                "Hi, it is Saturday!",
+                "Hi, it is Sunday!"
+            );
+            theatre.setDayDescriptions(
+                "Welcome, student! In Denmark, we sort trash by the materials it is made of! Simple, right?\nThe first sorting category is \x1b[93mMetal\x1b[39m. Try to sort trash into the \x1b[93mMetal\x1b[39m trash can! Collect trash everywhere to move on to the next day!",
+                "Hi, it is Theater Tuesday!",
+                "Hi, it is Theater Wednesday!",
+                "Hi, it is Theater Thursday!",
+                "Hi, it is Friday!",
+                "Hi, it is Saturday!",
+                "Hi, it is Sunday!"
+            );
 
             outside.SetExits(null, theatre, lab, pub); // North, East, South, West
 
@@ -75,7 +91,7 @@
 
             currentRoom = outside;
 
-            foreach (Trash item in outsideTrash.Concat(theatreTrash))
+            foreach (Trash item in outsideTrash.Concat(theatreTrash)) // add .Concat(nextTrashName) to add more trash items for score comparison.
             {
                 trashSpawnedOnDay[item.Day] += 1;
             }
@@ -117,10 +133,6 @@
                         if (currentRoom != null)
                         {
                             Console.WriteLine(currentRoom.LongDescription);
-                            if (currentRoom.dayDescription.ContainsKey((Days)currentDay))
-                            {
-                                Console.WriteLine(currentRoom.dayDescription[(Days)currentDay]);
-                            }
                             
                             //This currently prints all Trash in the Room to the console.
                             if (currentRoom.ScatteredTrash != null && currentRoom.ScatteredTrash.Length != 0)
@@ -140,8 +152,12 @@
                                 }
                                 if (allTrash.Length > 0)
                                 {
-                                    Console.WriteLine($"Laying on the floor you can clearly see {allTrash}. Collect them by typing 'collect <trash name>'");
+                                    Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
                                 }
+                            }
+                            if (currentRoom.dayDescription.ContainsKey((Days)currentDay))
+                            {
+                                Console.WriteLine($"\n{currentRoom.dayDescription[(Days)currentDay]}");
                             }
                         }
                         break;
@@ -234,7 +250,7 @@
                                     Console.WriteLine("You have returned to the university. \x1b[93mContinue on your quest to sort trash!\x1b[39m");
                                 }
                             }
-                            else
+                            else // I dont think this will ever happen, but let's leave it for now
                             {
                                 Console.WriteLine("Couldn't remove from inventory.");
                             }
@@ -268,22 +284,26 @@
         }
         private static void PrintWelcome()
         {
-            Console.WriteLine("Welcome to the World of Zuul: Waste Warriors!");
+            Console.WriteLine();
+            Console.WriteLine("Welcome to the World of Zuul: \x1b[93mWaste Warriors\x1b[39m!");
             Console.WriteLine("World of Zuul: Waste Warriors is a new, incredibly trashy adventure game.");
             PrintHelp();
             Console.WriteLine();
         }
         private static void PrintHelp()
         {
+            Console.WriteLine();
             Console.WriteLine("You are lost. You are alone. You wander");
             Console.WriteLine("around the university.");
             Console.WriteLine();
-            Console.WriteLine("Navigate by typing 'north', 'south', 'east', or 'west'.");
-            Console.WriteLine("Type 'look' for more details.");
-            Console.WriteLine("Type 'back' to go to the previous room.");
-            Console.WriteLine("Type 'collect' to collect trash within the room");
-            Console.WriteLine("Type 'help' to print this message again.");
-            Console.WriteLine("Type 'quit' to exit the game.");
+            Console.WriteLine("Navigate by typing '\x1b[93mnorth\x1b[39m', '\x1b[93msouth\x1b[39m', '\x1b[93meast\x1b[39m', or '\x1b[93mwest\x1b[39m'.");
+            Console.WriteLine("Type '\x1b[93mlook\x1b[39m' for more details about the room.");
+            Console.WriteLine("Type '\x1b[93mback\x1b[39m' to go to the previous room.");
+            Console.WriteLine("Type '\x1b[93mcollect <trash name>\x1b[39m' to collect trash within the room");
+            Console.WriteLine("Type '\x1b[93minventory\x1b[39m' to look at the trash you are hoarding");
+            Console.WriteLine("Type '\x1b[93msort <trash name> <sorting category>\x1b[39m' to sort the trash into trash cans");
+            Console.WriteLine("Type '\x1b[93mhelp\x1b[39m' to print this message again.");
+            Console.WriteLine("Type '\x1b[93mquit\x1b[39m' to exit the game.");
         }
     }
 }
