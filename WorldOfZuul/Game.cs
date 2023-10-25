@@ -61,7 +61,7 @@
             Room office = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
             
             outside.setDayDescriptions(
-                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today. Head on to the theater (by typinng 'east') for the lecture!",
+                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today. Head on to the theater (by typing 'east') for the lecture!",
                 "Hi, it is Tuesday!",
                 "Hi, it is Wednesday!",
                 "Hi, it is Thursday!",
@@ -70,7 +70,7 @@
                 "Hi, it is Sunday!"
             );
             theatre.setDayDescriptions(
-                "Welcome, student! In Denmark, we sort trash by the materials it is made of! Simple, right?\nThe first sorting category is \x1b[93mMetal\x1b[39m. Try to sort trash into the \x1b[93mMetal\x1b[39m trash can! Collect trash everywhere to move on to the next day!",
+                "Welcome, student! In Denmark, we sort trash by the materials it is made of! Simple, right?\nThe first sorting category is \x1b[93mMetal\x1b[39m. Try to sort trash into the \x1b[93mMetal\x1b[39m trash can! Collect and sort the trash in every room to move on to the next day!",
                 "Hi, it is Theater Tuesday!",
                 "Hi, it is Theater Wednesday!",
                 "Hi, it is Theater Thursday!",
@@ -95,7 +95,7 @@
             {
                 trashSpawnedOnDay[item.Day] += 1;
             }
-            //Now each day has a score of how many trash items are on the floor. Eg. dayScores[Days.Monday]
+            //Now each day has a score of how many trash items are on the floor. Eg. trashSpawnedOnDay[Days.Monday]
 
         }
         public void Play()
