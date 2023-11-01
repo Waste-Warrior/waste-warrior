@@ -63,6 +63,7 @@
             Trash[] outsideTrash = {
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Monday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Days.Monday),
+                new ("Miljokasse", Trash.TrashType.Miljøkasse, Days.Monday),
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Tuesday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Days.Tuesday),
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Wednesday),
@@ -249,6 +250,10 @@
 
                         string itemName = string.Join(" ", commandRemainder.Take(commandRemainder.Length - 1)).ToLower(); //takes everything except the last word to make the name of item
                         string sortingCategory = char.ToUpper(commandRemainder.Last()[0]) + commandRemainder.Last().Substring(1).ToLower(); //takes last word to use as category
+                        if (sortingCategory == "Miljokasse")
+                        {
+                            sortingCategory = "Miljøkasse";
+                        }
 
                         if (Enum.TryParse(sortingCategory, out Trash.TrashType trashType)) //sees if cateogry exists
                         {
