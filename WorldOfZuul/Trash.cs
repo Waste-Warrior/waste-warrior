@@ -12,8 +12,9 @@ public class Trash
         Plast,
         Madkartoner,
         Restaffald,
-        Batterier,
+        Batterier, //I think Batterier and Miljøkasse might be the same thing
         Miljøkasse,
+        Tekstilaffald,
     }
     
     public readonly string Name;

@@ -54,7 +54,7 @@
                 new ("a broken light bulb", Trash.TrashType.Miljøkasse, 0),
                 new ("a wine bottle", Trash.TrashType.Glas, 0),
                 new ("a plastic bag", Trash.TrashType.Plast, 0),
-                new ("an orange juice carton", Trash.TrashType.DrikkeKartoner, 0),
+                new ("an orange juice carton", Trash.TrashType.Madkartoner, 0),
                 new ("a paper cup", Trash.TrashType.Restaffald, 0),
                 new ("a torn apart T-shirt", Trash.TrashType.Tekstilaffald, 0)
             };
