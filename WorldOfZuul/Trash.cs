@@ -19,10 +19,12 @@ public class Trash
         DrikkeKartoner = 5,
         [EnumMember(Value = "Restaffald")]
         Restaffald = 6,
-        [EnumMember(Value = "Batterier")]
+        [EnumMember(Value = "Batterier")] //I think Batterier and Miljøkasse is the same category
         Batterier = 7,
         [EnumMember(Value = "Miljøkasse")]
-        Miljøkasse = 8
+        Miljøkasse = 8,
+        [EnumMember(Value = "Tekstilaffald")]
+        Tekstilaffald = 9
     }
     
     public readonly string Name;
