@@ -45,7 +45,7 @@
                 new ("an empty beer can", Trash.TrashType.Metal, 0),
                 new ("an empty cola can", Trash.TrashType.Metal, 0),
                 new ("a rotten apple", Trash.TrashType.Madaffald, 0),
-                new ("a battery", Trash.TrashType.Batterier, 0),
+                new ("a battery", Trash.TrashType.Miljøkasse, 0),
                 new ("a pizza box", Trash.TrashType.Restaffald, 0),
                 new ("a chips bag", Trash.TrashType.Restaffald, 0),
                 new ("an old magazine", Trash.TrashType.PapirOgPap, 0),

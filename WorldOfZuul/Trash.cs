@@ -5,6 +5,7 @@ public class Trash
 {
     public enum TrashType 
     {
+        //We may want to make all types english named
         Metal,
         Glas,
         PapirOgPap,
@@ -12,8 +13,7 @@ public class Trash
         Plast,
         Madkartoner,
         Restaffald,
-        Batterier, //I think Batterier and Miljøkasse might be the same thing
-        Miljøkasse,
+        Miljøkasse, //We may want to rename this to Farligtaffald
         Tekstilaffald,
     }
     
