@@ -57,7 +57,7 @@
             Room outside = new("Outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type 'forward' if you want to enter the university", outsideTrash);
             Room lobby = new("Lobby", "You find yourself inside a large lobby with reception. Several corridors going everywhere. What path will you choose. It's quite dark and quiet.", lobbyTrash);
             Room u101 = new("U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too");
-            Room concertHall = new("Concert Hall", "You're in the Alsik Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable");
+            Room concertHall = new("Concert Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable");
             Room cafeteria = new("Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.");
             Room u108 = new("u108", "u108 longdesc");
             
