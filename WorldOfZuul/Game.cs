@@ -92,10 +92,10 @@
                 "Hi, it is Sunday!"
             );
             theatre.setDayDescriptions(
-                "Welcome, student! In Denmark, we sort trash by the materials it is made of! Simple, right?\nThe first sorting category is \x1b[93mMetal\x1b[39m. Try to sort trash into the \x1b[93mMetal\x1b[39m trash can! Collect and sort the trash in every room to move on to the next day!",
-                "Hi, it is Theater Tuesday!",
-                "Hi, it is Theater Wednesday!",
-                "Hi, it is Theater Thursday!",
+                "Welcome, student! In Denmark, we sort trash by the materials it is made of! Simple, right?\nThe first sorting category is \x1b[93mMetal\x1b[39m. Try to sort trash into the \x1b[93mMetal\x1b[39m trash can! Collect and sort the trash in every room to move on to the next day!\nMetal trash example: an empty beer can",
+                "Hi, it is Theater Tuesday!\nNow, lets make sorting a little bit harder. As of Today there are 3 more trash categories: Glas, PapirOgPap and Plast.\nExamples:\nGlas: a wine bottle\nPapirOgPap: an old magazine\nPlast: a plastic bag",
+                "Hi, it is Theater Wednesday!\nToday’s new  trash categories are: Madaffald, Restaffald and Madkartoner.\nMake sure to bag your Restaffald and Madaffald before throwing it out at home. Don’t worry though, you don’t have to do that in-game.\nExamples:\nMadaffald: a rotten apple\nRestaffald: a pizza box\nMadkartonner: an orange juice carton",
+                "Hi, it is Theater Thursday!\nThe last category is Miljøkasse.\nBe careful with this type of waste – as its hazardous!\nExample of Miljøkasse: a battery",
                 "Hi, it is Friday!",
                 "Hi, it is Saturday!",
                 "Hi, it is Sunday!"
