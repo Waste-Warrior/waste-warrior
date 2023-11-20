@@ -204,10 +204,17 @@
                         break;
                     
                     case "inventory":
-                        Console.WriteLine("You have the following items in your inventory:");
-                        foreach (Trash itemInventory in inventory.items)
+                        if (inventory.items.Count == 0)
                         {
-                            Console.WriteLine($"    * \x1b[93m{itemInventory.Name}\x1b[39m");
+                            Console.WriteLine("You have no items in your inventory. Go collect some trash!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You have the following items in your inventory:");
+                            foreach (Trash itemInventory in inventory.items)
+                            {
+                                Console.WriteLine($"    * \x1b[93m{itemInventory.Name}\x1b[39m");
+                            }
                         }
                         break;
 
