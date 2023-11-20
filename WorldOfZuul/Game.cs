@@ -32,16 +32,38 @@
         public readonly Days Day; // This will be used to determine when the trash can be picked up and shows up in the room
 
         public Game()
-        {
+        { 
             CreateRooms();
         }
 
         private void CreateRooms()
         {
+            /*List of Trash to choose from, you should remember to set the day.
+             This should be removed from the actual game*/
+            Trash[] preset =
+            {
+                new ("an empty beer can", Trash.TrashType.Metal, 0),
+                new ("an empty cola can", Trash.TrashType.Metal, 0),
+                new ("a rotten apple", Trash.TrashType.Madaffald, 0),
+                new ("a battery", Trash.TrashType.Miljøkasse, 0),
+                new ("a pizza box", Trash.TrashType.Restaffald, 0),
+                new ("a chips bag", Trash.TrashType.Restaffald, 0),
+                new ("an old magazine", Trash.TrashType.PapirOgPap, 0),
+                new ("an eggshell", Trash.TrashType.Madaffald, 0),
+                new ("a tissue", Trash.TrashType.Restaffald, 0),
+                new ("a broken light bulb", Trash.TrashType.Miljøkasse, 0),
+                new ("a wine bottle", Trash.TrashType.Glas, 0),
+                new ("a plastic bag", Trash.TrashType.Plast, 0),
+                new ("an orange juice carton", Trash.TrashType.Madkartoner, 0),
+                new ("a paper cup", Trash.TrashType.Restaffald, 0),
+                new ("a torn apart T-shirt", Trash.TrashType.Tekstilaffald, 0)  
+            };
+            
             //The trash arrays have to be set outside of the room declaration
             Trash[] outsideTrash = {
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Monday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Days.Monday),
+                new ("Miljokasse", Trash.TrashType.Miljøkasse, Days.Monday),
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Tuesday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Days.Tuesday),
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Wednesday),
@@ -235,6 +257,10 @@
 
                         string itemName = string.Join(" ", commandRemainder.Take(commandRemainder.Length - 1)).ToLower(); //takes everything except the last word to make the name of item
                         string sortingCategory = char.ToUpper(commandRemainder.Last()[0]) + commandRemainder.Last().Substring(1).ToLower(); //takes last word to use as category
+                        if (sortingCategory == "Miljokasse")
+                        {
+                            sortingCategory = "Miljøkasse";
+                        }
 
                         if (Enum.TryParse(sortingCategory, out Trash.TrashType trashType)) //sees if cateogry exists
                         {

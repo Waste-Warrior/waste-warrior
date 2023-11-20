@@ -1,10 +1,20 @@
-﻿namespace WorldOfZuul;
+﻿using System.Runtime.Serialization;
+namespace WorldOfZuul;
 
 public class Trash
 {
-    public enum TrashType
+    public enum TrashType 
     {
-        Metal
+        //We may want to make all types english named
+        Metal,
+        Glas,
+        PapirOgPap,
+        Madaffald,
+        Plast,
+        Madkartoner,
+        Restaffald,
+        Miljøkasse, //We may want to rename this to Farligtaffald
+        Tekstilaffald,
     }
     
     public readonly string Name;
