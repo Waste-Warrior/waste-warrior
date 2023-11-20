@@ -32,7 +32,7 @@
         public readonly Days Day; // This will be used to determine when the trash can be picked up and shows up in the room
 
         public Game()
-        {
+        { 
             CreateRooms();
         }
 
@@ -56,7 +56,7 @@
                 new ("a plastic bag", Trash.TrashType.Plast, 0),
                 new ("an orange juice carton", Trash.TrashType.Madkartoner, 0),
                 new ("a paper cup", Trash.TrashType.Restaffald, 0),
-                new ("a torn apart T-shirt", Trash.TrashType.Tekstilaffald, 0)
+                new ("a torn apart T-shirt", Trash.TrashType.Tekstilaffald, 0)  
             };
             
             //The trash arrays have to be set outside of the room declaration
