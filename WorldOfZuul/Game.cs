@@ -63,57 +63,64 @@
             Trash[] outsideTrash = {
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Monday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Days.Monday),
-                new ("Miljokasse", Trash.TrashType.Miljøkasse, Days.Monday),
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Tuesday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Days.Tuesday),
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Wednesday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Days.Wednesday)
             };
-            Trash[] theatreTrash = {
+            Trash[] lobbyTrash = {
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Monday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Days.Monday),
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Tuesday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Days.Tuesday),
             };
             
-            Room outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.", outsideTrash);
-            Room theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.", theatreTrash);
-            Room pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
-            Room lab = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
-            Room office = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
+            Room outside = new("Outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type 'forward' if you want to enter the university", outsideTrash);
+            Room lobby = new("Lobby", "You find yourself inside a large lobby with reception. Several corridors going everywhere. What path will you choose. It's quite dark and quiet.", lobbyTrash);
+            Room u101 = new("U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too");
+            Room concertHall = new("Concert Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable");
+            Room cafeteria = new("Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.");
+            Room u108 = new("u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.");
             
             outside.setDayDescriptions(
-                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today. Head on to the theater (by typing 'east') for the lecture!",
-                "Hi, it is Tuesday!",
-                "Hi, it is Wednesday!",
-                "Hi, it is Thursday!",
-                "Hi, it is Friday!",
-                "Hi, it is Saturday!",
-                "Hi, it is Sunday!"
+                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today. Head on to the Lobby (by typing 'Forward') for the introduction!",
+                "Congratulations on completing the first day of your training and welcome back! Today you will learn to sort the next categories of trash. Head on to the Lobby (by typing 'Forward') for the introduction!",
+                "By now you should already know to pick up trash on your way to the Lobby, no? After that, head on to the Lobby (by typing 'Forward')"
             );
-            theatre.setDayDescriptions(
-                "Welcome, student! In Denmark, we sort trash by the materials it is made of! Simple, right?\nThe first sorting category is \x1b[93mMetal\x1b[39m. Try to sort trash into the \x1b[93mMetal\x1b[39m trash can! Collect and sort the trash in every room to move on to the next day!",
-                "Hi, it is Theater Tuesday!",
-                "Hi, it is Theater Wednesday!",
-                "Hi, it is Theater Thursday!",
-                "Hi, it is Friday!",
-                "Hi, it is Saturday!",
-                "Hi, it is Sunday!"
+            lobby.setDayDescriptions(
+                "Welcome, student! In Denmark, we sort trash by the materials it is made of! Simple, right?\nThe first sorting category is \x1b[93mMetal\x1b[39m. Try to sort trash into the \x1b[93mMetal\x1b[39m trash can! Collect and sort the trash in every room to move on to the next day!\nMetal trash example: an empty beer can",
+                "Welcome back! As it is your second day, you should be ready to be thrown in the wild!\nNow, lets make sorting a little bit harder. As of Today there are 3 more trash categories: Glas, PapirOgPap and Plast.\nExamples:\nGlas: a wine bottle\nPapirOgPap: an old magazine\nPlast: a plastic bag",
+                "Oh, you think it is easy? \nToday’s new  trash categories are: Madaffald, Restaffald and Madkartoner.\nMake sure to bag your Restaffald and Madaffald before throwing it out at home. Don’t worry though, you don’t have to do that in-game.\nExamples:\nMadaffald: a rotten apple\nRestaffald: a pizza box\nMadkartonner: an orange juice carton",
+                "Congratulations on reaching the last training day!\nThe last category is Miljøkasse.\nBe careful with this type of waste – as its hazardous!\nExample of Miljøkasse trash: a battery"
+            );
+            u108.setDayDescriptions(
+                "Even if you've sorted your waste correctly, it cannot be recycled if it is dirty. For example, wet and dirty paper cannot be recycled and is thus designated as residual waste. Your waste does not have to be spotless before you throw it away, but it must be free from food residue or liquids so it is ready to be recycled. A quick rinse, shake or wipe-down of the waste is fine.\nMetal is resorted and recycled, depending on the type of metal. Old cans, for example, can be recycled into new computer parts. Plastic and metal bins are generally emptied once every 4 weeks.",
+                "Glas - glass and glass bottles not covered by the Danish deposit system can be brought to the recycling station or disposed of in the containers for glass recycling.\nPapir og pap - paper and cardboard also includes printed paper and cardboard. Cardboard must be no bigger than the size of a shoebox, and must be able to fall freely out of the bin when emptied. Bigger pieces of cardboard must be delivered to the recycling station. Paper and cardboard must be clean and dry. Wet and dirty paper and cardboard must be treated as residual waste and cannot be recycled.\nPlast - plastic is resorted into different types of plastic and subsequently recycled into anything from a new backpack to a green milk crate.",
+                "Madaffald - Bio or food waste is the organic part of the waste. Food waste should be disposed of in bags, preferably tied with a knot to reduce odors in the bin and problems with flies. Food waste is sent for recycling at a Biogas plant and turned into energy. The food waste bins are generally emptied every 14 days.\nRestaffald - residual waste is the waste that is left after you have sorted everything else for recycling or hazardous waste. Residual waste is converted into heating and electricity at an incineration plant.\nFood scraps and yard waste can also turn into healthy soil in a compost bin. It's like nature's recycling program.\nMadkartoner – food and drink cartons.",
+                "Miljøkasse - hazardous waste is all waste that could be hazardous to health or harmful for the environment. To the extent possible, all hazardous waste must be disposed of in its original packaging or properly packaged in some way. Hazardous waste that is collected and treated correctly is not harmful to the environment nor people. It is sent for special treatment and recycled to the greatest extent possible."
+            );
+            concertHall.setDayDescriptions(
+                "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Improperly Handled Trash\":\n\nTrash not collected and recycled can travel throughout rivers and oceans accumulating in beaches and event creating trash islands, when trapped within gyres. Do you really think saving a few seconds when not recycling is worth polluting our environment and ruining the beauty of our planet?\nDid you know that Denmark's impressive recycling efforts save considerable energy? For example, recycling in Denmark has been associated with a notable reduction in energy consumption, with each aluminum can recycled saving up to 95% of the energy required for its original production.",
+                "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of PLastic Waste\":\n\nOut of all trash, plastic trash has the greatest potential to harm the environment, wildlife and humans. It can be found floating at the surface, suspended in the water column, or on the bottom of almost all water bodies. It is transported by rivers to the ocean, where it moves with the currents, and is often eaten by birds and fish, concentrating toxic chemicals in their tissues, and filling their stomachs, causing them to starve. Plastic aquatic debris is much more than a mere aesthetic problem.",
+                "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Residual Waste\":\n\nResidual waste usually ends up as landfill which generate and release Biogas. Furthermore, landfills emanate bad smells, contaminate soil and water.\nIn Denmark most of the Residual waste is incinerated and used to produce district heating and electricity.\nIt is really important to leave as little residual waste as possible and that can be done by thoroughly sorting your trash.\nDenmark's good recycling practices help safeguard precious natural resources. The country's commitment to recycling is synonymous with a reduced need for raw material extraction, benefiting ecosystems like forests and minimizing the depletion of minerals and fossil fuels.",
+                "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Hazardous Waste\":\n\nHazardous waste that is not handled appropriately and recycled possesses a serious harm to our health and the environment – it can cause fires, contaminate ground and surface waters."
             );
 
-            outside.SetExits(null, theatre, lab, pub); // North, East, South, West
+            outside.SetExit("forward", lobby); // North, East, South, West
 
-            theatre.SetExit("west", outside);
+            lobby.SetExits(cafeteria, u101, outside, concertHall);
 
-            pub.SetExit("east", outside);
+            u101.SetExits(u108, null, lobby, null);
 
-            lab.SetExits(outside, office, null, null);
+            concertHall.SetExit("backwards", lobby);
 
-            office.SetExit("west", lab);
+            cafeteria.SetExit("backwards", lobby);
+
+            u108.SetExit("backwards", u101);
 
             currentRoom = outside;
 
-            foreach (Trash item in outsideTrash.Concat(theatreTrash)) // add .Concat(nextTrashName) to add more trash items for score comparison.
+            foreach (Trash item in outsideTrash.Concat(lobbyTrash)) // add .Concat(nextTrashName) to add more trash items for score comparison.
             {
                 trashSpawnedOnDay[item.Day] += 1;
             }
@@ -191,10 +198,10 @@
                             currentRoom = previousRoom;
                         break;
 
-                    case "north":
-                    case "south":
-                    case "east":
-                    case "west":
+                    case "forward":
+                    case "backwards":
+                    case "right":
+                    case "left":
                         Move(command.Name);
                         break;
 
@@ -276,10 +283,15 @@
                                 trashSortedToday += 1;
                                 if (trashSpawnedOnDay[(Days)currentDay] == trashSortedToday)
                                 {   
-                                    trashSortedToday = 0;
-                                    currentDay += 1;
+                                    trashSortedToday = 0; // reset trash sorted today counter
+                                    currentDay += 1; // increment day
                                     Console.WriteLine("\x1b[93mYou have sorted all the trash for today!\x1b[39m You are now going home to return back tomorrow.");
                                     Console.WriteLine("");
+                                    while (currentRoom?.Exits.ContainsKey("backwards") == true) // returns you to the outside room after day ends.
+                                    {
+                                        previousRoom = currentRoom;
+                                        currentRoom = currentRoom?.Exits["backwards"];
+                                    }
                                     Console.WriteLine("You have returned to the university. \x1b[93mContinue on your quest to sort trash!\x1b[39m");
                                 }
                             }
@@ -329,7 +341,7 @@
             Console.WriteLine("You are lost. You are alone. You wander");
             Console.WriteLine("around the university.");
             Console.WriteLine();
-            Console.WriteLine("Navigate by typing '\x1b[93mnorth\x1b[39m', '\x1b[93msouth\x1b[39m', '\x1b[93meast\x1b[39m', or '\x1b[93mwest\x1b[39m'.");
+            Console.WriteLine("Navigate by typing '\x1b[93mforward\x1b[39m', '\x1b[93mbackwards\x1b[39m', '\x1b[93mright\x1b[39m', or '\x1b[93mleft\x1b[39m'.");
             Console.WriteLine("Type '\x1b[93mlook\x1b[39m' for more details about the room.");
             Console.WriteLine("Type '\x1b[93mback\x1b[39m' to go to the previous room.");
             Console.WriteLine("Type '\x1b[93mcollect <trash name>\x1b[39m' to collect trash within the room");
