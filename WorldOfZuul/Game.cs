@@ -51,12 +51,29 @@
                 new ("an old magazine", Trash.TrashType.PapirOgPap, 0),
                 new ("an eggshell", Trash.TrashType.Madaffald, 0),
                 new ("a tissue", Trash.TrashType.Restaffald, 0),
-                new ("a broken light bulb", Trash.TrashType.Miljøkasse, 0),
+                new ("a crushed light bulb", Trash.TrashType.Miljøkasse, 0),
                 new ("a wine bottle", Trash.TrashType.Glas, 0),
                 new ("a plastic bag", Trash.TrashType.Plast, 0),
                 new ("an orange juice carton", Trash.TrashType.Madkartoner, 0),
                 new ("a paper cup", Trash.TrashType.Restaffald, 0),
-                new ("a torn apart T-shirt", Trash.TrashType.Tekstilaffald, 0)  
+                new ("a torn apart T-shirt", Trash.TrashType.Tekstilaffald, 0),
+                new ("a paper bag", Trash.TrashType.PapirOgPap, 0),
+                new ("a towel", Trash.TrashType.Tekstilaffald, 0),
+                new ("a broken pan", Trash.TrashType.Metal, 0),
+                new ("a bent fork", Trash.TrashType.Metal, 0),
+                new ("a graffiti can", Trash.TrashType.Miljøkasse, 0),
+                new ("a bucket of paint", Trash.TrashType.Miljøkasse, 0),
+                new ("a carrot", Trash.TrashType.Madaffald, 0),
+                new ("a sandwich", Trash.TrashType.Madaffald, 0),
+                new ("a bone", Trash.TrashType.Madaffald, 0),
+                new ("some gift wrapping", Trash.TrashType.Restaffald, 0),
+                new ("a sliced carpet", Trash.TrashType.Tekstilaffald, 0),
+                new ("a cloth", Trash.TrashType.Tekstilaffald, 0),
+                new ("a glass container", Trash.TrashType.Glas, 0),
+                new ("pile of glass shards", Trash.TrashType.Glas, 0),
+                new ("a crushed newspaper", Trash.TrashType.PapirOgPap, 0),
+                new ("a plastic bottle", Trash.TrashType.Plast, 0),
+                new ("a plastic wrapper", Trash.TrashType.Plast, 0)
             };
             
             //The trash arrays have to be set outside of the room declaration
@@ -101,7 +118,7 @@
             );
             concertHall.setDayDescriptions(
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Improperly Handled Trash\":\n\nTrash not collected and recycled can travel throughout rivers and oceans accumulating in beaches and event creating trash islands, when trapped within gyres. Do you really think saving a few seconds when not recycling is worth polluting our environment and ruining the beauty of our planet?\nDid you know that Denmark's impressive recycling efforts save considerable energy? For example, recycling in Denmark has been associated with a notable reduction in energy consumption, with each aluminum can recycled saving up to 95% of the energy required for its original production.",
-                "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of PLastic Waste\":\n\nOut of all trash, plastic trash has the greatest potential to harm the environment, wildlife and humans. It can be found floating at the surface, suspended in the water column, or on the bottom of almost all water bodies. It is transported by rivers to the ocean, where it moves with the currents, and is often eaten by birds and fish, concentrating toxic chemicals in their tissues, and filling their stomachs, causing them to starve. Plastic aquatic debris is much more than a mere aesthetic problem.",
+                "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Plastic Waste\":\n\nOut of all trash, plastic trash has the greatest potential to harm the environment, wildlife and humans. It can be found floating at the surface, suspended in the water column, or on the bottom of almost all water bodies. It is transported by rivers to the ocean, where it moves with the currents, and is often eaten by birds and fish, concentrating toxic chemicals in their tissues, and filling their stomachs, causing them to starve. Plastic aquatic debris is much more than a mere aesthetic problem.",
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Residual Waste\":\n\nResidual waste usually ends up as landfill which generate and release Biogas. Furthermore, landfills emanate bad smells, contaminate soil and water.\nIn Denmark most of the Residual waste is incinerated and used to produce district heating and electricity.\nIt is really important to leave as little residual waste as possible and that can be done by thoroughly sorting your trash.\nDenmark's good recycling practices help safeguard precious natural resources. The country's commitment to recycling is synonymous with a reduced need for raw material extraction, benefiting ecosystems like forests and minimizing the depletion of minerals and fossil fuels.",
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Hazardous Waste\":\n\nHazardous waste that is not handled appropriately and recycled possesses a serious harm to our health and the environment – it can cause fires, contaminate ground and surface waters."
             );
