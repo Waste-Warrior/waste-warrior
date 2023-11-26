@@ -31,15 +31,15 @@ namespace WorldOfZuul
                 Exits[direction] = neighbor;
         }
         
-        public void setDayDescriptions(string LongDesc0, string LongDesc1, string LongDesc2, string LongDesc3, string LongDesc4, string LongDesc5, string LongDesc6)
+        public void setDayDescriptions(string? LongDesc0 = null, string? LongDesc1 = null, string? LongDesc2 = null, string? LongDesc3 = null, string? LongDesc4 = null, string? LongDesc5 = null, string? LongDesc6 = null)
         {
-            setDayDescription(Game.Days.Monday, LongDesc0);
-            setDayDescription(Game.Days.Tuesday, LongDesc1);
-            setDayDescription(Game.Days.Wednesday, LongDesc2);
-            setDayDescription(Game.Days.Thursday, LongDesc3);
-            setDayDescription(Game.Days.Friday, LongDesc4);
-            setDayDescription(Game.Days.Saturday, LongDesc5);
-            setDayDescription(Game.Days.Sunday, LongDesc6);
+            setDayDescription(Game.Days.Monday, LongDesc0 ?? "");
+            setDayDescription(Game.Days.Tuesday, LongDesc1 ?? "");
+            setDayDescription(Game.Days.Wednesday, LongDesc2 ?? "");
+            setDayDescription(Game.Days.Thursday, LongDesc3 ?? "");
+            setDayDescription(Game.Days.Friday, LongDesc4 ?? "");
+            setDayDescription(Game.Days.Saturday, LongDesc5 ?? "");
+            setDayDescription(Game.Days.Sunday, LongDesc6 ?? "");
         }
 
         public void setDayDescription(Game.Days day, string LongDesc)
