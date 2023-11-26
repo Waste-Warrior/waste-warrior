@@ -83,9 +83,9 @@ namespace WorldOfZuul
             Room concertHall = new("Concert Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable");
             Room cafeteria = new("Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.");
             Room u108 = new("u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.");
-            Room u106 = new("U106", "U106 long desc");
-            Room u201 = new("U201", "U201 long desc (A2B Danish lessons)");
-            Room u203 = new("U203", "U203 long desc (UCplay Danish lessons)");
+            Room u106 = new("U106", "You've entered the second biggest lecture hall on this floor. It is always busy and full of people here. You find it empty, so why don't you snatch the opportunity and take a look around.");
+            Room u201 = new("U201", "Ah... Room U201. A room used for only one thing. Learning Danish. This is the place where one of the two Danish teaching structures is based - A2B. Look around and Held og Lykke!");
+            Room u203 = new("U203", "At last, A2B's rivals in room U203 - UCplus. A small room used so students can learn danish in the second danish teaching structure in campus. It is small, but practical. Oh, I almost forgot... The teacher brings pies. PIES.");
             
             outside.setDayDescriptions(
                 "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today. Head on to the Lobby (by typing 'Forward') for the introduction!",
