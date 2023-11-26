@@ -1,4 +1,6 @@
-﻿namespace WorldOfZuul
+﻿using System.Collections;
+
+namespace WorldOfZuul
 {
     public class Game
     {
@@ -109,7 +111,7 @@
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Hazardous Waste\":\n\nHazardous waste that is not handled appropriately and recycled possesses a serious harm to our health and the environment – it can cause fires, contaminate ground and surface waters."
             );
 
-            outside.SetExit("forward", lobby); // North, East, South, West
+            outside.SetExit("forward", lobby); // Forward, Right, Backward, Left, Up, Down
 
             lobby.SetExits(cafeteria, u101, outside, concertHall, u201, null);
 
@@ -209,6 +211,8 @@
                     case "backwards":
                     case "right":
                     case "left":
+                    case "up":
+                    case "down":
                         Move(command.Name);
                         break;
 
