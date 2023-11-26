@@ -81,6 +81,9 @@
             Room concertHall = new("Concert Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable");
             Room cafeteria = new("Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.");
             Room u108 = new("u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.");
+            Room u106 = new("U106", "U106 long desc");
+            Room u201 = new("U201", "U201 long desc (A2B Danish lessons)");
+            Room u203 = new("U203", "U203 long desc (UCplay Danish lessons)");
             
             outside.setDayDescriptions(
                 "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today. Head on to the Lobby (by typing 'Forward') for the introduction!",
@@ -108,15 +111,19 @@
 
             outside.SetExit("forward", lobby); // North, East, South, West
 
-            lobby.SetExits(cafeteria, u101, outside, concertHall);
+            lobby.SetExits(cafeteria, u101, outside, concertHall, u201, null);
 
-            u101.SetExits(u108, null, lobby, null);
+            u101.SetExits(u108, null, lobby, null, null, null);
 
             concertHall.SetExit("backwards", lobby);
 
             cafeteria.SetExit("backwards", lobby);
 
             u108.SetExit("backwards", u101);
+
+            u106.SetExit("backwards", u101);
+
+            u201.SetExits(u203, null, null, null, null, lobby);
 
             currentRoom = outside;
 
