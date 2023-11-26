@@ -354,7 +354,7 @@ namespace WorldOfZuul
             Console.WriteLine("You are lost. You are alone. You wander");
             Console.WriteLine("around the university.");
             Console.WriteLine();
-            Console.WriteLine("Navigate by typing '\x1b[93mforward\x1b[39m', '\x1b[93mbackwards\x1b[39m', '\x1b[93mright\x1b[39m', or '\x1b[93mleft\x1b[39m' and if you find an elevator, try going '\x1b[93mup\x1b[39m' or '\x1b[93mdown\x1b[39m'");
+            Console.WriteLine("Navigate by typing '\x1b[93mforward\x1b[39m', '\x1b[93mbackwards\x1b[39m', '\x1b[93mright\x1b[39m', or '\x1b[93mleft\x1b[39m' and if you find an elevator, try going '\x1b[93mup\x1b[39m' or '\x1b[93mdown\x1b[39m'.");
             Console.WriteLine("Type '\x1b[93mlook\x1b[39m' for more details about the room.");
             Console.WriteLine("Type '\x1b[93mback\x1b[39m' to go to the previous room.");
             Console.WriteLine("Type '\x1b[93mcollect <trash name>\x1b[39m' to collect trash within the room");
