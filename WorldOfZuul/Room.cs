@@ -54,7 +54,7 @@ namespace WorldOfZuul
             }
         }
 
-        //This method removes one element from the scatteredTrash array and returns it. This will be unnecessary when this method is only called from it's string counterpart.
+        //This method removes one element from the scatteredTrash array and returns it.
         public Trash? RemoveTrash(int index = 0)
         {
             //checking if there is trash in this room. 
