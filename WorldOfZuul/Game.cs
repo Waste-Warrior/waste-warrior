@@ -1,4 +1,6 @@
-﻿namespace WorldOfZuul
+﻿using System.Collections;
+
+namespace WorldOfZuul
 {
     public class Game
     {
@@ -93,11 +95,14 @@
             };
             
             Room outside = new("Outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type 'forward' if you want to enter the university", outsideTrash);
-            Room lobby = new("Lobby", "You find yourself inside a large lobby with reception. Several corridors going everywhere. What path will you choose. It's quite dark and quiet.", lobbyTrash);
+            Room lobby = new("Lobby", "You find yourself inside a large lobby with reception and an elevator. Several corridors going everywhere. What path will you choose. It's quite dark and quiet.", lobbyTrash);
             Room u101 = new("U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too");
             Room concertHall = new("Concert Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable");
             Room cafeteria = new("Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.");
             Room u108 = new("u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.");
+            Room u106 = new("U106", "You've entered the second biggest lecture hall on this floor. It is always busy and full of people here. You find it empty, so why don't you snatch the opportunity and take a look around.");
+            Room u201 = new("U201", "Ah... Room U201. A room used for only one thing. Learning Danish. This is the place where one of the two Danish teaching structures is based - A2B. Look around and Held og Lykke!");
+            Room u203 = new("U203", "At last, A2B's rivals in room U203 - UCplus. A small room used so students can learn danish in the second danish teaching structure in campus. It is small, but practical. Oh, I almost forgot... The teacher brings pies. PIES.");
             
             outside.setDayDescriptions(
                 "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today. Head on to the Lobby (by typing 'Forward') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important.",
@@ -126,17 +131,23 @@
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Hazardous Waste\":\n\nHazardous waste that is not handled appropriately and recycled possesses a serious harm to our health and the environment – it can cause fires, contaminate ground and surface waters."
             );
 
-            outside.SetExit("forward", lobby); // North, East, South, West
+            outside.SetExit("forward", lobby); // Forward, Right, Backward, Left, Up, Down
 
-            lobby.SetExits(cafeteria, u101, outside, concertHall);
+            lobby.SetExits(cafeteria, u101, outside, concertHall, u201, null);
 
-            u101.SetExits(u108, null, lobby, null);
+            u101.SetExits(u108, null, lobby, null, null, null);
 
             concertHall.SetExit("backwards", lobby);
 
             cafeteria.SetExit("backwards", lobby);
 
             u108.SetExit("backwards", u101);
+
+            u106.SetExit("backwards", u101);
+
+            u201.SetExits(u203, null, null, null, null, lobby);
+
+            u203.SetExit("backwards", u201);
 
             currentRoom = outside;
 
@@ -222,6 +233,8 @@
                     case "backwards":
                     case "right":
                     case "left":
+                    case "up":
+                    case "down":
                         Move(command.Name);
                         break;
 
@@ -361,7 +374,7 @@
             Console.WriteLine("You are lost. You are alone. You wander");
             Console.WriteLine("around the university.");
             Console.WriteLine();
-            Console.WriteLine("Navigate by typing '\x1b[93mforward\x1b[39m', '\x1b[93mbackwards\x1b[39m', '\x1b[93mright\x1b[39m', or '\x1b[93mleft\x1b[39m'.");
+            Console.WriteLine("Navigate by typing '\x1b[93mforward\x1b[39m', '\x1b[93mbackwards\x1b[39m', '\x1b[93mright\x1b[39m', or '\x1b[93mleft\x1b[39m' and if you find an elevator, try going '\x1b[93mup\x1b[39m' or '\x1b[93mdown\x1b[39m'.");
             Console.WriteLine("Type '\x1b[93mlook\x1b[39m' for more details about the room.");
             Console.WriteLine("Type '\x1b[93mback\x1b[39m' to go to the previous room.");
             Console.WriteLine("Type '\x1b[93mcollect <trash name>\x1b[39m' to collect trash within the room");

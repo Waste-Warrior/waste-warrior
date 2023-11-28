@@ -17,12 +17,14 @@ namespace WorldOfZuul
             ScatteredTrash = trash ?? Array.Empty<Trash>();
         }
 
-        public void SetExits(Room? forward, Room? right, Room? backwards, Room? left)
+        public void SetExits(Room? forward, Room? right, Room? backwards, Room? left, Room? up, Room? down)
         {
             SetExit("forward", forward);
             SetExit("right", right);
             SetExit("backwards", backwards);
             SetExit("left", left);
+            SetExit("up", up);
+            SetExit("down", down);
         }
 
         public void SetExit(string direction, Room? neighbor)
