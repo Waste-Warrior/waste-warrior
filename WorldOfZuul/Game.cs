@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 
 namespace WorldOfZuul
 {
@@ -37,6 +39,14 @@ namespace WorldOfZuul
             CreateRooms();
         }
 
+        private bool ClearConsole(bool CanClear = true) // This is used to clear console, and the bool is required so that the console doesn't clear when it doesn't need to.
+        {
+            if (CanClear)
+            {
+                Console.Clear();
+            }
+            return true;
+        }
         private void CreateRooms()
         {
             /*List of Trash to choose from, you should remember to set the day.
@@ -247,102 +257,107 @@ namespace WorldOfZuul
                         break;
 
                     case "collect":
-                        List<Trash> TrashList = currentRoom?.GetItems(currentDay) ?? new List<Trash>(); //This trash object can later be added to an inventory
-                        bool exit = false;
-                        bool canClear = true;
-                        while (TrashList.Count != 0 && !exit)
+                        List<Trash> TrashList; // This is the list of trash in the room
+                        bool exit = false; // This is one of the exit conditions for the first while loop, used if player wants to go back.
+                        bool canClear = true; // This is used to determine if the console should be cleared or not.
+                        while (!exit && (TrashList = currentRoom?.GetItems(currentDay) ?? new List<Trash>()).Count > 0) // first checks if the player wants to exit, second condition is that there are trash items in room.
                         {
-                            TrashList = currentRoom?.GetItems(currentDay) ?? new List<Trash>();
-                            if (canClear) {Console.Clear();} canClear = true;
+                            canClear = ClearConsole(canClear); // if canClear, then clears, if not, then canClear turns true.
                             Console.WriteLine("\nYou can collect and sort the following trash:\n");
-                            int i = 0;
-                            foreach (Trash trash in TrashList)
+                            int i = 0; foreach (Trash trash in TrashList)
                             {
-                                i += 1;
-                                Console.WriteLine($"{i}    *{trash.Name}");
+                                i += 1; Console.WriteLine($"{i}    *{trash.Name}"); // prints out the trash items in the room with a number (that corresponds to index + 1) in front of them.
                             }
                             Console.WriteLine("\nType in the number of the trash you want to collect and sort or type '0' to go back.");
                             Console.Write("> ");
                             string? input2 = Console.ReadLine();
-                            if (!string.IsNullOrEmpty(input2))
+                            if (!int.TryParse(input2, out int trashIndex) || trashIndex > TrashList.Count || trashIndex < 0 || string.IsNullOrEmpty(input2)) // checks if the input is a number and if it is within the range of the trash items in the room.
                             {
-                                switch (input2)
+                                Console.Clear();
+                                Console.WriteLine("Please enter a valid number.");
+                                canClear = false;
+                            }
+                            else
+                            {
+                                if (trashIndex == 0)
                                 {
-                                    case "0":
-                                        exit = true;
-                                        break;
-
-                                    default:
-                                        if (int.TryParse(input2, out int trashIndex) && trashIndex <= TrashList.Count && trashIndex > 0)
+                                    exit = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    trashIndex -= 1; //because in programming counting starts with 0, while in life 1.
+                                    Trash trash = TrashList[trashIndex];
+                                    canClear = ClearConsole(canClear);
+                                    Console.WriteLine($"\nYou have selected: {trash.Name}");
+                                    bool chosen = false; // to be able to quit the while loop without quitting the other while loop
+                                    while (!chosen)
+                                    {
+                                        Console.WriteLine("\nSelect one of the following trash cans to sort the trash into:\n");
+                                        int trashTypeIndex = 0;
+                                        foreach (Trash.TrashType trashType in Enum.GetValues(typeof(Trash.TrashType)))
                                         {
-                                            trashIndex -= 1;
-                                            Trash trash = TrashList[trashIndex];
-                                            if (canClear) {Console.Clear();} canClear = true;
-                                            Console.WriteLine($"\nYou have selected: {trash.Name}");
-                                            bool chosen = false;
-                                            while (!chosen)
+                                            trashTypeIndex += 1;
+                                            Console.WriteLine($"{trashTypeIndex}    *{trashType}");
+                                        }
+                                        Console.WriteLine("\nType in the number of the trash category you want to sort it in or type '0' to go back.");
+                                        Console.Write("> ");
+                                        string? input3 = Console.ReadLine();
+                                        if (string.IsNullOrEmpty(input3) || !int.TryParse(input3, out int trashTypeIndexChosen) || trashTypeIndexChosen > Enum.GetNames(typeof(Trash.TrashType)).Length+1 || trashTypeIndexChosen < 0) // checks if the input is a number and if it is within the range of the categories.
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine("Please enter a valid number.");
+                                            canClear = false;
+                                        }
+                                        else
+                                        {
+                                            if (trashTypeIndexChosen == 0)
                                             {
-                                                Console.WriteLine("\nSelect one of the following trash cans to sort the trash into:\n");
-                                                int trashTypeIndex = 0;
-                                                foreach (Trash.TrashType trashType in Enum.GetValues(typeof(Trash.TrashType)))
+                                                exit = true;
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                if (trashTypeIndexChosen-1 != (int)trash.Type)
                                                 {
-                                                    trashTypeIndex += 1;
-                                                    Console.WriteLine($"{trashTypeIndex}    *{trashType}");
+                                                    Console.Clear();
+                                                    Console.WriteLine("You have selected the wrong category!");
+                                                    canClear = false;
                                                 }
-                                                Console.WriteLine("\nType in the number of the trash category you want to sort it in or type '0' to go back.");
-                                                Console.Write("> ");
-                                                string? input3 = Console.ReadLine();
-                                                if (!string.IsNullOrEmpty(input3) && int.TryParse(input3, out int trashTypeIndexChosen) && trashTypeIndexChosen <= Enum.GetNames(typeof(Trash.TrashType)).Length+1 && trashTypeIndexChosen > 0)
+                                                else
                                                 {
-                                                    switch (trashTypeIndexChosen)
+                                                    Console.Clear();
+                                                    Console.WriteLine($"\nYou have sorted {trash.Name}!");
+                                                    canClear = false;
+                                                    currentRoom?.RemoveTrash(trash.Name, (int)trash.Day);
+                                                    trashSortedToday += 1;
+                                                    chosen = true;
+                                                    if (trashSpawnedOnDay[(Days)currentDay] == trashSortedToday)
+                                                    {   
+                                                        trashSortedToday = 0; // reset trash sorted today counter
+                                                        currentDay += 1; // increment day
+                                                        Console.WriteLine("\x1b[93mYou have sorted all the trash for today!\x1b[39m You are now going home to return back tomorrow.");
+                                                        Console.WriteLine("");
+                                                        while (currentRoom?.Exits.ContainsKey("backwards") == true) // returns you to the outside room after day ends.
+                                                        {
+                                                            previousRoom = currentRoom;
+                                                            currentRoom = currentRoom?.Exits["backwards"];
+                                                        }
+                                                        Console.WriteLine("You have returned to the university. \x1b[93mContinue on your quest to sort trash!\x1b[39m");
+                                                        exit = true;
+                                                        break;
+                                                    }
+                                                    if (TrashList.Count == 1)
                                                     {
-                                                        case 0:
-                                                            chosen = true;
-                                                            break;
-                                                        
-                                                        default:
-                                                            if (trashTypeIndexChosen-1 == (int)trash.Type)
-                                                            {
-                                                                if (canClear) {Console.Clear();} canClear = true;
-                                                                Console.WriteLine($"\nYou have sorted {trash.Name}!");
-                                                                canClear = false;
-                                                                currentRoom?.RemoveTrash(trash.Name, (int)trash.Day);
-                                                                trashSortedToday += 1;
-                                                                chosen = true;
-                                                                if (trashSpawnedOnDay[(Days)currentDay] == trashSortedToday)
-                                                                {   
-                                                                    trashSortedToday = 0; // reset trash sorted today counter
-                                                                    currentDay += 1; // increment day
-                                                                    Console.WriteLine("\x1b[93mYou have sorted all the trash for today!\x1b[39m You are now going home to return back tomorrow.");
-                                                                    Console.WriteLine("");
-                                                                    while (currentRoom?.Exits.ContainsKey("backwards") == true) // returns you to the outside room after day ends.
-                                                                    {
-                                                                        previousRoom = currentRoom;
-                                                                        currentRoom = currentRoom?.Exits["backwards"];
-                                                                    }
-                                                                    Console.WriteLine("You have returned to the university. \x1b[93mContinue on your quest to sort trash!\x1b[39m");
-                                                                    exit = true;
-                                                                    break;
-                                                                }
-                                                                if (TrashList.Count == 1)
-                                                                {
-                                                                    Console.WriteLine("You have collected all the trash in the room!");
-                                                                    exit = true;
-                                                                }
-                                                            }
-                                                            else
-                                                            {
-                                                                Console.WriteLine("Wrong trash can!");
-                                                            }
-                                                            break;
+                                                        Console.WriteLine("You have collected all the trash in the room!");
+                                                        exit = true;
                                                     }
                                                 }
                                             }
                                         }
-                                        break;
+                                    }
                                 }
                             }
-
                         }
                         break;
                     
@@ -370,6 +385,7 @@ namespace WorldOfZuul
         }
         private static void PrintWelcome()
         {
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine("Welcome to the World of Zuul: \x1b[93mWaste Warriors\x1b[39m!");
             Console.WriteLine("World of Zuul: Waste Warriors is a new, incredibly trashy adventure game.");
@@ -378,9 +394,6 @@ namespace WorldOfZuul
         }
         private static void PrintHelp()
         {
-            Console.WriteLine();
-            Console.WriteLine("You are lost. You are alone. You wander");
-            Console.WriteLine("around the university.");
             Console.WriteLine();
             Console.WriteLine("Navigate by typing '\x1b[93mforward\x1b[39m', '\x1b[93mbackwards\x1b[39m', '\x1b[93mright\x1b[39m', or '\x1b[93mleft\x1b[39m' and if you find an elevator, try going '\x1b[93mup\x1b[39m' or '\x1b[93mdown\x1b[39m'.");
             Console.WriteLine("Type '\x1b[93mlook\x1b[39m' for more details about the room.");
