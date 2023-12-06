@@ -109,24 +109,6 @@ namespace WorldOfZuul
             return null;
         }
 
-        public bool IsTrashInRoom(string? trashName = null, int? trashDay = 0)
-        {
-            if (ScatteredTrash != null && ScatteredTrash.Length >= 1 && trashName != null)
-            {
-                foreach (Trash trash in ScatteredTrash)
-                {
-                    if (trashName.ToLower() == trash.Name.ToLower())
-                    {
-                        if (trashDay != null && trash.Day == (Game.Days) trashDay)
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
         public List<Trash> GetItems(int? trashDay = 0)
         {
             List<Trash> trashList = new List<Trash>();
