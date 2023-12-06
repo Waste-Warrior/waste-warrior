@@ -262,15 +262,15 @@
                             Console.WriteLine("\nYou can collect and sort the following trash:\n");
                             int i = 0; foreach (Trash trash in TrashList)
                             {
-                                i += 1; Console.WriteLine($"{i}    *{trash.Name}"); // prints out the trash items in the room with a number (that corresponds to index + 1) in front of them.
+                                i += 1; Console.WriteLine($"{i}    *\x1b[93m{trash.Name}\x1b[39m"); // prints out the trash items in the room with a number (that corresponds to index + 1) in front of them.
                             }
-                            Console.WriteLine("\nType in the number of the trash you want to collect and sort or type '0' to go back.");
+                            Console.WriteLine("\nType in the number of the trash you want to collect and sort or type '\x1b[93m0\x1b[39m' to go back.");
                             Console.Write("> ");
                             string? input2 = Console.ReadLine();
                             if (!int.TryParse(input2, out int trashIndex) || trashIndex > TrashList.Count || trashIndex < 0 || string.IsNullOrEmpty(input2)) // checks if the input is a number and if it is within the range of the trash items in the room.
                             {
                                 Console.Clear();
-                                Console.WriteLine("Please enter a valid number.");
+                                Console.WriteLine("Please enter a \x1b[93mvalid\x1b[39m number.");
                                 canClear = false;
                             }
                             else
@@ -284,7 +284,7 @@
                                     trashIndex -= 1; //because in programming counting starts with 0, while in life 1.
                                     Trash trash = TrashList[trashIndex];
                                     canClear = ClearConsole(canClear);
-                                    Console.WriteLine($"\nYou have selected: {trash.Name}");
+                                    Console.WriteLine($"\nYou have selected: \x1b[93m{trash.Name}\x1b[39m");
                                     bool chosen = false; // to be able to quit the while loop without quitting the other while loop
                                     while (!chosen)
                                     {
@@ -293,9 +293,9 @@
                                         foreach (Trash.TrashType trashType in Enum.GetValues(typeof(Trash.TrashType)))
                                         {
                                             trashTypeIndex += 1;
-                                            Console.WriteLine($"{trashTypeIndex}    *{trashType}");
+                                            Console.WriteLine($"{trashTypeIndex}    *\x1b[93m{trashType}\x1b[39m");
                                         }
-                                        Console.WriteLine("\nType in the number of the trash category you want to sort it in or type '0' to go back.");
+                                        Console.WriteLine("\nType in the number of the trash category you want to sort it in or type '\x1b[93m0\x1b[39m' to go back.");
                                         Console.Write("> ");
                                         string? input3 = Console.ReadLine();
                                         if (string.IsNullOrEmpty(input3) || !int.TryParse(input3, out int trashTypeIndexChosen) || trashTypeIndexChosen > Enum.GetNames(typeof(Trash.TrashType)).Length+1 || trashTypeIndexChosen < 0) // checks if the input is a number and if it is within the range of the categories.
@@ -309,19 +309,20 @@
                                             if (trashTypeIndexChosen == 0) //chose to leave the while loop
                                             {
                                                 exit = true;
+                                                break;
                                             }
                                             else
                                             {
                                                 if (trashTypeIndexChosen-1 != (int)trash.Type) //-1 because of the programming counting from 0 and the player counting from 1, because 0 is leave.
                                                 {
                                                     Console.Clear();
-                                                    Console.WriteLine("You have selected the wrong category!");
+                                                    Console.WriteLine("You have selected the \x1b[93mwrong\x1b[39m category!");
                                                     canClear = false;
                                                 }
                                                 else
                                                 {
                                                     Console.Clear();
-                                                    Console.WriteLine($"\nYou have sorted {trash.Name}!");
+                                                    Console.WriteLine($"\nYou have sorted \x1b[93m{trash.Name}\x1b[39m!");
                                                     canClear = false;
                                                     currentRoom?.RemoveTrash(trash.Name, (int)trash.Day);
                                                     trashSortedToday += 1;
