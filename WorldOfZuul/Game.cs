@@ -298,7 +298,7 @@
                                         Console.WriteLine("\nType in the number of the trash category you want to sort it in or type '\x1b[93m0\x1b[39m' to go back.");
                                         Console.Write("> ");
                                         string? input3 = Console.ReadLine();
-                                        if (string.IsNullOrEmpty(input3) || !int.TryParse(input3, out int trashTypeIndexChosen) || trashTypeIndexChosen > Enum.GetNames(typeof(Trash.TrashType)).Length+1 || trashTypeIndexChosen < 0) // checks if the input is a number and if it is within the range of the categories.
+                                        if (string.IsNullOrEmpty(input3) || !int.TryParse(input3, out int trashTypeIndexChosen) || trashTypeIndexChosen > Enum.GetNames(typeof(Trash.TrashType)).Length || trashTypeIndexChosen < 0) // checks if the input is a number and if it is within the range of the categories.
                                         {
                                             Console.Clear();
                                             Console.WriteLine("Please enter a valid number.");
