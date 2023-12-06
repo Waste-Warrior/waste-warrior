@@ -278,7 +278,6 @@
                                 if (trashIndex == 0)
                                 {
                                     exit = true;
-                                    break;
                                 }
                                 else
                                 {
@@ -307,14 +306,13 @@
                                         }
                                         else
                                         {
-                                            if (trashTypeIndexChosen == 0)
+                                            if (trashTypeIndexChosen == 0) //chose to leave the while loop
                                             {
                                                 exit = true;
-                                                break;
                                             }
                                             else
                                             {
-                                                if (trashTypeIndexChosen-1 != (int)trash.Type)
+                                                if (trashTypeIndexChosen-1 != (int)trash.Type) //-1 because of the programming counting from 0 and the player counting from 1, because 0 is leave.
                                                 {
                                                     Console.Clear();
                                                     Console.WriteLine("You have selected the wrong category!");
@@ -328,7 +326,7 @@
                                                     currentRoom?.RemoveTrash(trash.Name, (int)trash.Day);
                                                     trashSortedToday += 1;
                                                     chosen = true;
-                                                    if (trashSpawnedOnDay[(Days)currentDay] == trashSortedToday)
+                                                    if (trashSpawnedOnDay[(Days)currentDay] == trashSortedToday) // checks if maybe today has ended?
                                                     {   
                                                         trashSortedToday = 0; // reset trash sorted today counter
                                                         currentDay += 1; // increment day
@@ -341,7 +339,6 @@
                                                         }
                                                         Console.WriteLine("You have returned to the university. \x1b[93mContinue on your quest to sort trash!\x1b[39m");
                                                         exit = true;
-                                                        break;
                                                     }
                                                     if (TrashList.Count == 1)
                                                     {
