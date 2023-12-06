@@ -109,22 +109,20 @@ namespace WorldOfZuul
             return null;
         }
 
-        public bool IsTrashInRoom(string? trashName = null, int? trashDay = 0)
+        public List<Trash> GetItems(int? trashDay = 0)
         {
-            if (ScatteredTrash != null && ScatteredTrash.Length >= 1 && trashName != null)
+            List<Trash> trashList = new List<Trash>();
+            if (ScatteredTrash != null && ScatteredTrash.Length >= 1)
             {
                 foreach (Trash trash in ScatteredTrash)
                 {
-                    if (trashName.ToLower() == trash.Name.ToLower())
+                    if (trashDay != null && trash.Day == (Game.Days)trashDay)
                     {
-                        if (trashDay != null && trash.Day == (Game.Days) trashDay)
-                        {
-                            return true;
-                        }
+                        trashList.Add(trash);
                     }
                 }
             }
-            return false;
+            return trashList;
         }
     }
 }
