@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace WorldOfZuul
+﻿namespace WorldOfZuul
 {
     public class Game
     {
@@ -362,7 +360,6 @@ namespace WorldOfZuul
                         }
                         break;
                     
-
                     default:
                         Console.WriteLine("I don't know that command.");
                         break;
