@@ -126,5 +126,21 @@ namespace WorldOfZuul
             }
             return false;
         }
+
+        public List<Trash> GetItems(int? trashDay = 0)
+        {
+            List<Trash> trashList = new List<Trash>();
+            if (ScatteredTrash != null && ScatteredTrash.Length >= 1)
+            {
+                foreach (Trash trash in ScatteredTrash)
+                {
+                    if (trashDay != null && trash.Day == (Game.Days)trashDay)
+                    {
+                        trashList.Add(trash);
+                    }
+                }
+            }
+            return trashList;
+        }
     }
 }
