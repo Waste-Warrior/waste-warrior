@@ -143,7 +143,6 @@
 
             Trash[] u101Trash =
             {
-                new ("a paper cup", Trash.TrashType.Restaffald, Days.Tuesday),
                 new ("a plastic wrapper", Trash.TrashType.Plast, Days.Tuesday),
                 new ("a paper cup", Trash.TrashType.Restaffald, Days.Wednesday),
                 new ("a plastic bottle", Trash.TrashType.Plast, Days.Wednesday),
@@ -161,6 +160,17 @@
                 new ("a chips bag", Trash.TrashType.Restaffald, Days.Wednesday),
                 new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
                 new ("some gift wrapping", Trash.TrashType.Restaffald, Days.Thursday)
+            };
+
+            Trash[] cafeteriaTrash =
+            {
+                new("a plastic wrapper", Trash.TrashType.Plast, Days.Tuesday),
+                new ("a carrot", Trash.TrashType.Madaffald, Days.Wednesday),
+                new ("a sandwich", Trash.TrashType.Madaffald, Days.Wednesday),
+                new ("a bone", Trash.TrashType.Madaffald, Days.Wednesday),
+                new ("a paper cup", Trash.TrashType.Restaffald, Days.Thursday),
+                new ("a plastic wrapper", Trash.TrashType.Plast, Days.Thursday),
+                new ("a sandwich", Trash.TrashType.Madaffald, Days.Thursday),
             };
             
             Room outside = new("outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type 'forward' if you want to enter the university", outsideTrash);
@@ -193,7 +203,6 @@
                 "Miljøkasse - hazardous waste is all waste that could be hazardous to health or harmful for the environment. To the extent possible, all hazardous waste must be disposed of in its original packaging or properly packaged in some way. Hazardous waste that is collected and treated correctly is not harmful to the environment nor people. It is sent for special treatment and recycled to the greatest extent possible."
             );
             concertHall.setDayDescriptions(
-                //The word gyres might need an explanation
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Improperly Handled Trash\":\n\nTrash not collected and recycled can travel throughout rivers and oceans accumulating in beaches and creating trash islands in the ocean, when trapped within gyres. Hopefully this incentivized you to spend a few seconds to sort your trash and save the beauty of our planet.\nDid you know that Denmark's impressive recycling efforts save considerable energy? For example, recycling in Denmark has been associated with a notable reduction in energy consumption, with each aluminum can recycled saving up to 95% of the energy required for its original production.",
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Plastic Waste\":\n\nOut of all trash, plastic trash has the greatest potential to harm the environment, wildlife and humans. It can be found floating at the surface, suspended in the water column, or on the bottom of almost all water bodies. It is transported by rivers to the ocean, where it moves with the currents, and is often eaten by birds and fish, concentrating toxic chemicals in their tissues, and filling their stomachs, causing them to starve. Plastic aquatic debris is much more than a mere aesthetic problem.",
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Residual Waste\":\n\nResidual waste usually ends up as landfill which generate and release Biogas. Furthermore, landfills emanate bad smells, contaminate soil and water.\nIn Denmark most of the Residual waste is incinerated and used to produce district heating and electricity.\nIt is really important to leave as little residual waste as possible and that can be done by thoroughly sorting your trash.\nDenmark's good recycling practices help safeguard precious natural resources. The country's commitment to recycling is synonymous with a reduced need for raw material extraction, benefiting ecosystems like forests and minimizing the depletion of minerals and fossil fuels.",
