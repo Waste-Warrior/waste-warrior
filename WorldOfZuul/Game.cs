@@ -177,7 +177,7 @@
             Room lobby = new("in the lobby", "You find yourself inside a large lobby with reception and an elevator. Several corridors going everywhere. What path will you choose. It's quite dark and quiet.", lobbyTrash);
             Room u101 = new("in U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too", u101Trash);
             Room concertHall = new("at theConcert Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable", concerthallTrash);
-            Room cafeteria = new("at the Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.");
+            Room cafeteria = new("at the Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.", cafeteriaTrash);
             Room u108 = new("in u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.");
             Room u106 = new("in U106", "You've entered the second biggest lecture hall on this floor. It is always busy and full of people here. You find it empty, so why don't you snatch the opportunity and take a look around.");
             Room u201 = new("in U201", "Ah... Room U201. A room used for only one thing. Learning Danish. This is the place where one of the two Danish teaching structures is based - A2B. Look around and Held og Lykke!");
@@ -229,7 +229,7 @@
 
             currentRoom = outside;
 
-            foreach (Trash item in outsideTrash.Concat(lobbyTrash).Concat(u101Trash).Concat(concerthallTrash)) // add .Concat(nextTrashName) to add more trash items for score comparison.
+            foreach (Trash item in outsideTrash.Concat(lobbyTrash).Concat(u101Trash).Concat(concerthallTrash).Concat(cafeteriaTrash)) // add .Concat(nextTrashName) to add more trash items for score comparison.
             {
                 trashSpawnedOnDay[item.Day] += 1;
             }
