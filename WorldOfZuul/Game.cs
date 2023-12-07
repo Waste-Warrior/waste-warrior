@@ -35,13 +35,45 @@
             CreateRooms();
         }
 
-        private bool ClearConsole(bool CanClear = true) // This is used to clear console, and the bool is required so that the console doesn't clear when it doesn't need to.
+        private bool ClearConsole(bool CanClear = true, bool returnValue = true) // This is used to clear console, and the bool is required so that the console doesn't clear when it doesn't need to.
         {
             if (CanClear)
             {
                 Console.Clear();
             }
-            return true;
+            return returnValue;
+        }
+        private void printMessage(Room currentRoom)
+        {
+            // This solves the possibility of a null reference exception
+            Console.WriteLine(currentRoom.LongDescription);
+            
+            //This currently prints all Trash in the Room to the console.
+            if (currentRoom.ScatteredTrash != null && currentRoom.ScatteredTrash.Length != 0)
+            {
+                string allTrash = "";
+                foreach (Trash trash in currentRoom.ScatteredTrash)
+                {
+                    if (trash.Day == (Days)currentDay)
+                    {
+                        allTrash += $"\x1b[93m{trash.Name}\x1b[39m" + ", ";
+                    }
+                }
+                int lastCommaIndex = allTrash.LastIndexOf(", ");
+                if (lastCommaIndex >= 0)
+                {
+                    allTrash = allTrash.Remove(lastCommaIndex, 2);
+                }
+                if (allTrash.Length > 0)
+                {
+                    Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
+                }
+                Console.WriteLine($"To advance to the next day, you still have \x1b[93m{trashSpawnedOnDay[(Days)currentDay] - trashSortedToday}\x1b[39m trash to get through."); //maybe make it so it says the rooms you should visit not the trash left? idk
+            }
+            if (currentRoom.dayDescription.ContainsKey((Days)currentDay))
+            {
+                Console.WriteLine($"\n{currentRoom.dayDescription[(Days)currentDay]}");
+            }
         }
         private void CreateRooms()
         {
@@ -99,18 +131,18 @@
                 new ("an empty Cola can", Trash.TrashType.Metal, Days.Tuesday),
             };
             
-            Room outside = new("Outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type 'forward' if you want to enter the university", outsideTrash);
-            Room lobby = new("Lobby", "You find yourself inside a large lobby with reception and an elevator. Several corridors going everywhere. What path will you choose. It's quite dark and quiet.", lobbyTrash);
-            Room u101 = new("U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too");
-            Room concertHall = new("Concert Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable");
-            Room cafeteria = new("Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.");
-            Room u108 = new("u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.");
-            Room u106 = new("U106", "You've entered the second biggest lecture hall on this floor. It is always busy and full of people here. You find it empty, so why don't you snatch the opportunity and take a look around.");
-            Room u201 = new("U201", "Ah... Room U201. A room used for only one thing. Learning Danish. This is the place where one of the two Danish teaching structures is based - A2B. Look around and Held og Lykke!");
-            Room u203 = new("U203", "At last, A2B's rivals in room U203 - UCplus. A small room used so students can learn danish in the second danish teaching structure in campus. It is small, but practical. Oh, I almost forgot... The teacher brings pies. PIES.");
+            Room outside = new("outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type 'forward' if you want to enter the university", outsideTrash);
+            Room lobby = new("in the lobby", "You find yourself inside a large lobby with reception and an elevator. Several corridors going everywhere. What path will you choose. It's quite dark and quiet.", lobbyTrash);
+            Room u101 = new("in U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too");
+            Room concertHall = new("at theConcert Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable");
+            Room cafeteria = new("at the Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.");
+            Room u108 = new("in u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.");
+            Room u106 = new("in U106", "You've entered the second biggest lecture hall on this floor. It is always busy and full of people here. You find it empty, so why don't you snatch the opportunity and take a look around.");
+            Room u201 = new("in U201", "Ah... Room U201. A room used for only one thing. Learning Danish. This is the place where one of the two Danish teaching structures is based - A2B. Look around and Held og Lykke!");
+            Room u203 = new("in U203", "At last, A2B's rivals in room U203 - UCplus. A small room used so students can learn danish in the second danish teaching structure in campus. It is small, but practical. Oh, I almost forgot... The teacher brings pies. PIES.");
             
             outside.setDayDescriptions(
-                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today. Head on to the Lobby (by typing 'Forward') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important.",
+                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing 'Forward') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \nIf at any point you forget how to play, just type in '\x1b[93mhelp\x1b[39m' and you will be reminded of the controls.",
                 "Congratulations on completing the first day of your training and welcome back! Today you will learn to sort the next categories of trash. Head on to the Lobby (by typing 'Forward') for the introduction!",
                 "Welcome back, we are half way through the introduction, hopefully you will enjoy the remaining time as well.",
                 "Today is the last day, stick through this to become a perfect recycler.",
@@ -166,13 +198,20 @@
         public void Play()
         {
             Parser parser = new();
-
+            
+            bool canClear = false; // This is used to determine if the console should be cleared or not.
             PrintWelcome();
 
             bool continuePlaying = true;
             while (continuePlaying)
             {
-                Console.WriteLine(currentRoom?.ShortDescription);
+                canClear = ClearConsole(canClear);
+                Console.WriteLine($"You are now \x1b[93m{currentRoom?.ShortDescription}\x1b[39m");
+                if (currentRoom != null)
+                {
+                    printMessage(currentRoom);
+                }
+
                 Console.Write("> ");
 
                 string? input = Console.ReadLine();
@@ -182,6 +221,7 @@
                     Console.WriteLine("Please enter a command.");
                     continue;
                 }
+
 
                 Command? command = parser.GetCommand(input);
 
@@ -193,40 +233,6 @@
 
                 switch(command.Name)
                 {
-                    case "look":
-                        // This solves the possibility of a null reference exception
-                        if (currentRoom != null)
-                        {
-                            Console.WriteLine(currentRoom.LongDescription);
-                            
-                            //This currently prints all Trash in the Room to the console.
-                            if (currentRoom.ScatteredTrash != null && currentRoom.ScatteredTrash.Length != 0)
-                            {
-                                string allTrash = "";
-                                foreach (Trash trash in currentRoom.ScatteredTrash)
-                                {
-                                    if (trash.Day == (Days)currentDay)
-                                    {
-                                        allTrash += $"\x1b[93m{trash.Name}\x1b[39m" + ", ";
-                                    }
-                                }
-                                int lastCommaIndex = allTrash.LastIndexOf(", ");
-                                if (lastCommaIndex >= 0)
-                                {
-                                    allTrash = allTrash.Remove(lastCommaIndex, 2);
-                                }
-                                if (allTrash.Length > 0)
-                                {
-                                    Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
-                                }
-                            }
-                            if (currentRoom.dayDescription.ContainsKey((Days)currentDay))
-                            {
-                                Console.WriteLine($"\n{currentRoom.dayDescription[(Days)currentDay]}");
-                            }
-                        }
-                        break;
-
                     case "back":
                         if (previousRoom == null)
                             Console.WriteLine("You can't go back from here!");
@@ -241,7 +247,6 @@
                     case "up":
                     case "down":
                         Move(command.Name);
-                        
                         break;
 
                     case "quit":
@@ -249,13 +254,13 @@
                         break;
 
                     case "help":
+                        canClear = ClearConsole(canClear, false);
                         PrintHelp();
                         break;
 
                     case "collect":
                         List<Trash> TrashList; // This is the list of trash in the room
                         bool exit = false; // This is one of the exit conditions for the first while loop, used if player wants to go back.
-                        bool canClear = true; // This is used to determine if the console should be cleared or not.
                         while (!exit && (TrashList = currentRoom?.GetItems(currentDay) ?? new List<Trash>()).Count > 0) // first checks if the player wants to exit, second condition is that there are trash items in room.
                         {
                             canClear = ClearConsole(canClear); // if canClear, then clears, if not, then canClear turns true.
@@ -355,7 +360,6 @@
                         }
                         break;
                     
-
                     default:
                         Console.WriteLine("I don't know that command.");
                         break;
@@ -390,7 +394,6 @@
         {
             Console.WriteLine();
             Console.WriteLine("Navigate by typing '\x1b[93mforward\x1b[39m', '\x1b[93mbackwards\x1b[39m', '\x1b[93mright\x1b[39m', or '\x1b[93mleft\x1b[39m' and if you find an elevator, try going '\x1b[93mup\x1b[39m' or '\x1b[93mdown\x1b[39m'.");
-            Console.WriteLine("Type '\x1b[93mlook\x1b[39m' for more details about the room.");
             Console.WriteLine("Type '\x1b[93mback\x1b[39m' to go to the previous room.");
             Console.WriteLine("Type '\x1b[93mcollect\x1b[39m' to collect trash within the room");
             Console.WriteLine("Type '\x1b[93mhelp\x1b[39m' to print this message again.");
