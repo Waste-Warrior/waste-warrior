@@ -427,7 +427,7 @@
                 {
                     Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
                 }
-                Console.Write("\nTo advance to the next day you still have to rid ");
+                Console.Write("\nTo advance to the next day you have to rid ");
                 int i = 0;
                 foreach (Room room in GetRoomsWithTrash())
                     {
