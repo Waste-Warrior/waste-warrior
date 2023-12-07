@@ -88,16 +88,12 @@
                 new ("a tissue", Trash.TrashType.Restaffald, 0),
                 new ("a crushed light bulb", Trash.TrashType.Miljøkasse, 0),
                 new ("a wine bottle", Trash.TrashType.Glas, 0),
-                new ("a plastic bag", Trash.TrashType.Plast, 0),
                 new ("an orange juice carton", Trash.TrashType.Madkartoner, 0),
                 new ("a paper cup", Trash.TrashType.Restaffald, 0),
                 new ("a torn apart T-shirt", Trash.TrashType.Tekstilaffald, 0),
                 new ("a paper bag", Trash.TrashType.PapirOgPap, 0),
                 new ("a towel", Trash.TrashType.Tekstilaffald, 0),
                 new ("a bucket of paint", Trash.TrashType.Miljøkasse, 0),
-                new ("a carrot", Trash.TrashType.Madaffald, 0),
-                new ("a sandwich", Trash.TrashType.Madaffald, 0),
-                new ("a bone", Trash.TrashType.Madaffald, 0),
                 new ("a sliced carpet", Trash.TrashType.Tekstilaffald, 0),
                 new ("a cloth", Trash.TrashType.Tekstilaffald, 0),
                 new ("a glass container", Trash.TrashType.Glas, 0),
@@ -167,6 +163,18 @@
             };
 
             Trash[] u108Trash =
+            {
+                new("an empty cola can", Trash.TrashType.Metal, Days.Monday),
+                new ("a plastic bottle", Trash.TrashType.Plast, Days.Tuesday),
+                new ("a plastic wrapper", Trash.TrashType.Plast, Days.Tuesday),
+                new ("a chips bag", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("an old magazine", Trash.TrashType.PapirOgPap, Days.Wednesday),
+                new ("a tissue", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a crushed light bulb", Trash.TrashType.Miljøkasse, Days.Thursday),
+                new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
+            };
+
+            Trash[] u106Trash =
             {
                 new("an empty cola can", Trash.TrashType.Metal, Days.Monday),
                 new ("a plastic bottle", Trash.TrashType.Plast, Days.Tuesday),
