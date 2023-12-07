@@ -1,4 +1,6 @@
-﻿namespace WorldOfZuul
+﻿using System.Threading.Channels;
+
+namespace WorldOfZuul
 {
     public class Game
     {
@@ -35,13 +37,13 @@
             CreateRooms();
         }
 
-        private bool ClearConsole(bool CanClear = true, bool returnValue = true) // This is used to clear console, and the bool is required so that the console doesn't clear when it doesn't need to.
+        private void ClearConsole(ref bool CanClear, bool returnValue = true) // This is used to clear console, and the bool is required so that the console doesn't clear when it doesn't need to.
         {
             if (CanClear)
             {
                 Console.Clear();
             }
-            return returnValue;
+            CanClear = returnValue;
         }
         private void printMessage(Room currentRoom)
         {
@@ -205,7 +207,7 @@
             bool continuePlaying = true;
             while (continuePlaying)
             {
-                canClear = ClearConsole(canClear);
+                ClearConsole(ref canClear);
                 Console.WriteLine($"You are now \x1b[93m{currentRoom?.ShortDescription}\x1b[39m");
                 if (currentRoom != null)
                 {
@@ -249,12 +251,56 @@
                         Move(command.Name);
                         break;
 
+                    case "move":
+                        ClearConsole(ref canClear, false);
+                        Console.WriteLine("\nWhere do you want to go?");
+                        string? whichWay;
+                        do
+                        {
+                            int i = 0;
+                            foreach (string direction in currentRoom?.Exits.Keys.ToList() ?? new List<string>())
+                            {
+                                i += 1;
+                                string[]? words = currentRoom?.Exits[direction]?.ShortDescription?.Split(' ');
+                                if (words != null && words.Length > 0)
+                                {
+                                    string lastWord = words[^1]; // Get the last word of the description
+                                    Console.WriteLine($" {i}    *\x1b[93m{lastWord}\x1b[39m");
+                                }
+                            }
+                            Console.WriteLine("Type in the number of the place you want to go to, or \x1b[93m0\x1b[39m to exit.");
+                            Console.Write("> ");
+                            whichWay = Console.ReadLine();
+                        } while (!string.IsNullOrEmpty(whichWay) && (!int.TryParse(whichWay, out int goWay) || goWay < 0 || goWay >= currentRoom?.Exits.Keys.Count + 1)); // checks if input is not empty AND if input is not a number or if it is within the range of the directions.
+                        if (whichWay == "0")
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            if (int.TryParse(whichWay, out int goWay))
+                            {
+                                int i = 0;
+                                foreach (string direction in currentRoom?.Exits.Keys.ToList() ?? new List<string>())
+                                {
+                                    i += 1;
+                                    if (i == goWay)
+                                    {
+                                        Move(direction);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        break;
+                    
                     case "quit":
                         continuePlaying = false;
                         break;
 
                     case "help":
-                        canClear = ClearConsole(canClear, false);
+                        ClearConsole(ref canClear, false);
                         PrintHelp();
                         break;
 
@@ -263,7 +309,7 @@
                         bool exit = false; // This is one of the exit conditions for the first while loop, used if player wants to go back.
                         while (!exit && (TrashList = currentRoom?.GetItems(currentDay) ?? new List<Trash>()).Count > 0) // first checks if the player wants to exit, second condition is that there are trash items in room.
                         {
-                            canClear = ClearConsole(canClear); // if canClear, then clears, if not, then canClear turns true.
+                            ClearConsole(ref canClear); // if canClear, then clears, if not, then canClear turns true.
                             Console.WriteLine("\nYou can collect and sort the following trash:\n");
                             int i = 0; foreach (Trash trash in TrashList)
                             {
@@ -288,7 +334,7 @@
                                 {
                                     trashIndex -= 1; //because in programming counting starts with 0, while in life 1.
                                     Trash trash = TrashList[trashIndex];
-                                    canClear = ClearConsole(canClear);
+                                    ClearConsole(ref canClear);
                                     Console.WriteLine($"\nYou have selected: \x1b[93m{trash.Name}\x1b[39m");
                                     bool chosen = false; // to be able to quit the while loop without quitting the other while loop
                                     while (!chosen)
