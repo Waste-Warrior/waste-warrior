@@ -138,7 +138,7 @@
             Room u203 = new("in U203", "At last, A2B's rivals in room U203 - UCplus. A small room used so students can learn danish in the second danish teaching structure in campus. It is small, but practical. Oh, I almost forgot... The teacher brings pies. PIES.");
             
             outside.setDayDescriptions(
-                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing 'Forward') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \nIf at any point you forget how to play, just type in '\x1b[93mhelp\x1b[39m' and you will be reminded of the controls.",
+                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing 'move') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \nIf at any point you forget how to play, just type in '\x1b[93mhelp\x1b[39m' and you will be reminded of the controls.",
                 "Congratulations on completing the first day of your training and welcome back! Today you will learn to sort the next categories of trash. Head on to the Lobby (by typing 'Forward') for the introduction!",
                 "Welcome back, we are half way through the introduction, hopefully you will enjoy the remaining time as well.",
                 "Today is the last day, stick through this to become a perfect recycler.",
