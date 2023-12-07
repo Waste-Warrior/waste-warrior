@@ -1,6 +1,4 @@
-﻿using System.Threading.Channels;
-
-namespace WorldOfZuul
+﻿namespace WorldOfZuul
 {
     public class Game
     {
@@ -18,7 +16,6 @@ namespace WorldOfZuul
             Saturday,
             Sunday
         }
-
         private Dictionary<Days, int> trashSpawnedOnDay = new Dictionary<Days, int>()
         {
             { Days.Monday, 0 },
@@ -29,14 +26,11 @@ namespace WorldOfZuul
             { Days.Saturday, 0 },
             { Days.Sunday, 0 }
         };
-
         public readonly Days Day; // This will be used to determine when the trash can be picked up and shows up in the room
-
         public Game()
         { 
             CreateRooms();
         }
-
         private void ClearConsole(ref bool CanClear, bool returnValue = true) // This is used to clear console, and the bool is required so that the console doesn't clear when it doesn't need to.
         {
             if (CanClear)
@@ -242,17 +236,8 @@ namespace WorldOfZuul
                             currentRoom = previousRoom;
                         break;
 
-                    case "forward":
-                    case "backwards":
-                    case "right":
-                    case "left":
-                    case "up":
-                    case "down":
-                        Move(command.Name);
-                        break;
-
                     case "move":
-                        ClearConsole(ref canClear, false);
+                        ClearConsole(ref canClear, false); //clears and then skips the next clear
                         Console.WriteLine("\nWhere do you want to go?");
                         string? whichWay;
                         do
@@ -302,7 +287,7 @@ namespace WorldOfZuul
                     case "help":
                         ClearConsole(ref canClear, false);
                         PrintHelp();
-                        break;
+                        break;                        
 
                     case "collect":
                         List<Trash> TrashList; // This is the list of trash in the room
@@ -439,9 +424,9 @@ namespace WorldOfZuul
         private static void PrintHelp()
         {
             Console.WriteLine();
-            Console.WriteLine("Navigate by typing '\x1b[93mforward\x1b[39m', '\x1b[93mbackwards\x1b[39m', '\x1b[93mright\x1b[39m', or '\x1b[93mleft\x1b[39m' and if you find an elevator, try going '\x1b[93mup\x1b[39m' or '\x1b[93mdown\x1b[39m'.");
+            Console.WriteLine("Navigate by typing '\x1b[93mmove\x1b[39m' and then selecting the direction you want to go to.");
             Console.WriteLine("Type '\x1b[93mback\x1b[39m' to go to the previous room.");
-            Console.WriteLine("Type '\x1b[93mcollect\x1b[39m' to collect trash within the room");
+            Console.WriteLine("Type '\x1b[93mcollect\x1b[39m' to collect and sort trash within your current room.");
             Console.WriteLine("Type '\x1b[93mhelp\x1b[39m' to print this message again.");
             Console.WriteLine("Type '\x1b[93mquit\x1b[39m' to exit the game.");
         }
