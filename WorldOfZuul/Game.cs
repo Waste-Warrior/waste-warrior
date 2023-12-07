@@ -81,14 +81,10 @@
              This should be removed from the actual game*/
             Trash[] preset =
             {
-                new ("an empty beer can", Trash.TrashType.Metal, 0),
-                new ("an empty cola can", Trash.TrashType.Metal, 0),
-                new ("a rotten apple", Trash.TrashType.Madaffald, 0),
                 new ("a battery", Trash.TrashType.Miljøkasse, 0),
                 new ("a pizza box", Trash.TrashType.Restaffald, 0),
                 new ("a chips bag", Trash.TrashType.Restaffald, 0),
                 new ("an old magazine", Trash.TrashType.PapirOgPap, 0),
-                new ("an eggshell", Trash.TrashType.Madaffald, 0),
                 new ("a tissue", Trash.TrashType.Restaffald, 0),
                 new ("a crushed light bulb", Trash.TrashType.Miljøkasse, 0),
                 new ("a wine bottle", Trash.TrashType.Glas, 0),
@@ -98,14 +94,10 @@
                 new ("a torn apart T-shirt", Trash.TrashType.Tekstilaffald, 0),
                 new ("a paper bag", Trash.TrashType.PapirOgPap, 0),
                 new ("a towel", Trash.TrashType.Tekstilaffald, 0),
-                new ("a broken pan", Trash.TrashType.Metal, 0),
-                new ("a bent fork", Trash.TrashType.Metal, 0),
-                new ("a graffiti can", Trash.TrashType.Miljøkasse, 0),
                 new ("a bucket of paint", Trash.TrashType.Miljøkasse, 0),
                 new ("a carrot", Trash.TrashType.Madaffald, 0),
                 new ("a sandwich", Trash.TrashType.Madaffald, 0),
                 new ("a bone", Trash.TrashType.Madaffald, 0),
-                new ("some gift wrapping", Trash.TrashType.Restaffald, 0),
                 new ("a sliced carpet", Trash.TrashType.Tekstilaffald, 0),
                 new ("a cloth", Trash.TrashType.Tekstilaffald, 0),
                 new ("a glass container", Trash.TrashType.Glas, 0),
@@ -159,18 +151,31 @@
                 new ("a pizza box", Trash.TrashType.Restaffald, Days.Wednesday),
                 new ("a chips bag", Trash.TrashType.Restaffald, Days.Wednesday),
                 new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
-                new ("some gift wrapping", Trash.TrashType.Restaffald, Days.Thursday)
             };
 
             Trash[] cafeteriaTrash =
             {
+                new ("a broken pan", Trash.TrashType.Metal, Days.Monday),
+                new ("a bent fork", Trash.TrashType.Metal, Days.Monday),
                 new("a plastic wrapper", Trash.TrashType.Plast, Days.Tuesday),
                 new ("a carrot", Trash.TrashType.Madaffald, Days.Wednesday),
                 new ("a sandwich", Trash.TrashType.Madaffald, Days.Wednesday),
                 new ("a bone", Trash.TrashType.Madaffald, Days.Wednesday),
                 new ("a paper cup", Trash.TrashType.Restaffald, Days.Thursday),
-                new ("a plastic wrapper", Trash.TrashType.Plast, Days.Thursday),
+                new ("a rotten apple", Trash.TrashType.Madaffald, Days.Thursday),
                 new ("a sandwich", Trash.TrashType.Madaffald, Days.Thursday),
+            };
+
+            Trash[] u108Trash =
+            {
+                new("an empty cola can", Trash.TrashType.Metal, Days.Monday),
+                new ("a plastic bottle", Trash.TrashType.Plast, Days.Tuesday),
+                new ("a plastic wrapper", Trash.TrashType.Plast, Days.Tuesday),
+                new ("a chips bag", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("an old magazine", Trash.TrashType.PapirOgPap, Days.Wednesday),
+                new ("a tissue", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a crushed light bulb", Trash.TrashType.Miljøkasse, Days.Thursday),
+                new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
             };
             
             Room outside = new("outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type 'forward' if you want to enter the university", outsideTrash);
@@ -178,7 +183,7 @@
             Room u101 = new("in U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too", u101Trash);
             Room concertHall = new("at theConcert Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable", concerthallTrash);
             Room cafeteria = new("at the Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.", cafeteriaTrash);
-            Room u108 = new("in u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.");
+            Room u108 = new("in u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.", u108Trash);
             Room u106 = new("in U106", "You've entered the second biggest lecture hall on this floor. It is always busy and full of people here. You find it empty, so why don't you snatch the opportunity and take a look around.");
             Room u201 = new("in U201", "Ah... Room U201. A room used for only one thing. Learning Danish. This is the place where one of the two Danish teaching structures is based - A2B. Look around and Held og Lykke!");
             Room u203 = new("in U203", "At last, A2B's rivals in room U203 - UCplus. A small room used so students can learn danish in the second danish teaching structure in campus. It is small, but practical. Oh, I almost forgot... The teacher brings pies. PIES.");
@@ -229,7 +234,7 @@
 
             currentRoom = outside;
 
-            foreach (Trash item in outsideTrash.Concat(lobbyTrash).Concat(u101Trash).Concat(concerthallTrash).Concat(cafeteriaTrash)) // add .Concat(nextTrashName) to add more trash items for score comparison.
+            foreach (Trash item in outsideTrash.Concat(lobbyTrash).Concat(u101Trash).Concat(concerthallTrash).Concat(cafeteriaTrash).Concat(u108Trash)) // add .Concat(nextTrashName) to add more trash items for score comparison.
             {
                 trashSpawnedOnDay[item.Day] += 1;
             }
