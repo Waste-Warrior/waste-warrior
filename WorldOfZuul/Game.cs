@@ -172,7 +172,7 @@
 
             Room outside = new("outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type \x1b[93m'm'\x1b[39m and then \u001b[93m'1'\x1b[39m if you want to enter the university", outsideTrash);
             Room lobby = new("in the lobby", "You find yourself inside a large lobby with reception and an elevator. Several corridors going everywhere. What path will you choose. It's quite dark and quiet.", lobbyTrash);
-            Room u101 = new("in U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too", u101Trash);
+            Room u101 = new("in U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay with them too", u101Trash);
             Room concertHall = new("at the Concert-Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable", concerthallTrash);
             Room cafeteria = new("at the Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.", cafeteriaTrash);
             Room u108 = new("in u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.", u108Trash);
@@ -207,6 +207,13 @@
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Residual Waste\":\n\nResidual waste usually ends up as landfill which generate and release Biogas. Furthermore, landfills emanate bad smells, contaminate soil and water.\nIn Denmark most of the Residual waste is incinerated and used to produce district heating and electricity.\nIt is really important to leave as little residual waste as possible and that can be done by thoroughly sorting your trash.\nDenmark's good recycling practices help safeguard precious natural resources. The country's commitment to recycling is synonymous with a reduced need for raw material extraction, benefiting ecosystems like forests and minimizing the depletion of minerals and fossil fuels.",
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Hazardous Waste\":\n\nHazardous waste that is not handled appropriately and recycled possesses a serious harm to our health and the environment – it can cause fires, contaminate ground and surface waters."
             );
+            u101.setDayDescriptions(
+                "\u001b[96mTrash_buddy\u001b[39m: Looks like you got lucky, I do not see any trash here today!",
+                "\u001b[96mTrash_buddy\u001b[39m: Hmm, plastic wrapper? I Wonder what is it made of? :D",
+                "\u001b[96mTrash_buddy\u001b[39m: Lets start sorting!",
+                "\u001b[96mTrash_buddy\u001b[39m: Isn't it a bit colder than usual today?",
+                "\u001b[96mTrash_buddy\u001b[39m: ..."
+                );
 
             outside.SetExit("forward", lobby); // Forward, Right, Backward, Left, Up, Down
 
