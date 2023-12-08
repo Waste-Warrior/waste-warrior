@@ -73,7 +73,8 @@
                 new ("an empty Cola can", Trash.TrashType.Metal, Days.Wednesday),
                 new ("pile of glass shards", Trash.TrashType.Glas, Days.Wednesday),
                 new ("a graffiti can", Trash.TrashType.Miljøkasse, Days.Thursday),
-                new ("a bucket of paint", Trash.TrashType.Miljøkasse, Days.Thursday)
+                new ("a bucket of paint", Trash.TrashType.Miljøkasse, Days.Thursday),
+                new ("a graffiti can", Trash.TrashType.Miljøkasse, Days.Friday),
             };
             
             Trash[] lobbyTrash =
@@ -84,7 +85,9 @@
                 new ("an old magazine", Trash.TrashType.PapirOgPap, Days.Wednesday),
                 new ("a plastic wrapper", Trash.TrashType.Plast, Days.Wednesday),
                 new ("a crushed light bulb", Trash.TrashType.Miljøkasse, Days.Thursday),
-                new ("a cloth", Trash.TrashType.Tekstilaffald, Days.Thursday)
+                new ("a cloth", Trash.TrashType.Tekstilaffald, Days.Thursday),
+                new ("a battery", Trash.TrashType.Miljøkasse, Days.Friday),
+                new ("a pizza box", Trash.TrashType.Restaffald, Days.Friday)
             };
 
             Trash[] u101Trash =
@@ -93,7 +96,9 @@
                 new ("a paper cup", Trash.TrashType.Restaffald, Days.Wednesday),
                 new ("a plastic bottle", Trash.TrashType.Plast, Days.Wednesday),
                 new ("a tissue", Trash.TrashType.Restaffald, Days.Thursday),
-                new ("a paper cup", Trash.TrashType.Restaffald, Days.Thursday)
+                new ("a paper cup", Trash.TrashType.Restaffald, Days.Thursday),
+                new ("an orange juice carton", Trash.TrashType.Madkartoner, Days.Friday),
+                new ("a paper cup", Trash.TrashType.Restaffald, Days.Friday)
             };
 
             Trash[] concerthallTrash =
@@ -105,7 +110,9 @@
                 new ("a pizza box", Trash.TrashType.Restaffald, Days.Wednesday),
                 new ("a chips bag", Trash.TrashType.Restaffald, Days.Wednesday),
                 new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
-                new ("a towel", Trash.TrashType.Tekstilaffald, Days.Thursday)
+                new ("a towel", Trash.TrashType.Tekstilaffald, Days.Thursday),
+                new ("an orange juice carton", Trash.TrashType.Madkartoner, Days.Friday),
+                new ("a crushed newspaper", Trash.TrashType.PapirOgPap, Days.Friday)
                 
             };
 
@@ -120,6 +127,8 @@
                 new ("a paper cup", Trash.TrashType.Restaffald, Days.Thursday),
                 new ("a rotten apple", Trash.TrashType.Madaffald, Days.Thursday),
                 new ("a sandwich", Trash.TrashType.Madaffald, Days.Thursday),
+                new ("a broken pan", Trash.TrashType.Metal, Days.Friday),
+                new ("a carrot", Trash.TrashType.Madaffald, Days.Friday)
             };
 
             Trash[] u108Trash =
@@ -132,6 +141,8 @@
                 new ("a tissue", Trash.TrashType.Restaffald, Days.Wednesday),
                 new ("a crushed light bulb", Trash.TrashType.Miljøkasse, Days.Thursday),
                 new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
+                new ("a plastic bottle", Trash.TrashType.Plast, Days.Friday),
+                new ("a plastic wrapper", Trash.TrashType.Plast, Days.Friday)
             };
 
             Trash[] u201Trash =
@@ -144,6 +155,8 @@
                 new ("a tissue", Trash.TrashType.Restaffald, Days.Wednesday),
                 new ("a bucket of paint", Trash.TrashType.Miljøkasse, Days.Thursday),
                 new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
+                new ("a pizza box", Trash.TrashType.Restaffald, Days.Friday),
+                new ("a chips bag", Trash.TrashType.Restaffald, Days.Friday)
             };
             
             Trash[] u106Trash =
@@ -156,6 +169,8 @@
                 new ("a tissue", Trash.TrashType.Restaffald, Days.Wednesday),
                 new ("a pizza box", Trash.TrashType.Restaffald, Days.Thursday),
                 new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
+                new ("a paper bag", Trash.TrashType.PapirOgPap, Days.Friday),
+                new ("a towel", Trash.TrashType.Tekstilaffald, Days.Friday),
             };
             
             Trash[] u203Trash =
@@ -168,6 +183,8 @@
                 new ("a tissue", Trash.TrashType.Restaffald, Days.Wednesday),
                 new ("a pizza box", Trash.TrashType.Restaffald, Days.Thursday),
                 new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
+                new ("an empty cola can", Trash.TrashType.Metal, Days.Friday),
+                new ("a crushed newspaper", Trash.TrashType.PapirOgPap, Days.Friday)
             };
 
             Room outside = new("outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type 'forward' if you want to enter the university", outsideTrash);
