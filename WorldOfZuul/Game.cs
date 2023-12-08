@@ -172,7 +172,7 @@
 
             Room outside = new("outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Just make sure to help the environment by responsibly sorting the trash you find!", outsideTrash);
             Room lobby = new("in the lobby", "You find yourself inside a large lobby with reception and an elevator. Several corridors going everywhere. What path will you choose. It's quite dark and quiet.", lobbyTrash);
-            Room u101 = new("in U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too", u101Trash);
+            Room u101 = new("in U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay with them too", u101Trash);
             Room concertHall = new("at the Concert-Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable", concerthallTrash);
             Room cafeteria = new("at the Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.", cafeteriaTrash);
             Room u108 = new("in u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.", u108Trash);
@@ -183,7 +183,7 @@
             rooms.Add(outside); rooms.Add(lobby); rooms.Add(u101); rooms.Add(concertHall); rooms.Add(cafeteria); rooms.Add(u108); rooms.Add(u106); rooms.Add(u201); rooms.Add(u203); //adding all the rooms to the rooms list.
 
             outside.setDayDescriptions(
-                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing 'm') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \n\nIf at any point you forget how to play, just type in '\x1b[93mh\x1b[39m' and you will be reminded of the controls.",
+                "Greetings, Warrior! It is I, Trash_buddy, your reliable helper! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing '\x1b[93mm\x1b[39m') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important.\nIf at any point you forget how to play, just type in '\x1b[93mh\x1b[39m' and you will be reminded of the controls.",
                 "Congratulations on completing the first day of your training and welcome back! Today you will learn to sort the next categories of trash. Head on to the Lobby (by typing 'm') for the introduction!",
                 "Welcome back, we are half way through the introduction, hopefully you will enjoy the remaining time as well.",
                 "Today is the last day, stick through this to become a perfect recycler.",
@@ -207,6 +207,13 @@
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Residual Waste\":\n\nResidual waste usually ends up as landfill which generate and release Biogas. Furthermore, landfills emanate bad smells, contaminate soil and water.\nIn Denmark most of the Residual waste is incinerated and used to produce district heating and electricity.\nIt is really important to leave as little residual waste as possible and that can be done by thoroughly sorting your trash.\nDenmark's good recycling practices help safeguard precious natural resources. The country's commitment to recycling is synonymous with a reduced need for raw material extraction, benefiting ecosystems like forests and minimizing the depletion of minerals and fossil fuels.",
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Hazardous Waste\":\n\nHazardous waste that is not handled appropriately and recycled possesses a serious harm to our health and the environment – it can cause fires, contaminate ground and surface waters."
             );
+            u101.setDayDescriptions(
+                "\u001b[96mTrash_buddy\u001b[39m: Looks like you got lucky, I do not see any trash here today!",
+                "\u001b[96mTrash_buddy\u001b[39m: Hmm, plastic wrapper? I Wonder what is it made of? :D",
+                "\u001b[96mTrash_buddy\u001b[39m: Lets start sorting!",
+                "\u001b[96mTrash_buddy\u001b[39m: Isn't it a bit colder than usual today?",
+                "\u001b[96mTrash_buddy\u001b[39m: ..."
+                );
 
             outside.SetExit("forward", lobby); // Forward, Right, Backward, Left, Up, Down
 
