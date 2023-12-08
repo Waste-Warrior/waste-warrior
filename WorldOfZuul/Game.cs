@@ -170,7 +170,7 @@
                 new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
             };
 
-            Room outside = new("outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type 'forward' if you want to enter the university", outsideTrash);
+            Room outside = new("outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type \x1b[93m'm'\x1b[39m and then \u001b[93m'1'\x1b[39m if you want to enter the university", outsideTrash);
             Room lobby = new("in the lobby", "You find yourself inside a large lobby with reception and an elevator. Several corridors going everywhere. What path will you choose. It's quite dark and quiet.", lobbyTrash);
             Room u101 = new("in U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too", u101Trash);
             Room concertHall = new("at the Concert-Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable", concerthallTrash);
@@ -326,7 +326,7 @@
 
                         break;
                     
-                    case 'g':
+                    case 'q':
                         continuePlaying = false;
                         break;
 
