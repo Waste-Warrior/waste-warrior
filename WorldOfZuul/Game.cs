@@ -191,16 +191,16 @@
                     continue;
                 }
 
-                switch(command.Name)
+                switch(command.Name[0])
                 {
-                    case "back":
+                    case 'b':
                         if (previousRoom == null)
                             Console.WriteLine("You can't go back from here!");
                         else
                             currentRoom = previousRoom;
                         break;
 
-                    case "move":
+                    case 'm':
                         ClearConsole(ref canClear, false); //clears and then skips the next clear
                         Console.WriteLine("\nWhere do you want to go?");
                         string? whichWay;
@@ -244,16 +244,16 @@
 
                         break;
                     
-                    case "quit":
+                    case 'g':
                         continuePlaying = false;
                         break;
 
-                    case "help":
+                    case 'h':
                         ClearConsole(ref canClear, false);
                         PrintHelp();
                         break;                        
 
-                    case "collect":
+                    case 'c':
                         List<Trash> TrashList; // This is the list of trash in the room
                         bool exit = false; // This is one of the exit conditions for the first while loop, used if player wants to go back.
                         while (!exit && (TrashList = currentRoom?.GetItems(currentDay) ?? new List<Trash>()).Count > 0) // first checks if the player wants to exit, second condition is that there are trash items in room.
