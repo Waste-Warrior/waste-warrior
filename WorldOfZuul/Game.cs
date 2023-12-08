@@ -452,7 +452,7 @@
                                                 if (trashTypeIndexChosen-1 != (int)trash.Type) //-1 because of the programming counting from 0 and the player counting from 1, because 0 is leave.
                                                 {
                                                     canClear = true; ClearConsole(ref canClear, false); // because this should always clear everything before.
-                                                    Console.WriteLine("You have selected the \x1b[93mwrong\x1b[39m category!");
+                                                    Console.WriteLine($"You have selected the \x1b[93mwrong\x1b[39m category for \x1b[93m{trash.Name}\x1b[39m!");
                                                 }
                                                 else
                                                 {
