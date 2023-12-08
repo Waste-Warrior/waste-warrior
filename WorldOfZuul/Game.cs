@@ -183,7 +183,7 @@
             rooms.Add(outside); rooms.Add(lobby); rooms.Add(u101); rooms.Add(concertHall); rooms.Add(cafeteria); rooms.Add(u108); rooms.Add(u106); rooms.Add(u201); rooms.Add(u203); //adding all the rooms to the rooms list.
 
             outside.setDayDescriptions(
-                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing 'm') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \n\nIf at any point you forget how to play, just type in '\x1b[93mh\x1b[39m' and you will be reminded of the controls.",
+                "aGreetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing 'm') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \n\nIf at any point you forget how to play, just type in '\x1b[93mh\x1b[39m' and you will be reminded of the controls.",
                 "Congratulations on completing the first day of your training and welcome back! Today you will learn to sort the next categories of trash. Head on to the Lobby (by typing 'Forward') for the introduction!",
                 "Welcome back, we are half way through the introduction, hopefully you will enjoy the remaining time as well.",
                 "Today is the last day, stick through this to become a perfect recycler.",
