@@ -183,7 +183,7 @@
             rooms.Add(outside); rooms.Add(lobby); rooms.Add(u101); rooms.Add(concertHall); rooms.Add(cafeteria); rooms.Add(u108); rooms.Add(u106); rooms.Add(u201); rooms.Add(u203); //adding all the rooms to the rooms list.
 
             outside.setDayDescriptions(
-                "\x1b[96mTrash_buddy\x1b[39m: Greetings, Warrior! It is I, Trash_buddy, your reliable helper, I will be helping you with sorting trash all around the university! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing '\x1b[93mm\x1b[39m') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \nIf at any point you forget how to play, just type in '\x1b[93mh\x1b[39m' and you will be reminded of the controls.",
+                "\x1b[96mTrash_buddy\x1b[39m: Greetings, Warrior! It is I, Trash_buddy, your reliable helper, I will be helping you with sorting trash all around the university! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing '\x1b[93mm\x1b[39m') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \n\nIf at any point you forget how to play, just type in '\x1b[93mh\x1b[39m' and you will be reminded of the controls.",
                 "\x1b[96mTrash_buddy\x1b[39m: Congratulations on completing the first day of your training and welcome back! Today you will learn to sort the next categories of trash. Head on to the Lobby (by typing '\x1b[93mm\x1b[39m') for the introduction!",
                 "\x1b[96mTrash_buddy\x1b[39m: Welcome back, we are half way through the introduction, hopefully you will enjoy the remaining time as well.",
                 "\x1b[96mTrash_buddy\x1b[39m: Today is the last day, stick through this to become a perfect recycler.",
@@ -214,14 +214,6 @@
                 "\u001b[96mTrash_buddy\u001b[39m: Isn't it a bit colder than usual today?",
                 "\u001b[96mTrash_buddy\u001b[39m: ..."
                 );
-            cafeteria.setDayDescriptions(
-                "\u001b[96mTrash_buddy\u001b[39m: This place is a mess.. I'm sure these broken things are meant for the scrap-yard.",
-                "\u001b[96mTrash_buddy\u001b[39m: Plastic wrappers are all over the place. This is what happens when free candy is given out.",
-                "\u001b[96mTrash_buddy\u001b[39m: Hmm, some leftovers. Make sure to sort them right instead of finishing them.",
-                "\u001b[96mTrash_buddy\u001b[39m: This place is unusually clean today :)",
-                "\u001b[96mTrash_buddy\u001b[39m: Someone managed to break the pan again.. You know what to do."
-
-            );
             u106.setDayDescriptions(
                 "\u001b[96mTrash_buddy\u001b[39m: No trash here, lets go",
                 "\u001b[96mTrash_buddy\u001b[39m: Lets get to it!",
@@ -236,6 +228,21 @@
                 "\u001b[96mTrash_buddy\u001b[39m: I wonder what that battery was powering.",
                 "\u001b[96mTrash_buddy\u001b[39m: Hmm a crushed newspaper, huh?"
                 );
+            cafeteria.setDayDescriptions(
+                "\u001b[96mTrash_buddy\u001b[39m: This place is a mess.. I'm sure these broken things are meant for the scrap-yard.",
+                "\u001b[96mTrash_buddy\u001b[39m: Plastic wrappers are all over the place. This is what happens when free candy is given out.",
+                "\u001b[96mTrash_buddy\u001b[39m: Hmm, some leftovers. Make sure to sort them right instead of finishing them.",
+                "\u001b[96mTrash_buddy\u001b[39m: This place is unusually clean today :)",
+                "\u001b[96mTrash_buddy\u001b[39m: Someone managed to break the pan again.. You know what to do."
+
+            );
+            u201.setDayDescriptions(
+                "\u001b[96mTrash_buddy\u001b[39m: No trash here. Maybe the danish lesson was canceled.",
+                "\u001b[96mTrash_buddy\u001b[39m: Someone was eating their junk food here.. Sort these out so the class is ready for tomorrow.",
+                "\u001b[96mTrash_buddy\u001b[39m: A lot of trash here.. I hope you know where to put these.",
+                "\u001b[96mTrash_buddy\u001b[39m: Hmm some paint? Construction workers probably left that there.",
+                "\u001b[96mTrash_buddy\u001b[39m: I think they forgot to clean up after celebrating Friday.. Get these sorted out."
+            );
 
             outside.SetExit("forward", lobby); // Forward, Right, Backward, Left, Up, Down
 
