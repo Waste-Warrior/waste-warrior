@@ -39,31 +39,19 @@
              This should be removed from the actual game*/
             Trash[] preset =
             {
-                new ("an empty beer can", Trash.TrashType.Metal, 0),
-                new ("an empty cola can", Trash.TrashType.Metal, 0),
-                new ("a rotten apple", Trash.TrashType.Madaffald, 0),
                 new ("a battery", Trash.TrashType.Miljøkasse, 0),
                 new ("a pizza box", Trash.TrashType.Restaffald, 0),
                 new ("a chips bag", Trash.TrashType.Restaffald, 0),
                 new ("an old magazine", Trash.TrashType.PapirOgPap, 0),
-                new ("an eggshell", Trash.TrashType.Madaffald, 0),
                 new ("a tissue", Trash.TrashType.Restaffald, 0),
                 new ("a crushed light bulb", Trash.TrashType.Miljøkasse, 0),
                 new ("a wine bottle", Trash.TrashType.Glas, 0),
-                new ("a plastic bag", Trash.TrashType.Plast, 0),
                 new ("an orange juice carton", Trash.TrashType.Madkartoner, 0),
                 new ("a paper cup", Trash.TrashType.Restaffald, 0),
                 new ("a torn apart T-shirt", Trash.TrashType.Tekstilaffald, 0),
                 new ("a paper bag", Trash.TrashType.PapirOgPap, 0),
                 new ("a towel", Trash.TrashType.Tekstilaffald, 0),
-                new ("a broken pan", Trash.TrashType.Metal, 0),
-                new ("a bent fork", Trash.TrashType.Metal, 0),
-                new ("a graffiti can", Trash.TrashType.Miljøkasse, 0),
                 new ("a bucket of paint", Trash.TrashType.Miljøkasse, 0),
-                new ("a carrot", Trash.TrashType.Madaffald, 0),
-                new ("a sandwich", Trash.TrashType.Madaffald, 0),
-                new ("a bone", Trash.TrashType.Madaffald, 0),
-                new ("some gift wrapping", Trash.TrashType.Restaffald, 0),
                 new ("a sliced carpet", Trash.TrashType.Tekstilaffald, 0),
                 new ("a cloth", Trash.TrashType.Tekstilaffald, 0),
                 new ("a glass container", Trash.TrashType.Glas, 0),
@@ -74,30 +62,123 @@
             };
             
             //The trash arrays have to be set outside of the room declaration
-            Trash[] outsideTrash = {
+            Trash[] outsideTrash =
+            {
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Monday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Days.Monday),
+                new ("an empty cola can", Trash.TrashType.Metal, Days.Monday),
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Tuesday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Days.Tuesday),
+                new ("a wine bottle", Trash.TrashType.Metal, Days.Tuesday),
+                new ("a plastic bag", Trash.TrashType.Plast, Days.Tuesday),
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Wednesday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Days.Wednesday)
+                new ("an empty Cola can", Trash.TrashType.Metal, Days.Wednesday),
+                new ("pile of glass shards", Trash.TrashType.Glas, Days.Wednesday),
+                new ("a graffiti can", Trash.TrashType.Miljøkasse, Days.Thursday),
+                new ("a bucket of paint", Trash.TrashType.Miljøkasse, Days.Thursday)
             };
-            Trash[] lobbyTrash = {
-                new ("an empty beer can", Trash.TrashType.Metal, Days.Monday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Days.Monday),
-                new ("an empty beer can", Trash.TrashType.Metal, Days.Tuesday),
-                new ("an empty Cola can", Trash.TrashType.Metal, Days.Tuesday),
+            
+            Trash[] lobbyTrash =
+            {
+                new ("an empty cola can", Trash.TrashType.Metal, Days.Monday),
+                new ("a crushed newspaper", Trash.TrashType.PapirOgPap, Days.Tuesday),
+                new ("a glass container", Trash.TrashType.Glas, Days.Tuesday),
+                new ("an old magazine", Trash.TrashType.PapirOgPap, Days.Wednesday),
+                new ("a plastic wrapper", Trash.TrashType.Plast, Days.Wednesday),
+                new ("a crushed light bulb", Trash.TrashType.Miljøkasse, Days.Thursday),
+                new ("a cloth", Trash.TrashType.Tekstilaffald, Days.Thursday)
+            };
+
+            Trash[] u101Trash =
+            {
+                new ("a plastic wrapper", Trash.TrashType.Plast, Days.Tuesday),
+                new ("a paper cup", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a plastic bottle", Trash.TrashType.Plast, Days.Wednesday),
+                new ("a tissue", Trash.TrashType.Restaffald, Days.Thursday),
+                new ("a paper cup", Trash.TrashType.Restaffald, Days.Thursday)
+            };
+
+            Trash[] concerthallTrash =
+            {
+                new ("an empty cola can", Trash.TrashType.Metal, Days.Monday),
+                new ("an empty cola can", Trash.TrashType.Metal, Days.Monday),
+                new ("a paper bag", Trash.TrashType.PapirOgPap, Days.Tuesday),
+                new ("a plastic bottle", Trash.TrashType.Plast, Days.Tuesday),
+                new ("a pizza box", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a chips bag", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
+                new ("a towel", Trash.TrashType.Tekstilaffald, Days.Thursday)
+                
+            };
+
+            Trash[] cafeteriaTrash =
+            {
+                new ("a broken pan", Trash.TrashType.Metal, Days.Monday),
+                new ("a bent fork", Trash.TrashType.Metal, Days.Monday),
+                new("a plastic wrapper", Trash.TrashType.Plast, Days.Tuesday),
+                new ("a carrot", Trash.TrashType.Madaffald, Days.Wednesday),
+                new ("a sandwich", Trash.TrashType.Madaffald, Days.Wednesday),
+                new ("a bone", Trash.TrashType.Madaffald, Days.Wednesday),
+                new ("a paper cup", Trash.TrashType.Restaffald, Days.Thursday),
+                new ("a rotten apple", Trash.TrashType.Madaffald, Days.Thursday),
+                new ("a sandwich", Trash.TrashType.Madaffald, Days.Thursday),
+            };
+
+            Trash[] u108Trash =
+            {
+                new("an empty cola can", Trash.TrashType.Metal, Days.Monday),
+                new ("a plastic bottle", Trash.TrashType.Plast, Days.Tuesday),
+                new ("a plastic wrapper", Trash.TrashType.Plast, Days.Tuesday),
+                new ("a chips bag", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a pizza box", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a tissue", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a crushed light bulb", Trash.TrashType.Miljøkasse, Days.Thursday),
+                new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
+            };
+
+            Trash[] u201Trash =
+            {
+                new("an empty cola can", Trash.TrashType.Metal, Days.Tuesday),
+                new ("a plastic wrapper", Trash.TrashType.Plast, Days.Tuesday),
+                new ("a chips bag", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("an old magazine", Trash.TrashType.PapirOgPap, Days.Wednesday),
+                new ("a paper cup", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a tissue", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a bucket of paint", Trash.TrashType.Miljøkasse, Days.Thursday),
+                new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
+            };
+            
+            Trash[] u106Trash =
+            {
+                new("an empty beer can", Trash.TrashType.Metal, Days.Tuesday),
+                new ("a wine bottle", Trash.TrashType.Glas, Days.Tuesday),
+                new ("an orange juice carton", Trash.TrashType.Madkartoner, Days.Wednesday),
+                new ("an old magazine", Trash.TrashType.PapirOgPap, Days.Wednesday),
+                new ("a paper cup", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a tissue", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a pizza box", Trash.TrashType.Restaffald, Days.Thursday),
+                new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
+            };
+            
+            Trash[] u203Trash =
+            {
+                new("an empty beer can", Trash.TrashType.Metal, Days.Tuesday),
+                new ("a wine bottle", Trash.TrashType.Glas, Days.Tuesday),
+                new ("an orange juice carton", Trash.TrashType.Madkartoner, Days.Wednesday),
+                new ("an old magazine", Trash.TrashType.PapirOgPap, Days.Wednesday),
+                new ("a paper cup", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a tissue", Trash.TrashType.Restaffald, Days.Wednesday),
+                new ("a pizza box", Trash.TrashType.Restaffald, Days.Thursday),
+                new ("a battery", Trash.TrashType.Miljøkasse, Days.Thursday),
             };
 
             Room outside = new("outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type 'forward' if you want to enter the university", outsideTrash);
             Room lobby = new("in the lobby", "You find yourself inside a large lobby with reception and an elevator. Several corridors going everywhere. What path will you choose. It's quite dark and quiet.", lobbyTrash);
-            Room u101 = new("in U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too");
-            Room concertHall = new("at theConcert Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable");
-            Room cafeteria = new("at the Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.");
-            Room u108 = new("in u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.");
-            Room u106 = new("in U106", "You've entered the second biggest lecture hall on this floor. It is always busy and full of people here. You find it empty, so why don't you snatch the opportunity and take a look around.");
-            Room u201 = new("in U201", "Ah... Room U201. A room used for only one thing. Learning Danish. This is the place where one of the two Danish teaching structures is based - A2B. Look around and Held og Lykke!");
-            Room u203 = new("in U203", "At last, A2B's rivals in room U203 - UCplus. A small room used so students can learn danish in the second danish teaching structure in campus. It is small, but practical. Oh, I almost forgot... The teacher brings pies. PIES.");
+            Room u101 = new("in U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too", u101Trash);
+            Room concertHall = new("at theConcert Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable", concerthallTrash);
+            Room cafeteria = new("at the Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.", cafeteriaTrash);
+            Room u108 = new("in u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.", u108Trash);
+            Room u106 = new("in U106", "You've entered the second biggest lecture hall on this floor. It is always busy and full of people here. You find it empty, so why don't you snatch the opportunity and take a look around.", u106Trash);
+            Room u201 = new("in U201", "Ah... Room U201. A room used for only one thing. Learning Danish. This is the place where one of the two Danish teaching structures is based - A2B. Look around and Held og Lykke!", u201Trash);
+            Room u203 = new("in U203", "At last, A2B's rivals in room U203 - UCplus. A small room used so students can learn danish in the second danish teaching structure in campus. It is small, but practical. Oh, I almost forgot... The teacher brings pies. PIES.", u203Trash);
             
             rooms.Add(outside); rooms.Add(lobby); rooms.Add(u101); rooms.Add(concertHall); rooms.Add(cafeteria); rooms.Add(u108); rooms.Add(u106); rooms.Add(u201); rooms.Add(u203); //adding all the rooms to the rooms list.
 
@@ -112,7 +193,7 @@
                 "Welcome, student! In Denmark, we sort trash by the materials it is made of! Simple, right?\nThe first sorting category is \x1b[93mMetal\x1b[39m. Try to (type) \"collect an empty cola can\" and afterwards sort it into the \x1b[93mMetal\x1b[39m trash can (by typing \"sort an empty cola can metal\")! When you have collected all the trash in the university the next day will begin. !\nMetal trash example: an empty beer can",
                 "Welcome back! As it is your second day, you should be ready to be thrown in the wild!\nNow, lets make sorting a little bit harder. As of Today there are 3 more trash categories: \x1b[93mGlas\x1b[39m (glass), \x1b[93mPapirOgPap\x1b[39m (paper and carton) and \x1b[93mPlast\x1b[39m (plastic).\nExamples:\nGlas: a wine bottle\nPapirOgPap: an old magazine\nPlast: a plastic bag",
                 "Oh, you think it is easy? \nToday’s new  trash categories are: \x1b[93mMadaffald\x1b[39m (Food waste), \x1b[93mRestaffald\x1b[39m (residual waste) and \x1b[93mMadkartoner\x1b[39m (Food-Cartons).\nMake sure to bag your \x1b[93mRestaffald\x1b[39m and \x1b[93mMadaffald\x1b[39m before throwing it out at home. Don’t worry though, you don’t have to do that in-game.\nExamples:\nMadaffald: a rotten apple\nRestaffald: a pizza box\nMadkartonner: an orange juice carton",
-                "Congratulations on reaching the last training day!\nThe last category is \x1b[93mMiljøkasse\x1b[39m.\nBe careful with this type of waste – as its hazardous!\nExample of Miljøkasse trash: a battery"
+                "Congratulations on reaching the last training day!\nThe last categories are \x1b[93mMiljøkasse\x1b[39m and \x1b[93mTekstilaffald\x1b[39m.\nBe careful when sorting trash that belongs to the Miljøkasse – as its hazardous!\nAll trash that is made of fabric belongs to the Tekstilaffald \nExample of Miljøkasse trash: a battery \nTekstilaffald: a towel"
             );
             u108.setDayDescriptions(
                 "Even if you've sorted your waste correctly, it cannot be recycled if it is dirty. For example, wet and dirty paper cannot be recycled and is thus designated as residual waste. Your waste does not have to be spotless before you throw it away, but it must be free from food residue or liquids so it is ready to be recycled. A quick rinse, shake or wipe-down of the waste is fine.\nMetal is resorted and recycled, depending on the type of metal. Old cans, for example, can be recycled into new computer parts. Plastic and metal bins are generally emptied once every 4 weeks.",
@@ -121,7 +202,6 @@
                 "Miljøkasse - hazardous waste is all waste that could be hazardous to health or harmful for the environment. To the extent possible, all hazardous waste must be disposed of in its original packaging or properly packaged in some way. Hazardous waste that is collected and treated correctly is not harmful to the environment nor people. It is sent for special treatment and recycled to the greatest extent possible."
             );
             concertHall.setDayDescriptions(
-                //The word gyres might need an explanation
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Improperly Handled Trash\":\n\nTrash not collected and recycled can travel throughout rivers and oceans accumulating in beaches and creating trash islands in the ocean, when trapped within gyres. Hopefully this incentivized you to spend a few seconds to sort your trash and save the beauty of our planet.\nDid you know that Denmark's impressive recycling efforts save considerable energy? For example, recycling in Denmark has been associated with a notable reduction in energy consumption, with each aluminum can recycled saving up to 95% of the energy required for its original production.",
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Plastic Waste\":\n\nOut of all trash, plastic trash has the greatest potential to harm the environment, wildlife and humans. It can be found floating at the surface, suspended in the water column, or on the bottom of almost all water bodies. It is transported by rivers to the ocean, where it moves with the currents, and is often eaten by birds and fish, concentrating toxic chemicals in their tissues, and filling their stomachs, causing them to starve. Plastic aquatic debris is much more than a mere aesthetic problem.",
                 "The brightly lit projector screen is displaying a slide titled \"Environmental Impacts of Residual Waste\":\n\nResidual waste usually ends up as landfill which generate and release Biogas. Furthermore, landfills emanate bad smells, contaminate soil and water.\nIn Denmark most of the Residual waste is incinerated and used to produce district heating and electricity.\nIt is really important to leave as little residual waste as possible and that can be done by thoroughly sorting your trash.\nDenmark's good recycling practices help safeguard precious natural resources. The country's commitment to recycling is synonymous with a reduced need for raw material extraction, benefiting ecosystems like forests and minimizing the depletion of minerals and fossil fuels.",
@@ -148,7 +228,7 @@
 
             currentRoom = outside;
 
-            foreach (Trash item in outsideTrash.Concat(lobbyTrash)) // add .Concat(nextTrashName) to add more trash items for score comparison.
+            foreach (Trash item in outsideTrash.Concat(lobbyTrash).Concat(u101Trash).Concat(concerthallTrash).Concat(cafeteriaTrash).Concat(u108Trash).Concat(u106Trash).Concat(u201Trash).Concat(u203Trash)) // add .Concat(nextTrashName) to add more trash items for score comparison.
             {
                 trashSpawnedOnDay[item.Day] += 1;
             }
@@ -178,7 +258,8 @@
 
                 if (string.IsNullOrEmpty(input))
                 {
-                    Console.WriteLine("Please enter a command.");
+                    ClearConsole(ref canClear, false);
+                    Console.WriteLine("\n\x1b[93mPlease enter a command.\x1b[39m\n");
                     continue;
                 }
 
@@ -187,7 +268,8 @@
 
                 if (command == null)
                 {
-                    Console.WriteLine("I don't know that command.");
+                    ClearConsole(ref canClear, false);
+                    Console.WriteLine("\n\x1b[93mI don't know that command.\x1b[39m\n");
                     continue;
                 }
 
@@ -356,7 +438,8 @@
                         break;
                     
                     default:
-                        Console.WriteLine("I don't know that command.");
+                        ClearConsole(ref canClear, false);
+                        Console.WriteLine("\n\x1b[93mI don't know that command.\x1b[39m\n");
                         break;
                 }
                 Console.WriteLine(); //Adding an empty Line at the end of each action output
@@ -428,19 +511,19 @@
                     Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
                 }
                 Console.Write("\nTo advance to the next day you have to rid ");
+                
                 int i = 0;
                 foreach (Room room in GetRoomsWithTrash())
+                {
+                    if (room.Equals(currentRoom)) continue;
+                    if (i >= 1)
                     {
-                        if (i > 1)
-                        {
-                            Console.Write(" & ");
-                        }
-                        if (!room.Equals(currentRoom))
-                        {
-                            i += 1;
-                            Console.Write($"\x1b[93m{room.ShortDescription?.Split(' ')[^1]}\x1b[39m");
-                        }
+                        Console.Write(" & ");
                     }
+                        
+                    i += 1;
+                    Console.Write($"\x1b[93m{room.ShortDescription?.Split(' ')[^1]}\x1b[39m");
+                }
                 Console.Write(" of trash.\n");
             }
             if (currentRoom.dayDescription.ContainsKey((Days)currentDay))
