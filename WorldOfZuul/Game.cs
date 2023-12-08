@@ -209,7 +209,7 @@
                 "\u001b[96mTrash_buddy\u001b[39m: ..."
                 );
             u106.setDayDescriptions(
-                "\u001b[96mTrash_buddy\u001b[39m: No trash here, lets go",
+                "\u001b[96mTrash_buddy\u001b[39m: No trash here, lets go!",
                 "\u001b[96mTrash_buddy\u001b[39m: Lets get to it!",
                 "\u001b[96mTrash_buddy\u001b[39m: Doesn't it just feel nice, helping others?",
                 "\u001b[96mTrash_buddy\u001b[39m: Remember what I taught you about pizza boxes?",
