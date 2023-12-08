@@ -586,7 +586,10 @@
                     i += 1;
                     Console.Write($"\x1b[93m{room.ShortDescription?.Split(' ')[^1]}\x1b[39m");
                 }
+                if (getAllRooms.Count > 1 && getAllRooms.Contains(currentRoom) || getAllRooms.Count > 0 && !getAllRooms.Contains(currentRoom))
+                {
                 Console.Write(" of trash.\n");
+                }
             }
             if (currentRoom.dayDescription.ContainsKey((Days)currentDay))
             {
