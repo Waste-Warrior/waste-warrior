@@ -214,13 +214,27 @@
                 "\u001b[96mTrash_buddy\u001b[39m: Isn't it a bit colder than usual today?",
                 "\u001b[96mTrash_buddy\u001b[39m: ..."
                 );
+            cafeteria.setDayDescriptions(
+                "\u001b[96mTrash_buddy\u001b[39m: This place is a mess.. I'm sure these broken things are meant for the scrap-yard.",
+                "\u001b[96mTrash_buddy\u001b[39m: Plastic wrappers are all over the place. This is what happens when free candy is given out.",
+                "\u001b[96mTrash_buddy\u001b[39m: Hmm, some leftovers. Make sure to sort them right instead of finishing them.",
+                "\u001b[96mTrash_buddy\u001b[39m: This place is unusually clean today :)",
+                "\u001b[96mTrash_buddy\u001b[39m: Someone managed to break the pan again.. You know what to do."
+
+            );
             u106.setDayDescriptions(
                 "\u001b[96mTrash_buddy\u001b[39m: No trash here, lets go",
                 "\u001b[96mTrash_buddy\u001b[39m: Lets get to it!",
                 "\u001b[96mTrash_buddy\u001b[39m: Doesn't it just feel nice, helping others?",
                 "\u001b[96mTrash_buddy\u001b[39m: Remember what I taught you about pizza boxes?",
                 "\u001b[96mTrash_buddy\u001b[39m: Doesn't it makes you sad, that this is our last day together? T_T"
-
+                );
+            u203.setDayDescriptions(
+                "\u001b[96mTrash_buddy\u001b[39m: Why are we even here?",
+                "\u001b[96mTrash_buddy\u001b[39m: Looks like someone was drinking here",
+                "\u001b[96mTrash_buddy\u001b[39m: Lets do this!",
+                "\u001b[96mTrash_buddy\u001b[39m: I wonder what that battery was powering.",
+                "\u001b[96mTrash_buddy\u001b[39m: Hmm a crushed newspaper, huh?"
                 );
 
             outside.SetExit("forward", lobby); // Forward, Right, Backward, Left, Up, Down
