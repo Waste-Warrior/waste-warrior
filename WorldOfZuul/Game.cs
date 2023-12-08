@@ -278,7 +278,7 @@
 
             u106.SetExit("backwards", u101);
 
-            u201.SetExits(u203, null, null, null, null, lobby);
+            u201.SetExits(u203, null, lobby, null, null, null);
 
             u203.SetExit("backwards", u201);
 
@@ -437,6 +437,7 @@
                                         string? input3 = Console.ReadLine();
                                         if (string.IsNullOrEmpty(input3) || !int.TryParse(input3, out int trashTypeIndexChosen) || trashTypeIndexChosen > Enum.GetNames(typeof(Trash.TrashType)).Length || trashTypeIndexChosen < 0) // checks if the input is a number and if it is within the range of the categories.
                                         {
+                                            canClear = true;
                                             ClearConsole(ref canClear, false);
                                             Console.WriteLine("Please enter a valid number.");
                                         }
