@@ -571,7 +571,7 @@
                 List<Room> getAllRooms = GetRoomsWithTrash(currentDay);
                 if (getAllRooms.Count > 1 && getAllRooms.Contains(currentRoom) || getAllRooms.Count > 0 && !getAllRooms.Contains(currentRoom))
                 {
-                    Console.Write("\nTo advance to the next day you have to rid ");
+                    Console.Write("\nTo advance in the game you have to rid ");
                 }
                 
                 int i = 0;
