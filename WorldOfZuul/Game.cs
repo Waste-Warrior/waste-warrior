@@ -177,13 +177,13 @@
             Room cafeteria = new("at the Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.", cafeteriaTrash);
             Room u108 = new("in u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.", u108Trash);
             Room u106 = new("in U106", "You've entered the second biggest lecture hall on this floor. It is always busy and full of people here. You find it empty, so why don't you snatch the opportunity and take a look around.", u106Trash);
-            Room u201 = new("in U201", "Ah... Room U201. A room used for only one thing. Learnding Danish. This is the place where one of the two Danish teaching structures is based - A2B. Look around and Held og Lykke!", u201Trash);
+            Room u201 = new("in U201", "Ah... Room U201. A room used for only one thing. Learning Danish. This is the place where one of the two Danish teaching structures is based - A2B. Look around and Held og Lykke!", u201Trash);
             Room u203 = new("in U203", "At last, A2B's rivals in room U203 - UCplus. A small room used so students can learn danish in the second danish teaching structure in campus. It is small, but practical. Oh, I almost forgot... The teacher brings pies. PIES.", u203Trash);
             
             rooms.Add(outside); rooms.Add(lobby); rooms.Add(u101); rooms.Add(concertHall); rooms.Add(cafeteria); rooms.Add(u108); rooms.Add(u106); rooms.Add(u201); rooms.Add(u203); //adding all the rooms to the rooms list.
 
             outside.setDayDescriptions(
-                "\x1b[96mTrash_buddy\x1b[39m: Greetings, Warrior! It is I, Trash_buddy, your reliable helper, I will be helping you with sorting trash all around the university! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing '\x1b[93mm\x1b[39m') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \n\nIf at any point you forget how to play, just type in '\x1b[93mh\x1b[39m' and you will be reminded of the controls.",
+                "\x1b[96mTrash_buddy\x1b[39m: Greetings, Warrior! It is I, Trash_buddy, your reliable helper, I will be helping you with sorting trash all around the university! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing '\x1b[93mm\x1b[39m') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \nIf at any point you forget how to play, just type in '\x1b[93mh\x1b[39m' and you will be reminded of the controls.",
                 "\x1b[96mTrash_buddy\x1b[39m: Congratulations on completing the first day of your training and welcome back! Today you will learn to sort the next categories of trash. Head on to the Lobby (by typing '\x1b[93mm\x1b[39m') for the introduction!",
                 "\x1b[96mTrash_buddy\x1b[39m: Welcome back, we are half way through the introduction, hopefully you will enjoy the remaining time as well.",
                 "\x1b[96mTrash_buddy\x1b[39m: Today is the last day, stick through this to become a perfect recycler.",
@@ -213,6 +213,14 @@
                 "\u001b[96mTrash_buddy\u001b[39m: Lets start sorting!",
                 "\u001b[96mTrash_buddy\u001b[39m: Isn't it a bit colder than usual today?",
                 "\u001b[96mTrash_buddy\u001b[39m: ..."
+                );
+            u106.setDayDescriptions(
+                "\u001b[96mTrash_buddy\u001b[39m: No trash here, lets go",
+                "\u001b[96mTrash_buddy\u001b[39m: Lets get to it!",
+                "\u001b[96mTrash_buddy\u001b[39m: Doesn't it just feel nice, helping others?",
+                "\u001b[96mTrash_buddy\u001b[39m: Remember what I taught you about pizza boxes?",
+                "\u001b[96mTrash_buddy\u001b[39m: Doesn't it makes you sad, that this is our last day together? T_T"
+
                 );
 
             outside.SetExit("forward", lobby); // Forward, Right, Backward, Left, Up, Down
