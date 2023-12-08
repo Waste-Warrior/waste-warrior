@@ -465,8 +465,6 @@
                                                     {   
                                                         trashSortedToday = 0; // reset trash sorted today counter
                                                         currentDay += 1; // increment day
-                                                        Console.WriteLine($"\x1b[93mYou have sorted all the trash for today!\x1b[39m");
-                                                        Console.WriteLine("");
                                                         while (currentRoom?.Exits.ContainsKey("backwards") == true) // returns you to the outside room after day ends.
                                                         {
                                                             previousRoom = currentRoom;
@@ -485,12 +483,7 @@
                                                             exit = true;
                                                             break;
                                                         }
-                                                        Console.WriteLine("You went home and have now returned to the university the next day. \x1b[93mContinue on your quest to sort trash!\x1b[39m");
-                                                        exit = true;
-                                                    }
-                                                    if (TrashList.Count == 1)
-                                                    {
-                                                        Console.WriteLine("You have collected all the trash in the room!");
+                                                        Console.WriteLine("\nAfter you sorted all the trash, you went home and have now returned to the university the next day. \x1b[93mContinue on your quest to sort trash!\x1b[39m ");
                                                         exit = true;
                                                     }
                                                 }
