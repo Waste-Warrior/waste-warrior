@@ -41,7 +41,7 @@
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Monday),
                 new ("an empty cola can", Trash.TrashType.Metal, Days.Monday),
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Tuesday),
-                new ("a wine bottle", Trash.TrashType.Metal, Days.Tuesday),
+                new ("a wine bottle", Trash.TrashType.Glas, Days.Tuesday),
                 new ("a plastic bag", Trash.TrashType.Plast, Days.Tuesday),
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Wednesday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Days.Wednesday),
