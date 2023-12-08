@@ -212,7 +212,7 @@
 
             lobby.SetExits(cafeteria, u101, outside, concertHall, u201, null);
 
-            u101.SetExits(u108, null, lobby, null, null, null);
+            u101.SetExits(u108, u106, lobby, null, null, null);
 
             concertHall.SetExit("backwards", lobby);
 
@@ -445,6 +445,9 @@
                             }
                         }
                         break;
+                    
+                    case 'q':
+                        return;
                     
                     default:
                         ClearConsole(ref canClear, false);
