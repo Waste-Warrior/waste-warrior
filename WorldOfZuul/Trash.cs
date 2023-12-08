@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-namespace WorldOfZuul;
-
+﻿namespace WorldOfZuul;
 public class Trash
 {
     public enum TrashType 
