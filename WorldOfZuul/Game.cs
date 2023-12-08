@@ -222,6 +222,13 @@
                 "\u001b[96mTrash_buddy\u001b[39m: Someone managed to break the pan again.. You know what to do."
 
             );
+            u201.setDayDescriptions(
+                "\u001b[96mTrash_buddy\u001b[39m: No trash here. Maybe the danish lesson was canceled.",
+                "\u001b[96mTrash_buddy\u001b[39m: Someone was eating their junk food here.. Sort these out so the class is ready for tomorrow.",
+                "\u001b[96mTrash_buddy\u001b[39m: A lot of trash here.. I hope you know where to put these.",
+                "\u001b[96mTrash_buddy\u001b[39m: Hmm some paint? Construction workers probably left that there.",
+                "\u001b[96mTrash_buddy\u001b[39m: I think they forgot to clean up after celebrating Friday.. Get these sorted out."
+            );
 
             outside.SetExit("forward", lobby); // Forward, Right, Backward, Left, Up, Down
 
