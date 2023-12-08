@@ -177,7 +177,7 @@
             Room cafeteria = new("at the Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.", cafeteriaTrash);
             Room u108 = new("in u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.", u108Trash);
             Room u106 = new("in U106", "You've entered the second biggest lecture hall on this floor. It is always busy and full of people here. You find it empty, so why don't you snatch the opportunity and take a look around.", u106Trash);
-            Room u201 = new("in U201", "Ah... Room U201. A room used for only one thing. Learnding Danish. This is the place where one of the two Danish teaching structures is based - A2B. Look around and Held og Lykke!", u201Trash);
+            Room u201 = new("in U201", "Ah... Room U201. A room used for only one thing. Learning Danish. This is the place where one of the two Danish teaching structures is based - A2B. Look around and Held og Lykke!", u201Trash);
             Room u203 = new("in U203", "At last, A2B's rivals in room U203 - UCplus. A small room used so students can learn danish in the second danish teaching structure in campus. It is small, but practical. Oh, I almost forgot... The teacher brings pies. PIES.", u203Trash);
             
             rooms.Add(outside); rooms.Add(lobby); rooms.Add(u101); rooms.Add(concertHall); rooms.Add(cafeteria); rooms.Add(u108); rooms.Add(u106); rooms.Add(u201); rooms.Add(u203); //adding all the rooms to the rooms list.
