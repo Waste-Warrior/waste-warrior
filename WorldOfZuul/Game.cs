@@ -252,7 +252,7 @@
 
             u106.SetExit("backwards", u101);
 
-            u201.SetExits(u203, null, null, null, null, lobby);
+            u201.SetExits(u203, null, lobby, null, null, null);
 
             u203.SetExit("backwards", u201);
 
@@ -411,6 +411,7 @@
                                         string? input3 = Console.ReadLine();
                                         if (string.IsNullOrEmpty(input3) || !int.TryParse(input3, out int trashTypeIndexChosen) || trashTypeIndexChosen > Enum.GetNames(typeof(Trash.TrashType)).Length || trashTypeIndexChosen < 0) // checks if the input is a number and if it is within the range of the categories.
                                         {
+                                            canClear = true;
                                             ClearConsole(ref canClear, false);
                                             Console.WriteLine("Please enter a valid number.");
                                         }
@@ -426,7 +427,7 @@
                                                 if (trashTypeIndexChosen-1 != (int)trash.Type) //-1 because of the programming counting from 0 and the player counting from 1, because 0 is leave.
                                                 {
                                                     canClear = true; ClearConsole(ref canClear, false); // because this should always clear everything before.
-                                                    Console.WriteLine("You have selected the \x1b[93mwrong\x1b[39m category!");
+                                                    Console.WriteLine($"You have selected the \x1b[93mwrong\x1b[39m category for \x1b[93m{trash.Name}\x1b[39m!");
                                                 }
                                                 else
                                                 {
@@ -439,8 +440,6 @@
                                                     {   
                                                         trashSortedToday = 0; // reset trash sorted today counter
                                                         currentDay += 1; // increment day
-                                                        Console.WriteLine($"\x1b[93mYou have sorted all the trash for today!\x1b[39m");
-                                                        Console.WriteLine("");
                                                         while (currentRoom?.Exits.ContainsKey("backwards") == true) // returns you to the outside room after day ends.
                                                         {
                                                             previousRoom = currentRoom;
@@ -459,12 +458,7 @@
                                                             exit = true;
                                                             break;
                                                         }
-                                                        Console.WriteLine("You went home and have now returned to the university the next day. \x1b[93mContinue on your quest to sort trash!\x1b[39m");
-                                                        exit = true;
-                                                    }
-                                                    if (TrashList.Count == 1)
-                                                    {
-                                                        Console.WriteLine("You have collected all the trash in the room!");
+                                                        Console.WriteLine("\nAfter you sorted all the trash, you went home and have now returned to the university the next day. \x1b[93mContinue on your quest to sort trash!\x1b[39m ");
                                                         exit = true;
                                                     }
                                                 }
@@ -526,7 +520,6 @@
         }
         private void printMessage(Room currentRoom, int currentDay)
         {
-            // This solves the possibility of a null reference exception
             Console.WriteLine(currentRoom.LongDescription);
             
             //This currently prints all Trash in the Room to the console.
@@ -549,7 +542,11 @@
                 {
                     Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
                 }
-                Console.Write("\nTo advance to the next day you have to rid ");
+                List<Room> getAllRooms = GetRoomsWithTrash(currentDay);
+                if (getAllRooms.Count > 1 && getAllRooms.Contains(currentRoom) || getAllRooms.Count > 0 && !getAllRooms.Contains(currentRoom))
+                {
+                    Console.Write("\nTo advance to the next day you have to rid ");
+                }
                 
                 int i = 0;
                 foreach (Room room in GetRoomsWithTrash(currentDay))
@@ -563,7 +560,10 @@
                     i += 1;
                     Console.Write($"\x1b[93m{room.ShortDescription?.Split(' ')[^1]}\x1b[39m");
                 }
+                if (getAllRooms.Count > 1 && getAllRooms.Contains(currentRoom) || getAllRooms.Count > 0 && !getAllRooms.Contains(currentRoom))
+                {
                 Console.Write(" of trash.\n");
+                }
             }
             if (currentRoom.dayDescription.ContainsKey((Days)currentDay))
             {
