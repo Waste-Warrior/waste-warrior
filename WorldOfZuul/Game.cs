@@ -502,9 +502,6 @@
                         }
                         break;
                     
-                    case 'q':
-                        return;
-                    
                     default:
                         ClearConsole(ref canClear, false);
                         Console.WriteLine("\n\x1b[93mI don't know that command.\x1b[39m\n");

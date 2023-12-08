@@ -84,7 +84,6 @@ namespace WorldOfZuul
         {
             Game game = new();
             game.Play();
-            Console.WriteLine("The game has finished.");
         }
     }
 }
