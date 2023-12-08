@@ -173,7 +173,7 @@
             Room outside = new("outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type 'forward' if you want to enter the university", outsideTrash);
             Room lobby = new("in the lobby", "You find yourself inside a large lobby with reception and an elevator. Several corridors going everywhere. What path will you choose. It's quite dark and quiet.", lobbyTrash);
             Room u101 = new("in U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too", u101Trash);
-            Room concertHall = new("at theConcert Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable", concerthallTrash);
+            Room concertHall = new("at the Concert-Hall", "You're in the Alsion Concert Hall. Seats fill the room as you think that everyone could come here and the hall wont even be full. It is chilly, but bearable", concerthallTrash);
             Room cafeteria = new("at the Cafeteria", "You have entered the school cafeteria. A place known to be full during lunch, but almost empty during other times. It is also known to have much more trash here, so I would look for it and clean it, if I was you :D.", cafeteriaTrash);
             Room u108 = new("in u108", "You've entered the lecture hall u108. Professors concerned about the environment hold lectures here, where they share a few tips everyday about sorting waste correctly.", u108Trash);
             Room u106 = new("in U106", "You've entered the second biggest lecture hall on this floor. It is always busy and full of people here. You find it empty, so why don't you snatch the opportunity and take a look around.", u106Trash);
@@ -183,7 +183,7 @@
             rooms.Add(outside); rooms.Add(lobby); rooms.Add(u101); rooms.Add(concertHall); rooms.Add(cafeteria); rooms.Add(u108); rooms.Add(u106); rooms.Add(u201); rooms.Add(u203); //adding all the rooms to the rooms list.
 
             outside.setDayDescriptions(
-                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing 'move') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \n\nIf at any point you forget how to play, just type in '\x1b[93mhelp\x1b[39m' and you will be reminded of the controls.",
+                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing 'm') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \n\nIf at any point you forget how to play, just type in '\x1b[93mh\x1b[39m' and you will be reminded of the controls.",
                 "Congratulations on completing the first day of your training and welcome back! Today you will learn to sort the next categories of trash. Head on to the Lobby (by typing 'Forward') for the introduction!",
                 "Welcome back, we are half way through the introduction, hopefully you will enjoy the remaining time as well.",
                 "Today is the last day, stick through this to become a perfect recycler.",
@@ -249,7 +249,7 @@
                 Console.WriteLine($"You are now \x1b[93m{currentRoom?.ShortDescription}\x1b[39m");
                 if (currentRoom != null)
                 {
-                    printMessage(currentRoom);
+                    printMessage(currentRoom, currentDay);
                 }
 
                 Console.Write("> ");
@@ -283,7 +283,7 @@
                         break;
 
                     case 'm':
-                        ClearConsole(ref canClear, false); //clears and then skips the next clear
+                        ClearConsole(ref canClear); //clears and then skips the next clear
                         Console.WriteLine("\nWhere do you want to go?");
                         string? whichWay;
                         do
@@ -340,7 +340,7 @@
                         bool exit = false; // This is one of the exit conditions for the first while loop, used if player wants to go back.
                         while (!exit && (TrashList = currentRoom?.GetItems(currentDay) ?? new List<Trash>()).Count > 0) // first checks if the player wants to exit, second condition is that there are trash items in room.
                         {
-                            ClearConsole(ref canClear); // if canClear, then clears, if not, then canClear turns true.
+                            ClearConsole(ref canClear); // if canClear == true, then clears, if not, then canClear turns true. Second parameter is to clear the console or not next time. This helps not clear the console when it doesn't need to, because error message is needed.
                             Console.WriteLine("\nYou can collect and sort the following trash:\n");
                             int i = 0; foreach (Trash trash in TrashList)
                             {
@@ -351,9 +351,8 @@
                             string? input2 = Console.ReadLine();
                             if (!int.TryParse(input2, out int trashIndex) || trashIndex > TrashList.Count || trashIndex < 0 || string.IsNullOrEmpty(input2)) // checks if the input is a number and if it is within the range of the trash items in the room.
                             {
-                                Console.Clear();
+                                ClearConsole(ref canClear, false);
                                 Console.WriteLine("Please enter a \x1b[93mvalid\x1b[39m number.");
-                                canClear = false;
                             }
                             else
                             {
@@ -382,9 +381,8 @@
                                         string? input3 = Console.ReadLine();
                                         if (string.IsNullOrEmpty(input3) || !int.TryParse(input3, out int trashTypeIndexChosen) || trashTypeIndexChosen > Enum.GetNames(typeof(Trash.TrashType)).Length || trashTypeIndexChosen < 0) // checks if the input is a number and if it is within the range of the categories.
                                         {
-                                            Console.Clear();
+                                            ClearConsole(ref canClear, false);
                                             Console.WriteLine("Please enter a valid number.");
-                                            canClear = false;
                                         }
                                         else
                                         {
@@ -397,30 +395,41 @@
                                             {
                                                 if (trashTypeIndexChosen-1 != (int)trash.Type) //-1 because of the programming counting from 0 and the player counting from 1, because 0 is leave.
                                                 {
-                                                    Console.Clear();
+                                                    canClear = true; ClearConsole(ref canClear, false); // because this should always clear everything before.
                                                     Console.WriteLine("You have selected the \x1b[93mwrong\x1b[39m category!");
-                                                    canClear = false;
                                                 }
                                                 else
                                                 {
-                                                    Console.Clear();
+                                                    canClear = true; ClearConsole(ref canClear, false); // because this should always clear everything before.
                                                     Console.WriteLine($"\nYou have sorted \x1b[93m{trash.Name}\x1b[39m!");
-                                                    canClear = false;
                                                     currentRoom?.RemoveTrash(trash.Name, (int)trash.Day);
                                                     trashSortedToday += 1;
                                                     chosen = true;
-                                                    if (trashSpawnedOnDay[(Days)currentDay] == trashSortedToday) // checks if maybe today has ended?
+                                                    if (trashSpawnedOnDay[(Days)currentDay] == trashSortedToday) // checks if all trash collected to move into the next day
                                                     {   
                                                         trashSortedToday = 0; // reset trash sorted today counter
                                                         currentDay += 1; // increment day
-                                                        Console.WriteLine("\x1b[93mYou have sorted all the trash for today!\x1b[39m You are now going home to return back tomorrow.");
+                                                        Console.WriteLine($"\x1b[93mYou have sorted all the trash for today!\x1b[39m");
                                                         Console.WriteLine("");
                                                         while (currentRoom?.Exits.ContainsKey("backwards") == true) // returns you to the outside room after day ends.
                                                         {
                                                             previousRoom = currentRoom;
                                                             currentRoom = currentRoom?.Exits["backwards"];
                                                         }
-                                                        Console.WriteLine("You have returned to the university. \x1b[93mContinue on your quest to sort trash!\x1b[39m");
+                                                        if (currentDay >= 5) // at day 5, the game ends
+                                                        {
+                                                            ClearConsole(ref canClear, false);
+                                                            Console.WriteLine();
+                                                            Console.WriteLine("You have successfully finished the World of Zuul: \x1b[93mWaste Warriors\x1b[39m edition!");
+                                                            Console.WriteLine();
+                                                            Console.WriteLine("You can now tell all your friends about your \x1b[93msecret trash guy life\x1b[39m and how you are a \x1b[93mhero\x1b[39m of the environment!");
+                                                            Console.WriteLine();
+                                                            Console.WriteLine("Good luck in your further quests to sort the worlds trash and better the environment!");
+                                                            continuePlaying = false;
+                                                            exit = true;
+                                                            break;
+                                                        }
+                                                        Console.WriteLine("You went home and have now returned to the university the next day. \x1b[93mContinue on your quest to sort trash!\x1b[39m");
                                                         exit = true;
                                                     }
                                                     if (TrashList.Count == 1)
@@ -471,11 +480,11 @@
         private static void PrintHelp()
         {
             Console.WriteLine();
-            Console.WriteLine("Navigate by typing '\x1b[93mmove\x1b[39m' and then selecting the direction you want to go to.");
-            Console.WriteLine("Type '\x1b[93mback\x1b[39m' to go to the previous room.");
-            Console.WriteLine("Type '\x1b[93mcollect\x1b[39m' to collect and sort trash within your current room.");
-            Console.WriteLine("Type '\x1b[93mhelp\x1b[39m' to print this message again.");
-            Console.WriteLine("Type '\x1b[93mquit\x1b[39m' to exit the game.");
+            Console.WriteLine("Navigate by typing '\x1b[93mm\x1b[39m' (short for 'move') and then selecting the direction you want to go to.");
+            Console.WriteLine("Type '\x1b[93mb\x1b[39m' (short for 'back') to go to the previous room.");
+            Console.WriteLine("Type '\x1b[93mc\x1b[39m' (short for 'collect') to collect and sort trash within your current room.");
+            Console.WriteLine("Type '\x1b[93mh\x1b[39m' (short for 'help') to print this message again.");
+            Console.WriteLine("Type '\x1b[93mq\x1b[39m' (short for 'quit') to exit the game.");
         }
         private void ClearConsole(ref bool CanClear, bool returnValue = true) // This is used to clear console, and the bool is required so that the console doesn't clear when it doesn't need to.
         {
@@ -485,7 +494,7 @@
             }
             CanClear = returnValue;
         }
-        private void printMessage(Room currentRoom)
+        private void printMessage(Room currentRoom, int currentDay)
         {
             // This solves the possibility of a null reference exception
             Console.WriteLine(currentRoom.LongDescription);
@@ -513,7 +522,7 @@
                 Console.Write("\nTo advance to the next day you have to rid ");
                 
                 int i = 0;
-                foreach (Room room in GetRoomsWithTrash())
+                foreach (Room room in GetRoomsWithTrash(currentDay))
                 {
                     if (room.Equals(currentRoom)) continue;
                     if (i >= 1)
@@ -531,14 +540,14 @@
                 Console.WriteLine($"\n{currentRoom.dayDescription[(Days)currentDay]}");
             }
         }
-        public List<Room> GetRoomsWithTrash()
+        public List<Room> GetRoomsWithTrash(int currentDay = 0)
         {
             List<Room> roomsWithTrash = new List<Room>();
 
             // Assuming you have a way to get all rooms
             foreach (Room room in GetAllRooms())
             {
-                if (room.GetItems().Count > 0)
+                if (room.GetItems(currentDay).Count > 0)
                 {
                     roomsWithTrash.Add(room);
                 }
