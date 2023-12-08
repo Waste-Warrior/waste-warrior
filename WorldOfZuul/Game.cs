@@ -546,7 +546,6 @@
         }
         private void printMessage(Room currentRoom, int currentDay)
         {
-            // This solves the possibility of a null reference exception
             Console.WriteLine(currentRoom.LongDescription);
             
             //This currently prints all Trash in the Room to the console.
@@ -569,7 +568,11 @@
                 {
                     Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
                 }
-                Console.Write("\nTo advance to the next day you have to rid ");
+                List<Room> getAllRooms = GetRoomsWithTrash(currentDay);
+                if (getAllRooms.Count > 1 && getAllRooms.Contains(currentRoom) || getAllRooms.Count > 0 && !getAllRooms.Contains(currentRoom))
+                {
+                    Console.Write("\nTo advance to the next day you have to rid ");
+                }
                 
                 int i = 0;
                 foreach (Room room in GetRoomsWithTrash(currentDay))
