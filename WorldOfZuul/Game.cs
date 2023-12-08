@@ -35,32 +35,6 @@
         }
         private void CreateRooms()
         {
-            /*List of Trash to choose from, you should remember to set the day.
-             This should be removed from the actual game*/
-            Trash[] preset =
-            {
-                new ("a battery", Trash.TrashType.Miljøkasse, 0),
-                new ("a pizza box", Trash.TrashType.Restaffald, 0),
-                new ("a chips bag", Trash.TrashType.Restaffald, 0),
-                new ("an old magazine", Trash.TrashType.PapirOgPap, 0),
-                new ("a tissue", Trash.TrashType.Restaffald, 0),
-                new ("a crushed light bulb", Trash.TrashType.Miljøkasse, 0),
-                new ("a wine bottle", Trash.TrashType.Glas, 0),
-                new ("an orange juice carton", Trash.TrashType.Madkartoner, 0),
-                new ("a paper cup", Trash.TrashType.Restaffald, 0),
-                new ("a torn apart T-shirt", Trash.TrashType.Tekstilaffald, 0),
-                new ("a paper bag", Trash.TrashType.PapirOgPap, 0),
-                new ("a towel", Trash.TrashType.Tekstilaffald, 0),
-                new ("a bucket of paint", Trash.TrashType.Miljøkasse, 0),
-                new ("a sliced carpet", Trash.TrashType.Tekstilaffald, 0),
-                new ("a cloth", Trash.TrashType.Tekstilaffald, 0),
-                new ("a glass container", Trash.TrashType.Glas, 0),
-                new ("pile of glass shards", Trash.TrashType.Glas, 0),
-                new ("a crushed newspaper", Trash.TrashType.PapirOgPap, 0),
-                new ("a plastic bottle", Trash.TrashType.Plast, 0),
-                new ("a plastic wrapper", Trash.TrashType.Plast, 0)
-            };
-            
             //The trash arrays have to be set outside of the room declaration
             Trash[] outsideTrash =
             {
