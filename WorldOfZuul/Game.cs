@@ -508,19 +508,19 @@
                     Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
                 }
                 Console.Write("\nTo advance to the next day you have to rid ");
+                
                 int i = 0;
                 foreach (Room room in GetRoomsWithTrash())
+                {
+                    if (room.Equals(currentRoom)) continue;
+                    if (i >= 1)
                     {
-                        if (i > 1)
-                        {
-                            Console.Write(" & ");
-                        }
-                        if (!room.Equals(currentRoom))
-                        {
-                            i += 1;
-                            Console.Write($"\x1b[93m{room.ShortDescription?.Split(' ')[^1]}\x1b[39m");
-                        }
+                        Console.Write(" & ");
                     }
+                        
+                    i += 1;
+                    Console.Write($"\x1b[93m{room.ShortDescription?.Split(' ')[^1]}\x1b[39m");
+                }
                 Console.Write(" of trash.\n");
             }
             if (currentRoom.dayDescription.ContainsKey((Days)currentDay))
