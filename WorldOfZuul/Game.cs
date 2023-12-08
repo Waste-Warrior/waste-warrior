@@ -258,7 +258,8 @@
 
                 if (string.IsNullOrEmpty(input))
                 {
-                    Console.WriteLine("Please enter a command.");
+                    ClearConsole(ref canClear, false);
+                    Console.WriteLine("\n\x1b[93mPlease enter a command.\x1b[39m\n");
                     continue;
                 }
 
@@ -267,7 +268,8 @@
 
                 if (command == null)
                 {
-                    Console.WriteLine("I don't know that command.");
+                    ClearConsole(ref canClear, false);
+                    Console.WriteLine("\n\x1b[93mI don't know that command.\x1b[39m\n");
                     continue;
                 }
 
@@ -436,7 +438,8 @@
                         break;
                     
                     default:
-                        Console.WriteLine("I don't know that command.");
+                        ClearConsole(ref canClear, false);
+                        Console.WriteLine("\n\x1b[93mI don't know that command.\x1b[39m\n");
                         break;
                 }
                 Console.WriteLine(); //Adding an empty Line at the end of each action output
