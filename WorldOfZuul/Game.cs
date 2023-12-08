@@ -16,6 +16,7 @@
             Saturday,
             Sunday
         }
+        private List<Room> rooms;
         private Dictionary<Days, int> trashSpawnedOnDay = new Dictionary<Days, int>()
         {
             { Days.Monday, 0 },
@@ -29,47 +30,8 @@
         public readonly Days Day; // This will be used to determine when the trash can be picked up and shows up in the room
         public Game()
         { 
+            rooms = new List<Room>(); // Initialize the 'rooms' field with an empty list
             CreateRooms();
-        }
-        private void ClearConsole(ref bool CanClear, bool returnValue = true) // This is used to clear console, and the bool is required so that the console doesn't clear when it doesn't need to.
-        {
-            if (CanClear)
-            {
-                Console.Clear();
-            }
-            CanClear = returnValue;
-        }
-        private void printMessage(Room currentRoom)
-        {
-            // This solves the possibility of a null reference exception
-            Console.WriteLine(currentRoom.LongDescription);
-            
-            //This currently prints all Trash in the Room to the console.
-            if (currentRoom.ScatteredTrash != null && currentRoom.ScatteredTrash.Length != 0)
-            {
-                string allTrash = "";
-                foreach (Trash trash in currentRoom.ScatteredTrash)
-                {
-                    if (trash.Day == (Days)currentDay)
-                    {
-                        allTrash += $"\x1b[93m{trash.Name}\x1b[39m" + ", ";
-                    }
-                }
-                int lastCommaIndex = allTrash.LastIndexOf(", ");
-                if (lastCommaIndex >= 0)
-                {
-                    allTrash = allTrash.Remove(lastCommaIndex, 2);
-                }
-                if (allTrash.Length > 0)
-                {
-                    Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
-                }
-                Console.WriteLine($"To advance to the next day, you still have \x1b[93m{trashSpawnedOnDay[(Days)currentDay] - trashSortedToday}\x1b[39m trash to get through."); //maybe make it so it says the rooms you should visit not the trash left? idk
-            }
-            if (currentRoom.dayDescription.ContainsKey((Days)currentDay))
-            {
-                Console.WriteLine($"\n{currentRoom.dayDescription[(Days)currentDay]}");
-            }
         }
         private void CreateRooms()
         {
@@ -126,7 +88,7 @@
                 new ("an empty beer can", Trash.TrashType.Metal, Days.Tuesday),
                 new ("an empty Cola can", Trash.TrashType.Metal, Days.Tuesday),
             };
-            
+
             Room outside = new("outside", "You are standing outside the main entrance of the university. The only way to clean the university is to clean it outside and inside, right? Type 'forward' if you want to enter the university", outsideTrash);
             Room lobby = new("in the lobby", "You find yourself inside a large lobby with reception and an elevator. Several corridors going everywhere. What path will you choose. It's quite dark and quiet.", lobbyTrash);
             Room u101 = new("in U101", "You've entered the big lecture hall. It's a cozy place, where every student here has at least one lecture. There's a couple of people staying here, using the projector to watch movies. Perhaps you can stay wit them too");
@@ -137,8 +99,10 @@
             Room u201 = new("in U201", "Ah... Room U201. A room used for only one thing. Learning Danish. This is the place where one of the two Danish teaching structures is based - A2B. Look around and Held og Lykke!");
             Room u203 = new("in U203", "At last, A2B's rivals in room U203 - UCplus. A small room used so students can learn danish in the second danish teaching structure in campus. It is small, but practical. Oh, I almost forgot... The teacher brings pies. PIES.");
             
+            rooms.Add(outside); rooms.Add(lobby); rooms.Add(u101); rooms.Add(concertHall); rooms.Add(cafeteria); rooms.Add(u108); rooms.Add(u106); rooms.Add(u201); rooms.Add(u203); //adding all the rooms to the rooms list.
+
             outside.setDayDescriptions(
-                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing 'move') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \nIf at any point you forget how to play, just type in '\x1b[93mhelp\x1b[39m' and you will be reminded of the controls.",
+                "Greetings, Warrior! As it is your first day as a trash warrior, you should learn to sort the first categories of trash today.\nHead on to the Lobby (by typing 'move') for the introduction on how to sort trash! Also remember to go u108 and the concert hall everyday to learn why your trash sorting efforts are important. \n\nIf at any point you forget how to play, just type in '\x1b[93mhelp\x1b[39m' and you will be reminded of the controls.",
                 "Congratulations on completing the first day of your training and welcome back! Today you will learn to sort the next categories of trash. Head on to the Lobby (by typing 'Forward') for the introduction!",
                 "Welcome back, we are half way through the introduction, hopefully you will enjoy the remaining time as well.",
                 "Today is the last day, stick through this to become a perfect recycler.",
@@ -429,6 +393,79 @@
             Console.WriteLine("Type '\x1b[93mcollect\x1b[39m' to collect and sort trash within your current room.");
             Console.WriteLine("Type '\x1b[93mhelp\x1b[39m' to print this message again.");
             Console.WriteLine("Type '\x1b[93mquit\x1b[39m' to exit the game.");
+        }
+        private void ClearConsole(ref bool CanClear, bool returnValue = true) // This is used to clear console, and the bool is required so that the console doesn't clear when it doesn't need to.
+        {
+            if (CanClear)
+            {
+                Console.Clear();
+            }
+            CanClear = returnValue;
+        }
+        private void printMessage(Room currentRoom)
+        {
+            // This solves the possibility of a null reference exception
+            Console.WriteLine(currentRoom.LongDescription);
+            
+            //This currently prints all Trash in the Room to the console.
+            if (currentRoom.ScatteredTrash != null && currentRoom.ScatteredTrash.Length != 0)
+            {
+                string allTrash = "";
+                foreach (Trash trash in currentRoom.ScatteredTrash)
+                {
+                    if (trash.Day == (Days)currentDay)
+                    {
+                        allTrash += $"\x1b[93m{trash.Name}\x1b[39m" + ", ";
+                    }
+                }
+                int lastCommaIndex = allTrash.LastIndexOf(", ");
+                if (lastCommaIndex >= 0)
+                {
+                    allTrash = allTrash.Remove(lastCommaIndex, 2);
+                }
+                if (allTrash.Length > 0)
+                {
+                    Console.WriteLine($"Laying on the floor you can clearly see {allTrash}.");
+                }
+                Console.Write("\nTo advance to the next day you have to rid ");
+                int i = 0;
+                foreach (Room room in GetRoomsWithTrash())
+                    {
+                        if (i > 1)
+                        {
+                            Console.Write(" & ");
+                        }
+                        if (!room.Equals(currentRoom))
+                        {
+                            i += 1;
+                            Console.Write($"\x1b[93m{room.ShortDescription?.Split(' ')[^1]}\x1b[39m");
+                        }
+                    }
+                Console.Write(" of trash.\n");
+            }
+            if (currentRoom.dayDescription.ContainsKey((Days)currentDay))
+            {
+                Console.WriteLine($"\n{currentRoom.dayDescription[(Days)currentDay]}");
+            }
+        }
+        public List<Room> GetRoomsWithTrash()
+        {
+            List<Room> roomsWithTrash = new List<Room>();
+
+            // Assuming you have a way to get all rooms
+            foreach (Room room in GetAllRooms())
+            {
+                if (room.GetItems().Count > 0)
+                {
+                    roomsWithTrash.Add(room);
+                }
+            }
+
+            return roomsWithTrash;
+        }
+        public List<Room> GetAllRooms()
+        {
+            return rooms;
         }
     }
 }
